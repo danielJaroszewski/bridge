@@ -1,5 +1,5 @@
-#include "OurComponent.hpp"
-#include "box2d/include/box2d/box2d.h"
+#include "./OurComponent.hpp"
+#include "../box2d/include/box2d/box2d.h"
 #include <vector>
 
 using std::vector;
