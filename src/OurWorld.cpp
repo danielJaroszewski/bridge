@@ -5,16 +5,15 @@ OurWorld::OurWorld(float gravityFactor_)
 {    
 }
 
-void OurWorld::addComponent(float xCoordinate_, float yCoordinate_, float length_, float width_, float density_)
+void OurWorld::addComponent(OurComponent component_)
 {
-    OurComponent newComponent = OurComponent(xCoordinate_, yCoordinate_, length_, width_, density_);
-    components.push_back(newComponent);
+    components.push_back(component_);
 }
 
 void OurWorld::initialize()
 {
-    b2Vec2 gravity(0.0f, -10.0f);
-    b2World world(gravity);
+    gravity = b2Vec2(0.0f, gravityFactor);
+    world.SetGravity(gravity);
     b2BodyDef def;
     for(auto i:components)
     {
