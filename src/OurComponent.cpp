@@ -16,3 +16,8 @@ b2BodyDef OurComponent::getBodyDef()
 {
     return this->bodyDef;
 }
+
+float OurComponent::getXCoordinate()
+{
+    return this->xCoordinate;
+}
