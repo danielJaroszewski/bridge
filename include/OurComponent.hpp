@@ -1,8 +1,7 @@
 #pragma once
-
 #include "../box2d/include/box2d/box2d.h"
 
-class OurComponent
+class OurComponent 
 {
 private:
     float xCoordinate;
@@ -11,12 +10,16 @@ private:
     float width;
     float density;
     b2BodyDef bodyDef;
+    b2FixtureDef fixtureDef;
+    b2PolygonShape dynamicBox;
 
 public:
     OurComponent(float xCoordinate_, float yCoordinate_, float length_, float width_, float density_);
 
     void createBodyDefinition();
-    b2BodyDef getBodyDef();
+    void createBodyFixtureDefinition();
+    const b2BodyDef& getBodyDef();
+    const b2FixtureDef& getFixtureDefinition();
     float getXCoordinate();
 
 };
