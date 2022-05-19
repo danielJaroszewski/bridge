@@ -12,9 +12,22 @@ void OurComponent::createBodyDefinition()
     // ...
 }
 
-b2BodyDef OurComponent::getBodyDef()
+void OurComponent::createBodyFixtureDefinition()
 {
-    return this->bodyDef;
+    dynamicBox.SetAsBox(1.0f, 1.0f);
+    fixtureDef.shape = &dynamicBox;
+    fixtureDef.density = this->density;
+    fixtureDef.friction =0.3f;
+}
+
+const b2BodyDef& OurComponent::getBodyDef()
+{
+    return bodyDef;
+}
+
+const b2FixtureDef& OurComponent::getFixtureDefinition()
+{
+    return fixtureDef;
 }
 
 float OurComponent::getXCoordinate()
