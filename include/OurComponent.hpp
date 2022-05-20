@@ -1,6 +1,7 @@
 #pragma once
 #include "box2d/box2d.h"
 
+
 class OurComponent 
 {
 private:
@@ -15,11 +16,9 @@ private:
 
 public:
     OurComponent(float xCoordinate_, float yCoordinate_, float length_, float width_, float density_);
-
     void createBodyDefinition();
     void createBodyFixtureDefinition();
-    const b2BodyDef& getBodyDef();
-    const b2FixtureDef& getFixtureDefinition();
+    b2BodyDef getBodyDef();
+    b2FixtureDef getFixtureDefinition();
     float getXCoordinate();
-
 };
