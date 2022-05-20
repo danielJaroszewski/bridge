@@ -48,7 +48,11 @@ void OurWorld::assignFixtures()
     }
 }
 
-void OurWorld::destroyB2World()
+void OurWorld::destroyB2Bodies()
 {
+    for(auto a : b2Bodies)
+    {
+        world.DestroyBody(a);
+    }
 
 }

@@ -12,6 +12,9 @@ int main(int argc, char const *argv[])
     world.addComponent(comp1);
     world.initialize();
     world.assignFixtures();
+
+
+    world.destroyB2Bodies();
     cout<<"dupa\n";
     return 0;
 }

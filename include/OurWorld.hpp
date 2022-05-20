@@ -23,6 +23,6 @@ public:
     void addJoint(OurComponent bodyA, OurComponent bodyB);
     void initialize(); //making box2d world and box2d bodies
     void assignFixtures();
-    void destroyB2World();
+    void destroyB2Bodies();
 
 };
