@@ -11,7 +11,12 @@ void OurWorld::addComponent(OurComponent& component_)
     components.push_back(component_);
 }
 
-void OurWorld::initialize()
+void OurWorld::addJoint(OurJoint& joint_)
+{
+    joints.push_back(joint_);
+}
+
+void OurWorld::initializeComponents()
 {
     gravity = b2Vec2(0.0f, gravityFactor);
     world.SetGravity(gravity);
@@ -34,7 +39,7 @@ void OurWorld::initialize()
 void OurWorld::assignFixtures()
 {
     b2FixtureDef fixDef;
-    for(int i=0; i<components.size(); i++)
+    for(int i=0; i<b2Bodies.size(); i++)
     {
         try
         {
@@ -48,11 +53,29 @@ void OurWorld::assignFixtures()
     }
 }
 
-void OurWorld::destroyB2Bodies()
+void OurWorld::initializeJoints()
+{
+    int indexA, indexB;
+    for(auto a:joints)
+    {
+        indexA = a.getBodyAIndex();
+        indexB = a.getBodyBIndex();
+
+        a.initializeDefinition(b2Bodies[indexA], b2Bodies[indexB], b2Bodies[indexA]->GetWorldCenter(), b2Bodies[indexB]->GetWorldCenter());
+        a.setLinearStiffness(0.0f, 1.0f);
+    }
+}
+
+void OurWorld::destroyB2BodiesAndJoints()
 {
     for(auto a : b2Bodies)
     {
         world.DestroyBody(a);
+    }
+
+    for(auto i: b2Joints)
+    {
+        world.DestroyJoint(i);
     }
 
 }
