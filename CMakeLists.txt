@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(most)
 
-find_package(Catch2 3 REQUIRED HINTS /usr/local/include)
+find_package(Catch2 3 REQUIRED)
 find_package(box2d CONFIG REQUIRED)
 
 set(CXX_STANDARD 11)
