@@ -15,7 +15,8 @@ private:
     vector<OurJoint*> joints;
     b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
     b2World world =b2World(gravity);
-    public:
+
+public:
     OurWorld(float gravityFactor_);
     void addComponent(OurComponent& component_);
     void addJoint(OurJoint& joint_);
