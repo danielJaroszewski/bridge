@@ -7,7 +7,6 @@ find_package(box2d CONFIG REQUIRED)
 set(CXX_STANDARD 11)
 
 
-
 file(GLOB_RECURSE SRC1 ./src/*.cpp)
 
 add_executable(most main.cpp ${SRC1})

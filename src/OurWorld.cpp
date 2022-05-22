@@ -76,7 +76,7 @@ void OurWorld::initializeJoints()
 }
 
 /**
- * @brief Wrapper function to easily initalize all the components, fixtures and joints as needed.
+ * @brief Wrapper function to easily initalize all the components, fixtures and joints.
  * 
  */
 void OurWorld::initializeWorld()
