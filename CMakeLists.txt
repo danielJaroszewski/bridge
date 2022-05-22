@@ -11,10 +11,10 @@ set(CXX_STANDARD 11)
 file(GLOB_RECURSE SRC1 ./src/*.cpp)
 
 add_executable(most main.cpp ${SRC1})
+target_link_libraries(most PRIVATE box2d::box2d)
 
 add_executable(test ./tests/test.cpp ${SRC1} ${SRC2})
 
 target_link_libraries(most PRIVATE box2d::box2d)
 target_link_libraries(test PRIVATE box2d::box2d)
 target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
-

@@ -11,13 +11,11 @@ class OurWorld
 {
 private:
     float gravityFactor = -10.0f; // to initialize gravity in box2d, default value
-    vector<OurComponent> components;
-    vector<OurJoint> joints;
+    vector<OurComponent*> components;
+    vector<OurJoint*> joints;
     b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
     b2World world =b2World(gravity);
-    vector<b2Body*> b2Bodies; //spróbować przenieść do klasy OurComponent - błędy pamięci
-    vector<b2Joint*> b2Joints;
-public:
+    public:
     OurWorld(float gravityFactor_);
     void addComponent(OurComponent& component_);
     void addJoint(OurJoint& joint_);
@@ -25,5 +23,7 @@ public:
     void initializeJoints();
     void assignFixtures();
     void destroyB2BodiesAndJoints();
+
+    OurComponent getComponent(int index);
 
 };

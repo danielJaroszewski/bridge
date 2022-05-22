@@ -20,14 +20,14 @@ void OurComponent::createBodyFixtureDefinition()
     fixtureDef.friction =0.3f;
 }
 
-b2BodyDef OurComponent::getBodyDef()
+const b2BodyDef* OurComponent::getBodyDef()
 {
-    return bodyDef;
+    return &bodyDef;
 }
 
-b2FixtureDef OurComponent::getFixtureDefinition()
+const b2FixtureDef* OurComponent::getFixtureDefinition()
 {
-    return fixtureDef;
+    return &fixtureDef;
 }
 
 float OurComponent::getXCoordinate()

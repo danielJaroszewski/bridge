@@ -7,6 +7,11 @@ void OurJoint::initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 aBod
     distJointDef.collideConnected = true;
 }
 
+const b2DistanceJointDef* OurJoint::getDistJointDef()
+{
+    return &distJointDef;
+}
+
 
 void OurJoint::setLinearStiffness(float freq_, float dampingRatio_)
 {
