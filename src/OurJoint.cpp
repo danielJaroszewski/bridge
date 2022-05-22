@@ -47,3 +47,7 @@ int OurJoint::getBodyBIndex()
     return indexOfBodyB;
 }
 
+const b2DistanceJointDef* OurJoint::getDistJointDef()
+{
+    return &distJointDef;
+}

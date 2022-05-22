@@ -19,9 +19,7 @@ int main(int argc, char const *argv[])
     OurJoint joint1 = OurJoint();
     joint1.setIndexOfBodies(0,1);
 
-    world.initializeComponents();
-    world.assignFixtures();
-    world.initializeJoints();
+    world.initializeWorld();
 
     world.destroyB2BodiesAndJoints();
     cout<<"dupa\n";

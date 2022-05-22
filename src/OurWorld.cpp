@@ -76,6 +76,17 @@ void OurWorld::initializeJoints()
 }
 
 /**
+ * @brief Wrapper function to easily initalize all the components, fixtures and joints as needed.
+ * 
+ */
+void OurWorld::initializeWorld()
+{   
+    initializeComponents();
+    assignFixtures();
+    initializeJoints();
+
+}
+/**
  * @brief Clears the world from created joints and bodies.
  * 
  */

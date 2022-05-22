@@ -26,6 +26,7 @@ public:
     OurWorld(float gravityFactor_);
     void addComponent(OurComponent& component_);
     void addJoint(OurJoint& joint_);
+    void initializeWorld();
     void initializeComponents(); //making box2d world and box2d bodies
     void initializeJoints();
     void assignFixtures();
