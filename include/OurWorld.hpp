@@ -7,6 +7,12 @@
 
 using std::vector;
 
+/**
+ * @brief Wrapper class for box2d's world. Initializes and places components inside a b2World object, simulating
+ * gravity and other forces.
+ * 
+ */
+
 class OurWorld
 {
 private:
