@@ -1,11 +1,14 @@
 #pragma once
 #include "box2d/box2d.h"
 
-
+/**
+ * @brief Wrapper class for box2d bodies.
+ * 
+ */
 class OurComponent 
 {
 private:
-    float xCoordinate;
+    float xCoordinate;  
     float yCoordinate;
     float length;
     float width;
