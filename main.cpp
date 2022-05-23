@@ -1,27 +1,32 @@
 #include "include/OurWorld.hpp"
-#include <iostream>
-
-using std::cout;
+#include "include/Graphics/GraphicsWorld.hpp"
+#include "include/GUI/GUIWorld.hpp"
 
 int main(int argc, char const *argv[])
 {
-    OurWorld world = OurWorld(-10.0f);
-    OurComponent comp1 = OurComponent(0.0f,1.0f, 10.0f, 1.0f, 50.0f);
-    comp1.createBodyDefinition();
-    comp1.createBodyFixtureDefinition();
+    constexpr float gravityConstant = -9.807f;
 
-    OurComponent comp2 = OurComponent(15.0f, 1.0f, 10.0f, 1.0f, 50.0f);
-    comp2.createBodyDefinition();
-    comp2.createBodyFixtureDefinition();
-    world.addComponent(comp1);
-    world.addComponent(comp2);
+    // Initialization.
+    OurWorld physicsWorld(gravityConstant);
+    most::GraphicsWorld graphics;
+    most::GUI::World guiWorld;
 
-    OurJoint joint1 = OurJoint();
-    joint1.setIndexOfBodies(0,1);
+    bool shouldRun = true;
+    graphics.addEventCallback([&shouldRun](const sf::Event& e)
+    {
+        if (e.type == sf::Event::Closed)
+        {
+            shouldRun = false;
+        }
+    });
 
-    world.initializeWorld();
+    // Main loop.
+    while (shouldRun)
+    {
+        graphics.processEvents();
+        // TODO: Process physics here.
+        graphics.present();
+    }
 
-    world.destroyB2BodiesAndJoints();
-    cout<<"dupa\n";
     return 0;
 }
