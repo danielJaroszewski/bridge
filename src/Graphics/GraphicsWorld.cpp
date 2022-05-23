@@ -38,7 +38,7 @@ void most::GraphicsWorld::present()
 		wnd.draw(*x.first);
 	}
 
-	ImGui::SFML::Render();
+	ImGui::SFML::Render(wnd);
 	wnd.display();
 }
 
