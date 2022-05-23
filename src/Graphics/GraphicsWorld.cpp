@@ -32,7 +32,8 @@ void most::GraphicsWorld::processEvents()
 
 void most::GraphicsWorld::present()
 {
-	wnd.clear();
+	deltaClock.restart();
+	wnd.clear(sf::Color(66, 135, 245));
 	for (const auto& x : allDrawables)
 	{
 		wnd.draw(*x.first);
@@ -67,4 +68,9 @@ void most::GraphicsWorld::addDrawable(std::unique_ptr<sf::Drawable>&& drawable)
 void most::GraphicsWorld::removeDrawable(sf::Drawable* const drawable)
 {
 	allDrawables.erase(drawable);
+}
+
+sf::Time most::GraphicsWorld::getDeltaTime() const
+{
+	return deltaClock.getElapsedTime();
 }

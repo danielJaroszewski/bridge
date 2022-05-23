@@ -15,6 +15,7 @@ namespace most
 	private:
 		constexpr static const char* windowTitle = "pwjc-most";
 		sf::RenderWindow wnd;
+		sf::Clock deltaClock;
 
 		std::map<sf::Drawable*, std::unique_ptr<sf::Drawable>> allDrawables;
 		std::list<std::function<void(const sf::Event&)>> eventCallbacks;
@@ -52,5 +53,9 @@ namespace most
 		/// @brief Removes the provided drawable from the rendering chain.
 		/// @param drawable Drawable to remove
 		void removeDrawable(sf::Drawable* const drawable);
+
+		/// @brief Returns the delta time from the last frame.
+		/// @return Delta time
+		sf::Time getDeltaTime() const;
 	};
 }

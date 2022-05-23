@@ -10,6 +10,7 @@ int main(int argc, char const *argv[])
     OurWorld physicsWorld(gravityConstant);
     most::GraphicsWorld graphics;
     most::GUI::World guiWorld;
+    graphics.addDrawable(&guiWorld);
 
     bool shouldRun = true;
     graphics.addEventCallback([&shouldRun](const sf::Event& e)
