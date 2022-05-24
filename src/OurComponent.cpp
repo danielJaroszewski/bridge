@@ -40,6 +40,11 @@ const b2FixtureDef* OurComponent::getFixtureDefinition()
 
 float OurComponent::getXCoordinate()
 {
-    return this->xCoordinate;
+    return this->dynBody->GetPosition().x;
+}
+
+float OurComponent::getXCoordinate()
+{
+    return this->dynBody->GetPosition().y;
 }
 

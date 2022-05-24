@@ -25,4 +25,5 @@ public:
     const b2BodyDef* getBodyDef();
     const  b2FixtureDef* getFixtureDefinition();
     float getXCoordinate();
+    float getYCoordinate();
 };
