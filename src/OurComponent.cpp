@@ -43,7 +43,7 @@ float OurComponent::getXCoordinate()
     return this->dynBody->GetPosition().x;
 }
 
-float OurComponent::getXCoordinate()
+float OurComponent::getYCoordinate()
 {
     return this->dynBody->GetPosition().y;
 }
