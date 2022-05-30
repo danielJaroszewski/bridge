@@ -26,4 +26,6 @@ public:
     const  b2FixtureDef* getFixtureDefinition();
     float getXCoordinate();
     float getYCoordinate();
+    float getLength();
+    float getWidth();
 };

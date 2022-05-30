@@ -48,3 +48,12 @@ float OurComponent::getYCoordinate()
     return this->dynBody->GetPosition().y;
 }
 
+float OurComponent::getLength()
+{
+    return this->length;
+}
+
+float OurComponent::getWidth()
+{
+    return this->width;
+}
