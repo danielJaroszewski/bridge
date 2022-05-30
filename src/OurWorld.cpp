@@ -64,12 +64,16 @@ void OurWorld::assignFixtures()
 void OurWorld::initializeJoints()
 {
     int indexA, indexB;
+    b2Vec2 bodyAAnchorPoint, bodyBAnchorPoint;
     for(auto a:joints)
     {
         indexA = a->getBodyAIndex();
         indexB = a->getBodyBIndex();
-
-        a->initializeDefinition(components[indexA]->dynBody, components[indexB]->dynBody, components[indexA]->dynBody->GetWorldCenter(),components[indexB]->dynBody->GetWorldCenter()); //raczej nie getWorldCenter()
+        a->initializeDefinition(components[indexA]->dynBody, 
+                                components[indexB]->dynBody, 
+                                components[indexA]->dynBody->GetWorldCenter(),
+                                components[indexB]->dynBody->GetWorldCenter()
+        ); //raczej nie getWorldCenter()
         a->setLinearStiffness(0.0f, 1.0f);
         a->distanceJoint = (b2DistanceJoint*)world.CreateJoint(a->getDistJointDef());
     }
