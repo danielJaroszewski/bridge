@@ -1,11 +1,6 @@
 #include "../include/OurWorld.hpp"
 #include <iostream>
 
-OurWorld::OurWorld(float gravityFactor_)
-:gravityFactor(gravityFactor_)
-{    
-}
-
 void OurWorld::addComponent(OurComponent& component_)
 {
     components.push_back(&component_);
@@ -94,20 +89,13 @@ void OurWorld::initializeWorld()
  * @brief Clears the world from created joints and bodies.
  * 
  */
-void OurWorld::destroyB2BodiesAndJoints()
+void OurWorld::destroyB2Bodies()
 {
    for(auto a:components)
    {
        world.DestroyBody(a->dynBody);
    }
    components.clear();
-
-   for (auto i : joints)
-   {
-       world.DestroyJoint(i->distanceJoint);
-   }
-
-
 }
 
 

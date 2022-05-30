@@ -24,14 +24,13 @@ private:
 
 public:
     b2World world =b2World(gravity);
-    OurWorld(float gravityFactor_);
     void addComponent(OurComponent& component_);
     void addJoint(OurJoint& joint_);
     void initializeWorld();
     void initializeComponents(); //making box2d world and box2d bodies
     void initializeJoints();
     void assignFixtures();
-    void destroyB2BodiesAndJoints();
+    void destroyB2Bodies();
 
     OurComponent getComponent(int index);
 
