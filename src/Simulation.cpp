@@ -1,6 +1,6 @@
 #include "../include/Simulation.hpp"
 
-void Simulation::setSimWorld(OurWorld& simWorld_)
+void Simulation::setSimWorld(const OurWorld& simWorld_)
 {
     this->simulationWorld = simWorld_;
 }
