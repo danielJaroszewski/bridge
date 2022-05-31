@@ -57,3 +57,8 @@ float OurComponent::getWidth()
 {
     return this->width;
 }
+
+float OurComponent::getAngle()
+{
+    return this->dynBody->GetAngle();
+}

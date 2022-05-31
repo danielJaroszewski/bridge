@@ -28,4 +28,5 @@ public:
     float getYCoordinate();
     float getLength();
     float getWidth();
+    float getAngle();
 };
