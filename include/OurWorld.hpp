@@ -20,6 +20,10 @@ private:
     vector<OurComponent*> components;
     vector<OurJoint*> joints;
     b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
+    unsigned numberOfComponents = 0, numberOfJoints = 0;
+    float timeStep;
+    int32 velocityIterations, positionIterations;
+
     
 
 public:
@@ -31,7 +35,8 @@ public:
     void initializeJoints();
     void assignFixtures();
     void destroyB2Bodies();
-
     OurComponent getComponent(int index);
+    void setSimParams(float timeStep_=(1.0f/60.0f),int32 velocityIterations_=8, int32 positionIterations_ =3);
+    void update();
 
 };

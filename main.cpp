@@ -23,10 +23,6 @@ int main(int argc, char const *argv[])
 
     world.initializeWorld();
 
-    Simulation sim = Simulation();
-    //sim.setSimWorld(world);  problem - after passing world by reference got memory leaks caused by destroyB2Bodies() method
-    // sim.setSimParams();
-
     world.destroyB2Bodies();
     cout<<"End of program\n";
     return 0;
