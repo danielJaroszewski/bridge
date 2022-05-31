@@ -1,5 +1,4 @@
 #include "include/OurWorld.hpp"
-#include "include/Simulation.hpp"
 #include <iostream>
 
 using std::cout;
