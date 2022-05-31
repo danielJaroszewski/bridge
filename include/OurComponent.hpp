@@ -19,9 +19,8 @@ private:
 
 public:
     b2Body* dynBody;
+    
     OurComponent(float xCoordinate_, float yCoordinate_, float length_, float width_, float density_);
-    void createBodyDefinition();
-    void createBodyFixtureDefinition();
     const b2BodyDef* getBodyDef();
     const  b2FixtureDef* getFixtureDefinition();
     float getXCoordinate();
@@ -29,4 +28,17 @@ public:
     float getLength();
     float getWidth();
     float getAngle();
+
+    /**
+    * @brief Creates the body definition to be used by OurWorld.
+    * 
+    */
+    void createBodyDefinition();
+
+    /**
+    * @brief Sets body fixture (density, shape, friction).
+    * 
+    */
+    void createBodyFixtureDefinition();
+    
 };

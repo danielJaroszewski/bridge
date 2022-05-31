@@ -4,10 +4,6 @@ OurComponent::OurComponent(float xCoordinate_, float yCoordinate_, float length_
 :xCoordinate(xCoordinate_), yCoordinate(yCoordinate_), length(length_), width(width_), density(density_)
 {}
 
-/**
- * @brief Creates the body definition to be used by OurWorld.
- * 
- */
 void OurComponent::createBodyDefinition()
 {
     bodyDef.type = b2_dynamicBody;
@@ -15,10 +11,6 @@ void OurComponent::createBodyDefinition()
     // ...
 }
 
-/**
- * @brief Sets body fixture (density, shape, friction).
- * 
- */
 void OurComponent::createBodyFixtureDefinition()
 {
     dynamicBox.SetAsBox(1.0f, 1.0f);
@@ -26,7 +18,6 @@ void OurComponent::createBodyFixtureDefinition()
     fixtureDef.density = this->density;
     fixtureDef.friction =0.3f;
 }
-
 
 const b2BodyDef* OurComponent::getBodyDef()
 {

@@ -11,10 +11,7 @@ void OurWorld::addJoint(OurJoint& joint_)
     joints.push_back(&joint_);
 }
 
-/**
- * @brief Initializes components from the components vector.
- * 
- */
+
 void OurWorld::initializeComponents()
 {
     gravity = b2Vec2(0.0f, gravityFactor);
@@ -33,10 +30,7 @@ void OurWorld::initializeComponents()
     }
 }
 
-/**
- * @brief Initializes fixtures for the created components.
- * 
- */
+
 void OurWorld::assignFixtures()
 {
     for(auto i :components)
@@ -52,10 +46,7 @@ void OurWorld::assignFixtures()
     }
 }
 
-/**
- * @brief Initializes joints from the joint vector.
- * 
- */
+
 void OurWorld::initializeJoints()
 {
     int indexA, indexB;
@@ -74,10 +65,7 @@ void OurWorld::initializeJoints()
     }
 }
 
-/**
- * @brief Wrapper function to easily initalize all the components, fixtures and joints.
- * 
- */
+
 void OurWorld::initializeWorld()
 {   
     initializeComponents();
@@ -85,10 +73,7 @@ void OurWorld::initializeWorld()
     initializeJoints();
 
 }
-/**
- * @brief Clears the world from created joints and bodies.
- * 
- */
+
 void OurWorld::destroyB2Bodies()
 {
    for(auto a:components)
