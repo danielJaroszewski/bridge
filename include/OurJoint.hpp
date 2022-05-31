@@ -35,7 +35,7 @@ public:
      */
     void setLinearStiffness(float freq_, float dampingRatio_);//must be called after initializeDefinition
 
-     /**
+    /**
      * @brief Sets the indices of bodies, to which the joint is attached.
      * 
      * @param bodyAIndex 

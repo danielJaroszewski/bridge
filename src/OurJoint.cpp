@@ -7,7 +7,6 @@ void OurJoint::initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 aBod
     distJointDef.collideConnected = true;
 }
 
-
 void OurJoint::setLinearStiffness(float freq_, float dampingRatio_)
 {
     b2LinearStiffness(distJointDef.stiffness, distJointDef.damping, freq_, dampingRatio_, distJointDef.bodyA, distJointDef.bodyB);
@@ -23,7 +22,6 @@ int OurJoint::getBodyAIndex()
 {
     return indexOfBodyA;
 }
-
 
 int OurJoint::getBodyBIndex()
 {

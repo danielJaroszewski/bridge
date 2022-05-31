@@ -22,7 +22,7 @@ public:
     
     OurComponent(float xCoordinate_, float yCoordinate_, float length_, float width_, float density_);
     const b2BodyDef* getBodyDef();
-    const  b2FixtureDef* getFixtureDefinition();
+    const b2FixtureDef* getFixtureDefinition();
     float getXCoordinate();
     float getYCoordinate();
     float getLength();

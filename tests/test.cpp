@@ -5,7 +5,7 @@ TEST_CASE("some")
 {
     OurWorld world = OurWorld();
     OurComponent comp1 = OurComponent(0.0f, 1.0f, 4.0f, 5.0f, 10.0f);
-    REQUIRE(comp1.getXCoordinate() == 0.0f);
+    REQUIRE(comp1.getBodyDef()->position.x == 0.0f);
 }
 
 TEST_CASE("second")

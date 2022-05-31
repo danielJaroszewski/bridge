@@ -35,7 +35,8 @@ public:
     void update();
     
     /**
-    * @brief Wrapper function to easily initalize all the components, fixtures and joints.
+    * @brief Wrapper function to easily initalize all the components, fixtures and joints. Also defines two edges of the map
+    * at xy coordinates of (1,1) and (150,1). Each of them is 20 units wide and 50 units long. 
     * 
     */
     void initializeWorld();

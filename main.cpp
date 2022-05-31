@@ -6,11 +6,22 @@ using std::cout;
 int main(int argc, char const *argv[])
 {
     OurWorld world = OurWorld();
-    OurComponent comp1 = OurComponent(0.0f,1.0f, 10.0f, 1.0f, 50.0f);
+
+    OurComponent leftBase = OurComponent(1.0f, 1.0f, 50.0f, 10.0f, 50.0f);
+    leftBase.createBodyDefinition();
+    leftBase.createBodyFixtureDefinition();
+    world.addComponent(leftBase);
+
+    OurComponent rightBase = OurComponent(150.0f, 1.0f, 50.0f, 10.0f, 50.0f);
+    rightBase.createBodyDefinition();
+    rightBase.createBodyFixtureDefinition();
+    world.addComponent(rightBase);
+
+    OurComponent comp1 = OurComponent(50.0f, 25.0f, 10.0f, 1.0f, 50.0f);
     comp1.createBodyDefinition();
     comp1.createBodyFixtureDefinition();
 
-    OurComponent comp2 = OurComponent(20.0f, 1.0f, 10.0f, 1.0f, 50.0f);
+    OurComponent comp2 = OurComponent(65.0f, 25.0f, 10.0f, 1.0f, 50.0f);
     comp2.createBodyDefinition();
     comp2.createBodyFixtureDefinition();
     world.addComponent(comp1);
