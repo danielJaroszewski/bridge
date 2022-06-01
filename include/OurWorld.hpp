@@ -32,36 +32,6 @@ public:
     void addComponent(OurComponent& component_);
     void addJoint(OurJoint& joint_);
 
-    /**
-     * @brief Wrapper function to easily initalize all the components, fixtures and joints.
-     * 
-     */
-    void initializeWorld();
-
-    /**
-     * @brief Initializes components from the components vector.
-     * 
-     */
-    void initializeComponents(); 
-
-    /**
-     * @brief Initializes joints from the joint vector. 
-     * 
-     */
-    void initializeJoints();
-
-
-    /**
-     * @brief Initializes fixtures for the created components.
-     * 
-     */
-    void assignFixtures();
-
-    /**
-     * @brief Clears the world from created joints and bodies.
-     * 
-     */
-    void destroyB2Bodies();
     OurComponent getComponent(int index);
     void setSimParams(float timeStep_=(1.0f/60.0f),int32 velocityIterations_=8, int32 positionIterations_ =3);
     void update();

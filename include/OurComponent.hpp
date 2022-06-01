@@ -52,19 +52,6 @@ public:
     float getWidth();
     float getHeight();
     float getAngle();
-
-    /**
-    * @brief Creates the body definition to be used by OurWorld.
-    * 
-    */
-    void createBodyDefinition();
-
-    /**
-    * @brief Sets body fixture (density, shape, friction).
-    * 
-    */
-    void createBodyFixtureDefinition();
-    
     b2Vec2 getLeftAnchorPoint();
     b2Vec2 getRightAnchorPoint();
 };
