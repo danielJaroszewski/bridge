@@ -11,7 +11,6 @@ void OurWorld::addJoint(OurJoint& joint_)
     joints.push_back(&joint_);
 }
 
-
 void OurWorld::initializeComponents()
 {
     gravity = b2Vec2(0.0f, gravityFactor);
@@ -57,9 +56,9 @@ void OurWorld::initializeJoints()
         indexB = a->getBodyBIndex();
         a->initializeDefinition(components[indexA]->dynBody, 
                                 components[indexB]->dynBody, 
-                                components[indexA]->dynBody->GetWorldCenter(),
-                                components[indexB]->dynBody->GetWorldCenter()
-        ); //raczej nie getWorldCenter()
+                                components[indexA]->getRightAnchorPoint(),
+                                components[indexB]->getLeftAnchorPoint()
+        );
         a->setLinearStiffness(0.0f, 1.0f);
         a->distanceJoint = (b2DistanceJoint*)world.CreateJoint(a->getDistJointDef());
     }
