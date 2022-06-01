@@ -40,3 +40,19 @@ TEST_CASE("World init")
 
     REQUIRE(comp1.getBodyDef()->position.x == 0.0f);
 }
+
+TEST_CASE("positions")
+{
+    OurWorld world = OurWorld();
+    OurComponent comp1 = OurComponent(0.0f, 10.0f, 1.0f, 0.1f, 10.0f);
+    comp1.createBodyDefinition();
+    comp1.createBodyFixtureDefinition();
+    world.addComponent(comp1);
+    world.initializeWorld();
+
+    float comp1X= comp1.getXCoordinate();
+    float comp1Y = comp1.getYCoordinate();
+
+    REQUIRE(comp1X==0.0f);
+    REQUIRE(comp1Y==10.0f);
+}
