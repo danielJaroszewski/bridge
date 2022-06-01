@@ -33,6 +33,9 @@ int main(int argc, char const *argv[])
 
     world.initializeWorld();
 
+    world.setSimParams();
+    world.update();
+
     world.destroyB2Bodies();
     cout<<"End of program\n";
     return 0;
