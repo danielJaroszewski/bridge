@@ -6,6 +6,11 @@ void OurWorld::addComponent(OurComponent& component_)
     components.push_back(&component_);
 }
 
+void OurWorld::addStaticComponent(StaticComponent& staticComponent_)
+{
+    staticComponents.push_back(&staticComponent_);
+}
+
 void OurWorld::addJoint(OurJoint& joint_)
 {
     joints.push_back(&joint_);
@@ -13,13 +18,24 @@ void OurWorld::addJoint(OurJoint& joint_)
 
 void OurWorld::initializeComponents()
 {
-    gravity = b2Vec2(0.0f, gravityFactor);
-    world.SetGravity(gravity);
     for(auto i:components)
     {
         try
         {
             i->dynBody = world.CreateBody(i->getBodyDef());
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
+        
+    }
+
+    for(auto i:staticComponents)
+    {
+        try
+        {
+             i->staticBody = world.CreateBody(i->getBodyDef());
         }
         catch(const std::exception& e)
         {
@@ -42,6 +58,18 @@ void OurWorld::assignFixtures()
         {
             std::cerr << e.what() << '\n';
         }     
+    }
+
+    for(auto i:staticComponents)
+    {
+        try
+        {
+            i->staticBody->CreateFixture(i->getFixtureDefinition());
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << e.what() << '\n';
+        }
     }
 }
 
@@ -67,6 +95,9 @@ void OurWorld::initializeJoints()
 
 void OurWorld::initializeWorld()
 {   
+    gravity = b2Vec2(0.0f, gravityFactor);
+    world.SetGravity(gravity);
+
     initializeComponents();
     assignFixtures();
     initializeJoints();
@@ -80,6 +111,7 @@ void OurWorld::destroyB2Bodies()
        world.DestroyBody(a->dynBody);
    }
    components.clear();
+   joints.clear();
 }
 
 
