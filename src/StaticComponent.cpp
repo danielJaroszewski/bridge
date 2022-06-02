@@ -26,3 +26,18 @@ const b2FixtureDef* StaticComponent::getFixtureDefinition()
 {
     return &fixtureDef;
 }
+
+float StaticComponent::getXCoordinate()
+{
+    return staticBody->GetPosition().x;
+}
+
+float StaticComponent::getYCoordinate()
+{
+    return staticBody->GetPosition().y;
+}
+
+b2Vec2 StaticComponent::getAnchorPoint()
+{
+    return staticBody->GetWorldCenter();
+}
