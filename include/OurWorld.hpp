@@ -5,6 +5,7 @@
 #include "./StaticComponent.hpp"
 #include "box2d/box2d.h"
 #include <vector>
+#include "../include/Car.hpp"
 
 using std::vector;
 
@@ -21,6 +22,7 @@ private:
     vector<OurComponent*> components;
     vector<StaticComponent*> staticComponents;
     vector<OurJoint*> joints;
+    Car car;
     b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
     unsigned numberOfComponents = 0, numberOfJoints = 0;
     float timeStep;
@@ -46,11 +48,27 @@ private:
     
 
 public:
+    /**
+     * @brief b2World field - that's what we are wrapping up. Made it public to easily access all 
+     * properties of it.
+     */
     b2World world =b2World(gravity);
  
+    /**
+     * @brief Adds dynamic component created earlier. Passing by reference.
+     * 
+     * @param component_ Reference to object OurComponent
+     */
     void addComponent(OurComponent& component_);
+
+    /**
+     * @brief 
+     * 
+     * @param staticComponent_ 
+     */
     void addStaticComponent(StaticComponent& staticComponent_);
     void addJoint(OurJoint& joint_);
+    void addCar(Car& car_);
 
     OurComponent getComponent(int index);
     void setSimParams(float timeStep_=(1.0f/60.0f),int32 velocityIterations_=8, int32 positionIterations_ =3);
