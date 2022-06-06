@@ -20,29 +20,15 @@ void OurWorld::initializeComponents()
 {
     for(auto i:components)
     {
-        try
-        {
-            i->dynBody = world.CreateBody(i->getBodyDef());
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
-        
+        i->dynBody = world.CreateBody(i->getBodyDef());
     }
 
     for(auto i:staticComponents)
-    {
-        try
-        {
-             i->staticBody = world.CreateBody(i->getBodyDef());
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
-        
+    { 
+        i->staticBody = world.CreateBody(i->getBodyDef()); 
     }
+
+    car.carBody = world.CreateBody(car.getBodyDef());
 }
 
 
@@ -50,27 +36,16 @@ void OurWorld::assignFixtures()
 {
     for(auto i :components)
     {
-        try
-        {
-            i->dynBody->CreateFixture(i->getFixtureDefinition());
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }     
+        i->dynBody->CreateFixture(i->getFixtureDefinition());
     }
 
     for(auto i:staticComponents)
     {
-        try
-        {
-            i->staticBody->CreateFixture(i->getFixtureDefinition());
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
+        i->staticBody->CreateFixture(i->getFixtureDefinition());
     }
+
+    car.carBody->CreateFixture(car.getChassisFixtureDef());
+        
 }
 
 
