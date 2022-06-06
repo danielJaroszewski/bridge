@@ -8,7 +8,9 @@ void Car::createChassisFixtureDef()
     vertices[3].Set(0.0f, 0.9f);
     vertices[4].Set(-1.15f, 0.9f);
     vertices[5].Set(-1.5f, 0.2f);
-    chassis.Set(vertices, 6);
+    chassisPolygon.Set(vertices, 6);
+    chassisFixtureDef.shape = &chassisPolygon;
+    chassisFixtureDef.density = 1.0f;
 }
 
 void Car::setWheelRadius(float radius)
@@ -27,4 +29,19 @@ void Car::createWheelFixtureDef()
     wheelFixtureDef.shape = &wheel;
     wheelFixtureDef.density = 1.0f;
     wheelFixtureDef.friction = 0.9f;
+}
+
+const b2FixtureDef* Car::getChassisFixtureDef()
+{
+    return &chassisFixtureDef;
+}
+
+const b2FixtureDef* Car::getWheelFixtureDef()
+{
+    return &wheelFixtureDef;
+}
+
+const b2BodyDef* Car::getBodyDef()
+{
+    return &bodyDef;
 }
