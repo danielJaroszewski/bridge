@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.1)
 project(most)
 
-find_package(Catch2 3 REQUIRED HINTS /usr/local/include)
+find_package(Catch2 3 REQUIRED)
 find_package(box2d CONFIG REQUIRED)
 find_package(imgui CONFIG REQUIRED) # This is NOT a redundancy, for some reason ImGui-SFML doesn't load imgui package.
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)

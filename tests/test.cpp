@@ -1,28 +1,10 @@
 #include "catch2/catch_test_macros.hpp"
 #include "../include/OurWorld.hpp"
 
-TEST_CASE("some")
-{
-    OurWorld world = OurWorld(-10.0f);
-    OurComponent comp1 = OurComponent(0.0f, 1.0f, 4.0f, 5.0f, 10.0f);
-    REQUIRE(comp1.getXCoordinate() == 0.0f);
-}
-
-TEST_CASE("second")
-{
-    OurWorld world = OurWorld(-10.0f);
-    OurComponent comp1 = OurComponent(0.0f, 1.0f, 4.0f, 5.0f, 10.0f);
-    comp1.createBodyDefinition();
-    comp1.createBodyFixtureDefinition();
-    world.addComponent(comp1);
-
-    OurComponent someComp = world.getComponent(0);
-    REQUIRE(someComp.getBodyDef()->position.x == 0.0f);
-}
 
 TEST_CASE("World init")
 {
-    OurWorld world = OurWorld(-10.0f);
+    OurWorld world = OurWorld();
     OurComponent comp1 = OurComponent(0.0f,1.0f, 10.0f, 1.0f, 50.0f);
     comp1.createBodyDefinition();
     comp1.createBodyFixtureDefinition();
@@ -38,5 +20,21 @@ TEST_CASE("World init")
 
     world.initializeWorld();
 
-    REQUIRE(comp1.getBodyDef()->position.x == 0.0f);
+    REQUIRE(comp1.getXCoordinate() == 0.0f);
+}
+
+TEST_CASE("positions")
+{
+    OurWorld world = OurWorld();
+    OurComponent comp1 = OurComponent(0.0f, 10.0f, 1.0f, 0.1f, 10.0f);
+    comp1.createBodyDefinition();
+    comp1.createBodyFixtureDefinition();
+    world.addComponent(comp1);
+    world.initializeWorld();
+
+    float comp1X= comp1.getXCoordinate();
+    float comp1Y = comp1.getYCoordinate();
+
+    REQUIRE(comp1X==0.0f);
+    REQUIRE(comp1Y==10.0f);
 }
