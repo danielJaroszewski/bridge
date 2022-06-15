@@ -1,6 +1,7 @@
 #include "../../include/Graphics/GraphicsWorld.hpp"
 
 #include <imgui-SFML.h>
+#include <imgui.h>
 
 most::GraphicsWorld::GraphicsWorld()
 {
@@ -32,7 +33,7 @@ void most::GraphicsWorld::processEvents()
 
 void most::GraphicsWorld::present()
 {
-	deltaClock.restart();
+	ImGui::SFML::Update(wnd, deltaClock.restart());
 	wnd.clear(sf::Color(66, 135, 245));
 	for (const auto& x : allDrawables)
 	{
@@ -54,18 +55,12 @@ void most::GraphicsWorld::removeEventCallback(const EventCallbackHandle callback
 	eventCallbacks.erase(callback);
 }
 
-void most::GraphicsWorld::addDrawable(sf::Drawable* const drawable)
+void most::GraphicsWorld::addDrawable(Drawable* const drawable)
 {
 	allDrawables.emplace(drawable, nullptr);
 }
 
-void most::GraphicsWorld::addDrawable(std::unique_ptr<sf::Drawable>&& drawable)
-{
-	const auto ptr = drawable.get(); // Explicit sequencing point.
-	allDrawables.emplace(ptr, std::move(drawable));
-}
-
-void most::GraphicsWorld::removeDrawable(sf::Drawable* const drawable)
+void most::GraphicsWorld::removeDrawable(Drawable* const drawable)
 {
 	allDrawables.erase(drawable);
 }
@@ -73,4 +68,20 @@ void most::GraphicsWorld::removeDrawable(sf::Drawable* const drawable)
 sf::Time most::GraphicsWorld::getDeltaTime() const
 {
 	return deltaClock.getElapsedTime();
+}
+
+void most::GraphicsWorld::update()
+{
+	for (auto& x : allDrawables)
+	{
+		x.first->update();
+	}
+}
+
+void most::GraphicsWorld::physicsUpdate()
+{
+	for (auto& x : allDrawables)
+	{
+		x.first->physicsUpdate();
+	}
 }

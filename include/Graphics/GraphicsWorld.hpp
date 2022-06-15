@@ -5,7 +5,7 @@
 #include <memory>
 #include <functional>
 
-#include <SFML/Graphics.hpp>
+#include "Drawable.hpp"
 
 namespace most
 {
@@ -17,7 +17,7 @@ namespace most
 		sf::RenderWindow wnd;
 		sf::Clock deltaClock;
 
-		std::map<sf::Drawable*, std::unique_ptr<sf::Drawable>> allDrawables;
+		std::map<Drawable*, std::unique_ptr<Drawable>> allDrawables;
 		std::list<std::function<void(const sf::Event&)>> eventCallbacks;
 
 		using EventCallback = decltype(eventCallbacks)::value_type;
@@ -46,16 +46,28 @@ namespace most
 
 		/// @brief Adds the provided drawable to the rendering chain.
 		/// @param drawable Drawable to add
-		void addDrawable(sf::Drawable* const drawable);
+		void addDrawable(Drawable* const drawable);
 		/// @brief Adds the provided drawable to the rendering chain and obtains its ownership.
+		/// @tparam T Drawable type
 		/// @param drawable Drawable to add
-		void addDrawable(std::unique_ptr<sf::Drawable>&& drawable);
+		template<class T>
+		T& addDrawable(std::unique_ptr<T>&& drawable)
+		{
+			const auto ptr = drawable.get(); // Explicit sequencing point.
+			allDrawables.emplace(ptr, std::move(drawable));
+			return *ptr;
+		}
 		/// @brief Removes the provided drawable from the rendering chain.
 		/// @param drawable Drawable to remove
-		void removeDrawable(sf::Drawable* const drawable);
+		void removeDrawable(Drawable* const drawable);
 
 		/// @brief Returns the delta time from the last frame.
 		/// @return Delta time
 		sf::Time getDeltaTime() const;
+
+		/// @brief Called by main to update elements before physics world update.
+		void update();
+		/// @brief Called by main to update elements after physics world update (if there was one).
+		void physicsUpdate();
 	};
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
+#include "../Graphics/Drawable.hpp"
 
 namespace most
 {
@@ -8,13 +8,15 @@ namespace most
 	{
 		/// @brief Class managing GUI scenes. A scene is a predefined set of GUI elements eg. main menu or game GUi are 2 separate GUI scenes which are independent from each other and can be swapped between eg. when the user begins a new game.
 		class World
-			: public sf::Drawable
+			: public Drawable
 		{
 		private:
 			// TODO: Replace with proper Scene (a class that allows to add and remove drawables).
 			mutable std::unique_ptr<sf::Drawable> currentScene, newScene; // Mutable because of draw's constness.
 		protected:
 			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+			virtual void update() override {};
+			virtual void physicsUpdate() override {};
 		public:
 			/// @brief Returns the current scene.
 			/// @return Current scene

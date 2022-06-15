@@ -1,5 +1,11 @@
 #include "../include/OurWorld.hpp"
+
 #include <iostream>
+
+OurWorld::~OurWorld()
+{
+    destroyB2Bodies();
+}
 
 void OurWorld::addComponent(OurComponent& component_)
 {
