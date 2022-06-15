@@ -7,15 +7,9 @@
 int main(int argc, char const *argv[])
 {
     OurWorld world;
-    world.world.SetGravity(b2Vec2_zero);
 
     most::GraphicsWorld graphics;
     auto& guiWorld = graphics.addDrawable(std::make_unique<most::GUI::World>());
-
-    OurComponent leftBase = OurComponent(1.0f, 1.0f, 50.0f, 10.0f, 50.0f);
-    leftBase.createBodyDefinition();
-    leftBase.createBodyFixtureDefinition();
-    world.addComponent(leftBase);
 
     bool shouldRun = true;
     graphics.addEventCallback([&shouldRun](const sf::Event& e)
@@ -26,10 +20,17 @@ int main(int argc, char const *argv[])
         }
     });
 
+    OurComponent leftBase = OurComponent(1.0f, 1.0f, 50.0f, 10.0f, 50.0f);
+    leftBase.createBodyDefinition();
+    leftBase.createBodyFixtureDefinition();
+    world.addComponent(leftBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBase));
+
     OurComponent rightBase = OurComponent(150.0f, 1.0f, 50.0f, 10.0f, 50.0f);
     rightBase.createBodyDefinition();
     rightBase.createBodyFixtureDefinition();
     world.addComponent(rightBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBase));
 
     OurComponent comp1 = OurComponent(50.0f, 25.0f, 10.0f, 1.0f, 50.0f);
     comp1.createBodyDefinition();
@@ -48,7 +49,6 @@ int main(int argc, char const *argv[])
     world.addJoint(joint1);
     world.initializeWorld();
     world.setSimParams();
-
 #ifdef GRA
     auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
     auto level = std::make_unique<most::Level>();

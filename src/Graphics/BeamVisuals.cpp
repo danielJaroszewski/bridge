@@ -14,6 +14,6 @@ void most::BeamVisuals::draw(sf::RenderTarget& target, sf::RenderStates states) 
 
 void most::BeamVisuals::physicsUpdate()
 {
-	visuals.setPosition(sf::Vector2f(physicalComponent.getXCoordinate(), physicalComponent.getYCoordinate()));
+	visuals.setPosition(sf::Vector2f(physicalComponent.getXCoordinate(), -physicalComponent.getYCoordinate()));
 	visuals.setRotation(physicalComponent.getAngle());
 }

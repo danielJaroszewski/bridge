@@ -16,6 +16,9 @@ namespace most
 		constexpr static const char* windowTitle = "pwjc-most";
 		sf::RenderWindow wnd;
 		sf::Clock deltaClock;
+		sf::View view;
+		sf::Vector2f lastMousePos;
+		bool viewMoving;
 
 		std::map<Drawable*, std::unique_ptr<Drawable>> allDrawables;
 		std::list<std::function<void(const sf::Event&)>> eventCallbacks;

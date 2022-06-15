@@ -2,12 +2,47 @@
 
 #include <imgui-SFML.h>
 #include <imgui.h>
+#include <cmath>
 
 most::GraphicsWorld::GraphicsWorld()
+	: view(sf::Vector2f(), sf::Vector2f(800, 600)), viewMoving(false)
 {
 	wnd.create(sf::VideoMode(800, 600), windowTitle);
 	wnd.setVerticalSyncEnabled(true);
+	wnd.setView(view);
 	ImGui::SFML::Init(wnd);
+
+	addEventCallback([this](const sf::Event& e)
+		{
+			switch (e.type)
+			{
+			case sf::Event::MouseWheelScrolled:
+				if (e.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
+				{
+					view.zoom(std::signbit(e.mouseWheelScroll.delta) ? 2.0f : (0.5f));
+				}
+				break;
+			case sf::Event::MouseButtonPressed:
+				viewMoving = true;
+				lastMousePos = sf::Vector2f(e.mouseButton.x, e.mouseButton.y);
+				return;
+			case sf::Event::MouseButtonReleased:
+				viewMoving = false;
+				return;
+			case sf::Event::MouseMoved:
+				if (viewMoving)
+				{
+					const auto currentMousePos = sf::Vector2f(e.mouseMove.x, e.mouseMove.y);
+					view.setCenter(view.getCenter() + (currentMousePos - lastMousePos));
+					lastMousePos = currentMousePos;
+				}
+				break;
+			default:
+				return;
+			}
+
+			wnd.setView(view);
+		});
 }
 
 most::GraphicsWorld::~GraphicsWorld()
