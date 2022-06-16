@@ -28,7 +28,7 @@ void OurWorld::initializeComponents()
         i->staticBody = world.CreateBody(i->getBodyDef()); 
     }
 
-    car.carBody = world.CreateBody(car.getBodyDef());
+    //car.carBody = world.CreateBody(car.getBodyDef());
 }
 
 
@@ -44,7 +44,7 @@ void OurWorld::assignFixtures()
         i->staticBody->CreateFixture(i->getFixtureDefinition());
     }
 
-    car.carBody->CreateFixture(car.getChassisFixtureDef());
+    //car.carBody->CreateFixture(car.getChassisFixtureDef());
         
 }
 
