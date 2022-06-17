@@ -116,3 +116,33 @@ const b2WheelJointDef* Car::getWheel2JointDef()
 {
     return &wheel2JointDef;
 }
+
+float Car::getChassisXCoordinate()
+{
+    return chassisBody->GetPosition().x;
+}
+
+float Car::getChassisYCoordinate()
+{
+    return chassisBody->GetPosition().y;
+}
+
+float Car::getLeftWheelXCoordinate()
+{
+    return wheel1Body->GetPosition().x;
+}
+
+float Car::getLeftWheelYCoordinate()
+{
+    return wheel1Body->GetPosition().y;
+}
+
+float Car::getRightWheelXCoordinate()
+{
+    return wheel2Body->GetPosition().x;
+}
+
+float Car::getRightWheelYCoordinate()
+{
+    return wheel2Body->GetPosition().y;
+}

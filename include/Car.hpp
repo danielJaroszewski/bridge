@@ -48,6 +48,11 @@ class Car
     const b2WheelJointDef* getWheel1JointDef();
     const b2WheelJointDef* getWheel2JointDef();
 
-
+    float getChassisXCoordinate();
+    float getChassisYCoordinate();
+    float getLeftWheelXCoordinate();
+    float getLeftWheelYCoordinate();
+    float getRightWheelXCoordinate();
+    float getRightWheelYCoordinate();
     
 };
