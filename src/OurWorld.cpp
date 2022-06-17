@@ -74,6 +74,9 @@ void OurWorld::initializeJoints()
         a->setLinearStiffness(0.0f, 1.0f);
         a->distanceJoint = (b2DistanceJoint*)world.CreateJoint(a->getDistJointDef());
     }
+    car->createJointDef();
+    car->wheel1Joint = (b2WheelJoint*)world.CreateJoint(car->getWheel1JointDef());
+    car->wheel2Joint = (b2WheelJoint*)world.CreateJoint(car->getWheel2JointDef());
 }
 
 

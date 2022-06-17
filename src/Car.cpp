@@ -106,3 +106,13 @@ const b2BodyDef *Car::getWheel2BodyDef()
 {
     return &wheel2BodyDef;
 }
+
+const b2WheelJointDef* Car::getWheel1JointDef()
+{
+    return &wheel1JointDef;
+}
+
+const b2WheelJointDef* Car::getWheel2JointDef()
+{
+    return &wheel2JointDef;
+}

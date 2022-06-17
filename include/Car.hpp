@@ -43,6 +43,7 @@ class Car
     const b2BodyDef* getChassisBodyDef();
     const b2BodyDef* getWheel1BodyDef();
     const b2BodyDef* getWheel2BodyDef();
-    
+    const b2WheelJointDef* getWheel1JointDef();
+    const b2WheelJointDef* getWheel2JointDef();
     
 };
