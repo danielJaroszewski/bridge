@@ -52,8 +52,3 @@ bool StaticComponent::isStatic()
 {
     return true;
 }
-
-b2Body* StaticComponent::getB2Body()
-{
-    return staticBody;
-}

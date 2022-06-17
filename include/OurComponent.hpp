@@ -1,12 +1,11 @@
 #pragma once
 #include "box2d/box2d.h"
-#include "Ib2Body.hpp"
 
 /**
  * @brief Wrapper class for box2d bodies.
  * 
  */
-class OurComponent : public Ib2Body
+class OurComponent
 {
 private:
     float xCoordinate;  
@@ -51,6 +50,4 @@ public:
     float getAngle();
     b2Vec2 getLeftAnchorPoint();
     b2Vec2 getRightAnchorPoint();
-
-    b2Body* getB2Body () override;
 };

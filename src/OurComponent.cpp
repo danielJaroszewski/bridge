@@ -73,8 +73,3 @@ b2Vec2 OurComponent::getRightAnchorPoint()
     b2Vec2 gloabalRightAnchor = this->dynBody->GetWorldPoint(rAnchor);
     return gloabalRightAnchor;
 }
-
-b2Body* OurComponent::getB2Body()
-{
-    return dynBody;
-}
