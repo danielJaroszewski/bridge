@@ -16,6 +16,11 @@ void OurWorld::addJoint(OurJoint& joint_)
     joints.push_back(&joint_);
 }
 
+void OurWorld::addCar(Car& car_)
+{
+    car = &car_;
+}
+
 void OurWorld::initializeComponents()
 {
     for(auto i:components)
@@ -28,7 +33,9 @@ void OurWorld::initializeComponents()
         i->staticBody = world.CreateBody(i->getBodyDef()); 
     }
 
-    //car.carBody = world.CreateBody(car.getBodyDef());
+    car->chassisBody = world.CreateBody(car->getChassisBodyDef());
+    car->wheel1Body = world.CreateBody(car->getWheel1BodyDef());
+    car->wheel2Body = world.CreateBody(car->getWheel2BodyDef());
 }
 
 
@@ -44,7 +51,9 @@ void OurWorld::assignFixtures()
         i->staticBody->CreateFixture(i->getFixtureDefinition());
     }
 
-    //car.carBody->CreateFixture(car.getChassisFixtureDef());
+    car->chassisBody->CreateFixture(car->getChassisFixtureDef());
+    car->wheel1Body->CreateFixture(car->getWheelFixtureDef());
+    car->wheel2Body->CreateFixture(car->getWheelFixtureDef()); //fixture is the same
         
 }
 
