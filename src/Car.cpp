@@ -2,13 +2,13 @@
 
 void Car::createChassisFixtureDef()
 {
-    vertices[0].Set(-1.5f, -0.5f);
-    vertices[1].Set(1.5f, -0.5f);
-    vertices[2].Set(1.5f, 0.0f);
-    vertices[3].Set(0.0f, 0.9f);
-    vertices[4].Set(-1.15f, 0.9f);
-    vertices[5].Set(-1.5f, 0.2f);
-    chassisPolygon.Set(vertices, 6);
+    // vertices[0].Set(-1.5f, -0.5f);
+    // vertices[1].Set(1.5f, -0.5f);
+    // vertices[2].Set(1.5f, 0.0f);
+    // vertices[3].Set(0.0f, 0.9f);
+    // vertices[4].Set(-1.15f, 0.9f);
+    // vertices[5].Set(-1.5f, 0.2f);
+    chassisPolygon.SetAsBox(1.25f, 0.75f);
     chassisFixtureDef.shape = &chassisPolygon;
     chassisFixtureDef.density = 1.0f;
 }
@@ -21,7 +21,7 @@ void Car::setWheelRadius(float radius)
 void Car::createChassisBodyDef()
 {
     chassisBodyDef.type = b2_dynamicBody;
-    chassisBodyDef.position.Set(0.0f, 1.0f); // to be changed
+    chassisBodyDef.position.Set(0.0f, 1.0f);
 }
 
 void Car::createWheel1BodyDef()

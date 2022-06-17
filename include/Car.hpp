@@ -11,7 +11,7 @@ class Car
 {
     private:
     b2PolygonShape chassisPolygon;
-    b2Vec2 vertices[8];
+    //b2Vec2 vertices[8];
     b2CircleShape wheel;
     b2BodyDef chassisBodyDef;
     b2BodyDef wheel1BodyDef;
@@ -45,5 +45,7 @@ class Car
     const b2BodyDef* getWheel2BodyDef();
     const b2WheelJointDef* getWheel1JointDef();
     const b2WheelJointDef* getWheel2JointDef();
+
+
     
 };
