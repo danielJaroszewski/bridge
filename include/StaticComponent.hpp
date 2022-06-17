@@ -38,5 +38,5 @@ class StaticComponent: public Ib2Body
 
     b2Vec2 getAnchorPoint(); //only one anchor point
     bool isStatic();
-    b2Body* getB2Body();
+    b2Body* getB2Body() override;
 };
