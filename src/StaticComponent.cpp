@@ -17,6 +17,12 @@ void StaticComponent::createBodyFixtureDefinition()
     fixtureDef.shape = &staticBox;
 }
 
+void StaticComponent::setUpStaticComponent()
+{
+    createBodyDefinition();
+    createBodyFixtureDefinition();
+}
+
 const b2BodyDef* StaticComponent::getBodyDef()
 {
     return &bodyDef;
@@ -40,4 +46,14 @@ float StaticComponent::getYCoordinate()
 b2Vec2 StaticComponent::getAnchorPoint()
 {
     return staticBody->GetWorldCenter();
+}
+
+bool StaticComponent::isStatic()
+{
+    return true;
+}
+
+b2Body* StaticComponent::getB2Body()
+{
+    return staticBody;
 }

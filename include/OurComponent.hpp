@@ -5,7 +5,7 @@
  * @brief Wrapper class for box2d bodies.
  * 
  */
-class OurComponent 
+class OurComponent: public Ib2Body
 {
 private:
     float xCoordinate;  
@@ -16,6 +16,8 @@ private:
     b2BodyDef bodyDef;
     b2FixtureDef fixtureDef;
     b2PolygonShape dynamicBox;
+    void createBodyDefinition();
+    void createBodyFixtureDefinition();
 
 public:
     b2Body* dynBody;
@@ -31,18 +33,12 @@ public:
      */
     OurComponent(float xCoordinate_, float yCoordinate_, float width_, float height_, float density_);
 
-    /**
-     * @brief Creates the body definition to be used by OurWorld.
-     * 
-     */
-    void createBodyDefinition();
-
+    
 
     /**
-     * @brief Sets body fixture (density, shape, friction).
-     * 
+     * @brief Setting up dynamic component. Only method to be called after creating
      */
-    void createBodyFixtureDefinition();
+    void setUpComponent();
 
 
     const b2BodyDef* getBodyDef();
@@ -54,4 +50,6 @@ public:
     float getAngle();
     b2Vec2 getLeftAnchorPoint();
     b2Vec2 getRightAnchorPoint();
+
+    b2Body* getB2Body();
 };

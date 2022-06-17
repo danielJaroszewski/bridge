@@ -19,6 +19,12 @@ void OurComponent::createBodyFixtureDefinition()
     fixtureDef.friction =0.3f;
 }
 
+void OurComponent::setUpComponent()
+{
+    createBodyDefinition();
+    createBodyFixtureDefinition();
+}
+
 const b2BodyDef* OurComponent::getBodyDef()
 {
     return &bodyDef;
@@ -66,4 +72,9 @@ b2Vec2 OurComponent::getRightAnchorPoint()
     b2Vec2 rAnchor = b2Vec2(this->xCoordinate+(this->width-0.5f), this->yCoordinate);
     b2Vec2 gloabalRightAnchor = this->dynBody->GetWorldPoint(rAnchor);
     return gloabalRightAnchor;
+}
+
+b2Body* OurComponent::getB2Body()
+{
+    return dynBody;
 }
