@@ -61,16 +61,39 @@ void OurWorld::assignFixtures()
 void OurWorld::initializeJoints()
 {
     int indexA, indexB;
-    b2Vec2 bodyAAnchorPoint, bodyBAnchorPoint;
     for(auto a:joints)
     {
         indexA = a->getBodyAIndex();
         indexB = a->getBodyBIndex();
-        a->initializeDefinition(components[indexA]->dynBody, 
+
+        //ale to jest gowno w tym momencie, trzeba poprawic
+        if(!a->isLeftBodyStatic() && !a->isRightBodyStatic())
+        {
+            a->initializeDefinition(components[indexA]->dynBody, 
                                 components[indexB]->dynBody, 
                                 components[indexA]->getRightAnchorPoint(),
                                 components[indexB]->getLeftAnchorPoint()
-        );
+            );
+        }
+        else if(a->isLeftBodyStatic() && !a->isRightBodyStatic())
+        {
+             a->initializeDefinition(staticComponents[indexA]->staticBody, 
+                                components[indexB]->dynBody, 
+                                staticComponents[indexA]->getAnchorPoint(),
+                                components[indexB]->getLeftAnchorPoint()
+            );
+        }
+        else
+        {
+            a->initializeDefinition(components[indexA]->dynBody, 
+                                staticComponents[indexB]->staticBody, 
+                                components[indexA]->getRightAnchorPoint(),
+                                staticComponents[indexB]->getAnchorPoint()
+            );
+        }
+
+
+        
         a->setLinearStiffness(0.0f, 1.0f);
         a->distanceJoint = (b2DistanceJoint*)world.CreateJoint(a->getDistJointDef());
     }

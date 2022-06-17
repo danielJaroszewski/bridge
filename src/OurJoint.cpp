@@ -32,3 +32,23 @@ const b2DistanceJointDef* OurJoint::getDistJointDef()
 {
     return &distJointDef;
 }
+
+void OurJoint::setLeftBodyStatic()
+{
+    isLeftBStatic = true;
+}
+
+void OurJoint::setRightBodyStatic()
+{
+    isRightBStatic = true;
+}
+
+bool OurJoint::isLeftBodyStatic()
+{
+    return isLeftBStatic;
+}
+
+bool OurJoint::isRightBodyStatic()
+{
+    return isRightBStatic;
+}

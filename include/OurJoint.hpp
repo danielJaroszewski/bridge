@@ -11,7 +11,7 @@ class OurJoint
 private:
    b2DistanceJointDef distJointDef; 
    int indexOfBodyA, indexOfBodyB;
-   bool isLeftBodyStatic, isRightBodyStatic;
+   bool isLeftBStatic=false, isRightBStatic=false;
 
 
 public:
@@ -38,6 +38,10 @@ public:
      */
     void setLinearStiffness(float freq_, float dampingRatio_);//must be called after initializeDefinition
 
+
+    void setLeftBodyStatic();
+    void setRightBodyStatic();
+
     /**
      * @brief Sets the indices of bodies, to which the joint is attached.
      * 
@@ -45,6 +49,9 @@ public:
      * @param bodyBIndex 
      */
     void setIndexOfBodies(int bodyAIndex, int bodyBIndex);
+
+    bool isLeftBodyStatic();
+    bool isRightBodyStatic();
 
 
 };
