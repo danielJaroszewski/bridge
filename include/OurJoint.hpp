@@ -1,5 +1,6 @@
 #pragma once
 #include "box2d/box2d.h"
+#include <memory>
 
 /**
  * @brief Wrapper class for box2d's distanceJoint.
@@ -10,7 +11,9 @@ class OurJoint
 private:
    b2DistanceJointDef distJointDef; 
    int indexOfBodyA, indexOfBodyB;
-  
+   bool isLeftBodyStatic, isRightBodyStatic;
+
+
 public:
     b2DistanceJoint* distanceJoint;
     const b2DistanceJointDef* getDistJointDef();
@@ -42,5 +45,6 @@ public:
      * @param bodyBIndex 
      */
     void setIndexOfBodies(int bodyAIndex, int bodyBIndex);
-  
+
+
 };
