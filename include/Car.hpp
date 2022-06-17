@@ -21,6 +21,8 @@ class Car
     b2WheelJointDef wheel1JointDef;
     b2WheelJointDef wheel2JointDef;
 
+    const float initialHeight = 10.0f;
+
     void createChassisFixtureDef();
     void setWheelRadius(float radius=0.4f);
     void createChassisBodyDef(); 

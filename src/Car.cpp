@@ -21,19 +21,19 @@ void Car::setWheelRadius(float radius)
 void Car::createChassisBodyDef()
 {
     chassisBodyDef.type = b2_dynamicBody;
-    chassisBodyDef.position.Set(0.0f, 1.0f);
+    chassisBodyDef.position.Set(0.0f, 1.0f+initialHeight);
 }
 
 void Car::createWheel1BodyDef()
 {
     wheel1BodyDef.type = b2_dynamicBody;
-    wheel1BodyDef.position.Set(-1.0f, 0.35f);
+    wheel1BodyDef.position.Set(-1.0f, 0.35f+initialHeight);
 }
 
 void Car::createWheel2BodyDef()
 {
     wheel2BodyDef.type = b2_dynamicBody;
-    wheel2BodyDef.position.Set(1.0f, 0.4f);
+    wheel2BodyDef.position.Set(1.0f, 0.4f+initialHeight);
 }
 
 void Car::createWheelFixtureDef()
