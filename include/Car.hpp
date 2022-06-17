@@ -13,23 +13,36 @@ class Car
     b2PolygonShape chassisPolygon;
     b2Vec2 vertices[8];
     b2CircleShape wheel;
-    b2BodyDef bodyDef;
+    b2BodyDef chassisBodyDef;
+    b2BodyDef wheel1BodyDef;
+    b2BodyDef wheel2BodyDef;
     b2FixtureDef chassisFixtureDef;
     b2FixtureDef wheelFixtureDef;
+    b2WheelJointDef wheel1JointDef;
+    b2WheelJointDef wheel2JointDef;
 
-    //methods like createFixDef need to packed up in one method caleed after creating object
+    void createChassisFixtureDef();
+    void setWheelRadius(float radius=0.4f);
+    void createChassisBodyDef(); 
+    void createWheel1BodyDef();
+    void createWheel2BodyDef();
+    void createWheelFixtureDef();
+
     public:
-    b2Body* carBody;
+    b2Body* chassisBody;
+    b2Body* wheel1Body;
+    b2Body* wheel2Body;
+    b2WheelJoint* wheel1Joint;
+    b2WheelJoint* wheel2Joint;
 
-    void createChassisFixtureDef(); //0
-    void setWheelRadius(float radius=0.4f); //1
-    void createBodyDef(); //2
-    void createWheelFixtureDef(); //3
+    void setUpCar(); //to be called
+    void createJointDef(); //after creating all bodies
 
     const b2FixtureDef* getChassisFixtureDef();
     const b2FixtureDef* getWheelFixtureDef();
-    const b2BodyDef* getBodyDef();
-    
+    const b2BodyDef* getChassisBodyDef();
+    const b2BodyDef* getWheel1BodyDef();
+    const b2BodyDef* getWheel2BodyDef();
     
     
 };
