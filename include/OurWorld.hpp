@@ -53,16 +53,7 @@ public:
      * properties of it.
      */
     b2World world =b2World(gravity);
-public:
-    OurWorld() = default;
-
-    OurWorld(const OurWorld&) = delete;
-    OurWorld(OurWorld&&) noexcept = delete;
-
-    OurWorld& operator=(const OurWorld&) = delete;
-    OurWorld& operator=(OurWorld&&) noexcept = delete;
-
-    ~OurWorld();
+ 
     /**
      * @brief Adds dynamic component created earlier. Passing by reference.
      * 
