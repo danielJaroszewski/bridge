@@ -6,12 +6,12 @@ TEST_CASE("World init")
 {
     OurWorld world;
     OurComponent comp1 = OurComponent(0.0f,1.0f, 10.0f, 1.0f, 50.0f);
-    comp1.createBodyDefinition();
-    comp1.createBodyFixtureDefinition();
+    //comp1.createBodyDefinition();
+    //comp1.createBodyFixtureDefinition();
 
     OurComponent comp2 = OurComponent(15.0f, 1.0f, 10.0f, 1.0f, 50.0f);
-    comp2.createBodyDefinition();
-    comp2.createBodyFixtureDefinition();
+    //comp2.createBodyDefinition();
+    //comp2.createBodyFixtureDefinition();
     world.addComponent(comp1);
     world.addComponent(comp2);
 
@@ -27,8 +27,8 @@ TEST_CASE("positions")
 {
     OurWorld world;
     OurComponent comp1 = OurComponent(0.0f, 10.0f, 1.0f, 0.1f, 10.0f);
-    comp1.createBodyDefinition();
-    comp1.createBodyFixtureDefinition();
+    //comp1.createBodyDefinition();
+    //comp1.createBodyFixtureDefinition();
     world.addComponent(comp1);
     world.initializeWorld();
 
