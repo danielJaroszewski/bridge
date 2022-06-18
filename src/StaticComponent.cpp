@@ -52,3 +52,13 @@ bool StaticComponent::isStatic()
 {
     return true;
 }
+
+void StaticComponent::setIndex(int ind)
+{
+    compIndex = ind;
+}
+
+int StaticComponent::getCompIndex()
+{
+    return compIndex;
+}

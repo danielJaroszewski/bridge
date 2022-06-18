@@ -25,12 +25,12 @@ int main(int argc, char const *argv[])
 
     OurJoint j1 = OurJoint();
     j1.setLeftBodyStatic();
-    j1.setIndexOfBodies(0, 0); //first static and first dynamic component
+    j1.setIndexOfBodies(leftBase.getCompIndex(), firstBlock.getCompIndex());
     world.addJoint(j1);
 
     OurJoint j2 = OurJoint();
     j2.setRightBodyStatic();
-    j2.setIndexOfBodies(1,1);
+    j2.setIndexOfBodies(secondBlock.getCompIndex(), secondBlock.getCompIndex());
     world.addJoint(j2);
 
     Car car = Car();
@@ -43,6 +43,7 @@ int main(int argc, char const *argv[])
     world.update();
 
 
+    world.destroyB2Bodies();
 
     cout<<"End of program\n";
     return 0;

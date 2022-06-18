@@ -3,12 +3,16 @@
 
 void OurWorld::addComponent(OurComponent& component_)
 {
+    component_.setCompIndex(currDynamicCompIndex);
     components.push_back(&component_);
+    currDynamicCompIndex++;
 }
 
 void OurWorld::addStaticComponent(StaticComponent& staticComponent_)
 {
+    staticComponent_.setIndex(currStaticCompIndex);
     staticComponents.push_back(&staticComponent_);
+    currStaticCompIndex++;
 }
 
 void OurWorld::addJoint(OurJoint& joint_)

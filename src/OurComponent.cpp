@@ -73,3 +73,13 @@ b2Vec2 OurComponent::getRightAnchorPoint()
     b2Vec2 gloabalRightAnchor = this->dynBody->GetWorldPoint(rAnchor);
     return gloabalRightAnchor;
 }
+
+void OurComponent::setCompIndex(int ind)
+{
+    compIndex = ind;
+}
+
+int OurComponent::getCompIndex()
+{
+    return compIndex;
+}

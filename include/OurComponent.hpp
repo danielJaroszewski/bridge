@@ -18,6 +18,7 @@ private:
     b2PolygonShape dynamicBox;
     void createBodyDefinition();
     void createBodyFixtureDefinition();
+    int compIndex;
 
 public:
     b2Body* dynBody;
@@ -50,4 +51,6 @@ public:
     float getAngle();
     b2Vec2 getLeftAnchorPoint();
     b2Vec2 getRightAnchorPoint();
+    void setCompIndex(int ind);
+    int getCompIndex();
 };
