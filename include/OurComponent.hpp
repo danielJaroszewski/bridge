@@ -19,10 +19,11 @@ private:
     void createBodyDefinition();
     void createBodyFixtureDefinition();
     int compIndex;
-
-public:
     b2Body* dynBody;
 
+public:
+   
+    friend class OurWorld;
     /**
      * @brief Construct a new Our Component object
      * 

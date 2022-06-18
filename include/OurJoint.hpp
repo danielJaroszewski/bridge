@@ -12,10 +12,11 @@ private:
    b2DistanceJointDef distJointDef; 
    int indexOfBodyA, indexOfBodyB;
    bool isLeftBStatic=false, isRightBStatic=false;
+   b2DistanceJoint* distanceJoint;
 
 
 public:
-    b2DistanceJoint* distanceJoint;
+    friend class OurWorld;
     const b2DistanceJointDef* getDistJointDef();
     int getBodyAIndex();
     int getBodyBIndex();

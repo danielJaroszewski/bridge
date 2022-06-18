@@ -6,6 +6,7 @@
 #include "box2d/box2d.h"
 #include <vector>
 #include "../include/Car.hpp"
+#include "../include/Ledge.hpp"
 
 using std::vector;
 

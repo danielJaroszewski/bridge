@@ -29,13 +29,14 @@ class Car
     void createWheel1BodyDef();
     void createWheel2BodyDef();
     void createWheelFixtureDef();
-
-    public:
     b2Body* chassisBody;
     b2Body* wheel1Body;
     b2Body* wheel2Body;
     b2WheelJoint* wheel1Joint;
     b2WheelJoint* wheel2Joint;
+
+    public:
+    friend class OurWorld;
 
     void setUpCar(); //to be called
     void createJointDef(); //after creating all bodies

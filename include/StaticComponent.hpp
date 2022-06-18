@@ -18,9 +18,10 @@ private:
     void createBodyDefinition();
     void createBodyFixtureDefinition();
     int compIndex;
+    b2Body *staticBody;
 
 public:
-    b2Body *staticBody;
+    friend class OurWorld;
 
     StaticComponent(float xCoordinate_, float yCoordinate_);
 

@@ -52,7 +52,8 @@ void OurWorld::assignFixtures()
 
     for(auto i:staticComponents)
     {
-        i->staticBody->CreateFixture(i->getFixtureDefinition());
+        i->staticBody->CreateFixture(i->getFixtureDefinition())->SetSensor(true); //no collisions with dynamic objects
+
     }
 
     car->chassisBody->CreateFixture(car->getChassisFixtureDef());
