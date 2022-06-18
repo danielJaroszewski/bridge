@@ -6,6 +6,7 @@
  * @brief Class representing object that is supposed not to move under simulation.
  * Two static bodies on the far sides of the world are anchors to which the bridge is connected. Size is constant and the same .
  * Joints are supposed to be connected to center of the static body. It is not going to be big.
+ * Size is constant - 0.25 x 0.25x
  */
 class StaticComponent
 {
