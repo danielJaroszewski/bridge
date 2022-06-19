@@ -1,40 +1,77 @@
 #include "catch2/catch_test_macros.hpp"
 #include "../include/OurWorld.hpp"
+#include <iostream>
 
-
-TEST_CASE("World init")
+TEST_CASE("static bodies")
 {
     OurWorld world = OurWorld();
-    OurComponent comp1 = OurComponent(0.0f,1.0f, 10.0f, 1.0f, 50.0f);
-    comp1.createBodyDefinition();
-    comp1.createBodyFixtureDefinition();
 
-    OurComponent comp2 = OurComponent(15.0f, 1.0f, 10.0f, 1.0f, 50.0f);
-    comp2.createBodyDefinition();
-    comp2.createBodyFixtureDefinition();
-    world.addComponent(comp1);
-    world.addComponent(comp2);
+    StaticComponent leftBase = StaticComponent(0.0f,0.0f);
+    leftBase.setUpStaticComponent();
+    world.addStaticComponent(leftBase);
 
-    OurJoint joint1 = OurJoint();
-    joint1.setIndexOfBodies(0,1);
+    StaticComponent rightBase = StaticComponent(10.0f, 0.0f);
+    rightBase.setUpStaticComponent();
+    world.addStaticComponent(rightBase);
+
+    OurComponent firstBlock = OurComponent(2.5f,0.0f,4.9f, 0.5f, 1.0f);
+    firstBlock.setUpComponent();
+    world.addComponent(firstBlock);
+
+    OurComponent secondBlock = OurComponent(7.5f, 0.0f, 4.9f, 0.5f, 1.0f);
+    secondBlock.setUpComponent();
+    world.addComponent(secondBlock);
+
+    OurJoint j1 = OurJoint();
+    j1.setLeftBodyStatic();
+    j1.setIndexOfBodies(leftBase.getCompIndex(), firstBlock.getCompIndex());
+    world.addJoint(j1);
+
+    OurJoint j2 = OurJoint();
+    j2.setRightBodyStatic();
+    j2.setIndexOfBodies(secondBlock.getCompIndex(), secondBlock.getCompIndex());
+    world.addJoint(j2);
+
+    Car car = Car();
+    car.setUpCar();
+    world.addCar(car);
 
     world.initializeWorld();
+    world.setSimParams();
+    
 
-    REQUIRE(comp1.getXCoordinate() == 0.0f);
-}
+    bool isRBConsistent = true;
+    bool isLBConsistent = true;
 
-TEST_CASE("positions")
-{
-    OurWorld world = OurWorld();
-    OurComponent comp1 = OurComponent(0.0f, 10.0f, 1.0f, 0.1f, 10.0f);
-    comp1.createBodyDefinition();
-    comp1.createBodyFixtureDefinition();
-    world.addComponent(comp1);
-    world.initializeWorld();
+    float eps = 1e-03;
 
-    float comp1X= comp1.getXCoordinate();
-    float comp1Y = comp1.getYCoordinate();
+    float LBx = 0;
+    float LBy = 0;
+    float RBx = 0;
+    float RBy= 0;
 
-    REQUIRE(comp1X==0.0f);
-    REQUIRE(comp1Y==10.0f);
+    for(int i=0; i<100; i++)
+    {
+        LBx = leftBase.getXCoordinate();
+        LBy = leftBase.getYCoordinate();
+        RBx = rightBase.getXCoordinate();
+        RBy = rightBase.getYCoordinate();
+        // std::cout<<"LBase x: "<<LBx<<"   Lbase y: "<<LBy<<std::endl;
+        // std::cout<<"RBase x: "<<RBx<<"   Lbase y: "<<RBy<<std::endl;
+
+        if(abs(LBx-0.0f)>eps && abs(LBy - 0.0f)>eps)
+        {
+            isLBConsistent = false;
+        }
+         if(abs(RBx-10.0f)>eps && abs(RBy - 0.0f)>eps)
+        {
+            isRBConsistent = false;
+        }
+
+        world.update();
+    }
+
+    REQUIRE(isLBConsistent == true);
+    REQUIRE(isRBConsistent == true);
+
 }
