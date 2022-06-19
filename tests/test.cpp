@@ -90,11 +90,11 @@ TEST_CASE("dynamic positions")
     rightBase.setUpStaticComponent();
     world.addStaticComponent(rightBase);
 
-    OurComponent firstBlock = OurComponent(2.5f,0.0f,4.9f, 0.5f, 1.0f);
+    OurComponent firstBlock = OurComponent(2.5f,0.0f,4.9f, 0.5f, 10.0f);
     firstBlock.setUpComponent();
     world.addComponent(firstBlock);
 
-    OurComponent secondBlock = OurComponent(7.5f, 0.0f, 4.9f, 0.5f, 1.0f);
+    OurComponent secondBlock = OurComponent(7.5f, 0.0f, 4.9f, 0.5f, 10.0f);
     secondBlock.setUpComponent();
     world.addComponent(secondBlock);
 
@@ -114,6 +114,23 @@ TEST_CASE("dynamic positions")
 
     world.initializeWorld();
     world.setSimParams();
+
+    float FEx = 0.0;
+    float FEy = 0.0;
+    float SEx = 0.0;
+    float SEy = 0.0;
+    for (int i=0; i<100; i++)
+    {
+        FEx = firstBlock.getXCoordinate();
+        FEy = firstBlock.getYCoordinate();
+        SEx = secondBlock.getXCoordinate();
+        SEy = secondBlock.getYCoordinate();
+        
+        std::cout<<"First block x: "<<FEx<<"    First block y: "<<FEy<<std::endl;
+        std::cout<<"Second block x: "<<SEx<<"    Second block y: "<<SEy<<std::endl;
+
+        world.update();
+    }
 
     world.clearWorld();
 
