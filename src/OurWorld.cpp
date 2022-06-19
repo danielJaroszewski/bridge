@@ -119,7 +119,7 @@ void OurWorld::initializeWorld()
 
 }
 
-void OurWorld::destroyB2Bodies()
+void OurWorld::clearWorld()
 {
    for(auto a:components)
    {
@@ -127,6 +127,15 @@ void OurWorld::destroyB2Bodies()
    }
    components.clear();
    joints.clear();
+   for(auto a:staticComponents)
+   {
+        world.DestroyBody(a->staticBody);
+   }
+
+   world.DestroyBody(car->chassisBody);
+   world.DestroyBody(car->wheel1Body);
+   world.DestroyBody(car->wheel2Body);
+
 }
 
 

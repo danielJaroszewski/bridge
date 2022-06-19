@@ -85,5 +85,5 @@ public:
      * @brief Clears the world from created joints and bodies.
      *
      */
-    void destroyB2Bodies();
+    void clearWorld();
 };
