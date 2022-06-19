@@ -13,8 +13,10 @@ void Ledge::createBodyDef()
 
 void Ledge::createFixtureDef()
 {
-    ledgeBox.SetAsBox(20.0f, 10.0f);
+    ledgeBox.SetAsBox(LEDGE_HALF_WIDTH, LEDGE_HALF_HEIGHT);
     ledgeFixtureDef.shape = &ledgeBox;
+    ledgeFixtureDef.filter.categoryBits = LEDGE_CATEGORY;
+    ledgeFixtureDef.filter.maskBits = LEDGE_MASK;
 }
 
 void Ledge::setUpLedge()
@@ -36,31 +38,31 @@ const b2FixtureDef* Ledge::getFixtureDef()
 
 float Ledge::getCenterX()
 {
-    return xCoordinate;
+    return b2Ledge->GetPosition().x;
 }
 
 float Ledge::getCenterY()
 {
-    return yCoordinate;
+    return b2Ledge->GetPosition().y;
 }
 
 float Ledge::getLeftEdgeXCoordinate()
 {
-    return xCoordinate - 10.0f;
+    return xCoordinate - LEDGE_HALF_WIDTH;
 }
 
 float Ledge::getLeftEdgeYCoordinate()
 {
-    return yCoordinate + 5.0f;
+    return yCoordinate + LEDGE_HALF_HEIGHT;
 }
 
 float Ledge::getRightEdgeXCoordinate()
 {
-     return xCoordinate + 10.0f;
+     return xCoordinate + LEDGE_HALF_WIDTH;
 }
 
 
 float Ledge::getRightEdgeYCoordinate()
 {
-    return yCoordinate + 5.0f;
+    return yCoordinate + LEDGE_HALF_HEIGHT;
 }

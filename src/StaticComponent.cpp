@@ -15,6 +15,8 @@ void StaticComponent::createBodyFixtureDefinition()
 {
     staticBox.SetAsBox(0.25f, 0.25f); // constant and the same size
     fixtureDef.shape = &staticBox;
+    fixtureDef.filter.categoryBits = STATIC_COMP_CATEGORY;
+    fixtureDef.filter.maskBits = STATIC_COMP_MASK;
 }
 
 void StaticComponent::setUpStaticComponent()

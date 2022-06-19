@@ -1,5 +1,6 @@
 #pragma once
 #include "box2d/box2d.h"
+#include "Constants.hpp"
 
 /**
  * @brief Wrapper class for box2d bodies.
@@ -20,6 +21,7 @@ private:
     void createBodyFixtureDefinition();
     int compIndex;
     b2Body* dynBody;
+
 
 public:
    

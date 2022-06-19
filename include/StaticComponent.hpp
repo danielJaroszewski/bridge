@@ -1,6 +1,7 @@
 #pragma once
 
 #include "box2d/box2d.h"
+#include "Constants.hpp"
 
 /**
  * @brief Class representing object that is supposed not to move under simulation.

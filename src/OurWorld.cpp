@@ -47,7 +47,7 @@ void OurWorld::assignFixtures()
 
     for (auto i : staticComponents)
     {
-        i->staticBody->CreateFixture(i->getFixtureDefinition())->SetSensor(true); // no collisions with dynamic objects
+        i->staticBody->CreateFixture(i->getFixtureDefinition());
     }
 
 }      

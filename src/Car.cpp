@@ -8,9 +8,11 @@ void Car::createChassisFixtureDef()
     // vertices[3].Set(0.0f, 0.9f);
     // vertices[4].Set(-1.15f, 0.9f);
     // vertices[5].Set(-1.5f, 0.2f);
-    chassisPolygon.SetAsBox(1.25f, 0.75f);
+    chassisPolygon.SetAsBox(CAR_CHASSIS_HALF_WIDTH, CAR_CHASSIS_HALF_HEIGHT);
     chassisFixtureDef.shape = &chassisPolygon;
-    chassisFixtureDef.density = 1.0f;
+    chassisFixtureDef.density = CAR_CHASSIS_DENSITY;
+    chassisFixtureDef.filter.categoryBits = CAR_CHASSIS_CATEGORY;
+    chassisFixtureDef.filter.maskBits = CAR_CHASSIS_MASK;
 }
 
 void Car::setWheelRadius(float radius)
@@ -21,26 +23,28 @@ void Car::setWheelRadius(float radius)
 void Car::createChassisBodyDef()
 {
     chassisBodyDef.type = b2_dynamicBody;
-    chassisBodyDef.position.Set(0.0f, 1.0f+initialHeight);
+    chassisBodyDef.position.Set(0.0f, 1.0f+CAR_INITIAL_HEIGHT);
 }
 
 void Car::createWheel1BodyDef()
 {
     wheel1BodyDef.type = b2_dynamicBody;
-    wheel1BodyDef.position.Set(-1.0f, 0.35f+initialHeight);
+    wheel1BodyDef.position.Set(-1.0f, 0.35f+CAR_INITIAL_HEIGHT);
 }
 
 void Car::createWheel2BodyDef()
 {
     wheel2BodyDef.type = b2_dynamicBody;
-    wheel2BodyDef.position.Set(1.0f, 0.4f+initialHeight);
+    wheel2BodyDef.position.Set(1.0f, 0.4f+CAR_INITIAL_HEIGHT);
 }
 
 void Car::createWheelFixtureDef()
 {
     wheelFixtureDef.shape = &wheel;
-    wheelFixtureDef.density = 1.0f;
-    wheelFixtureDef.friction = 0.9f;
+    wheelFixtureDef.density = CAR_WHEEL_DENSITY;
+    wheelFixtureDef.friction = CAR_WHEEL_FRICTION;
+    wheelFixtureDef.filter.categoryBits = CAR_WHEELS_CATEGORY;
+    wheelFixtureDef.filter.maskBits = CAR_WHEELS_MASK;
 }
 
 void Car::setUpCar()
