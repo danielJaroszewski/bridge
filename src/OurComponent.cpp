@@ -7,8 +7,9 @@ OurComponent::OurComponent(float xCoordinate_, float yCoordinate_, float width_,
 void OurComponent::createBodyDefinition()
 {
     bodyDef.type = b2_dynamicBody;
+    bodyDef.linearDamping = 0.0f;
+    bodyDef.angularDamping = 0.1f;
     bodyDef.position.Set(this->xCoordinate, this->yCoordinate);
-    // ...
 }
 
 void OurComponent::createBodyFixtureDefinition()
@@ -16,7 +17,7 @@ void OurComponent::createBodyFixtureDefinition()
     dynamicBox.SetAsBox((this->width)/2,(this->height)/2);
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = this->density;
-    fixtureDef.friction =0.3f;
+    fixtureDef.friction =0.9f;
 }
 
 void OurComponent::setUpComponent()
