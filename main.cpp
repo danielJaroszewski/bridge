@@ -1,7 +1,6 @@
 #include "include/OurWorld.hpp"
 #include <iostream>
 
-using std::cout;
 
 int main(int argc, char const *argv[])
 {
@@ -29,9 +28,13 @@ int main(int argc, char const *argv[])
     world.addJoint(j1);
 
     OurJoint j2 = OurJoint();
-    j2.setRightBodyStatic();
-    j2.setIndexOfBodies(secondBlock.getCompIndex(), secondBlock.getCompIndex());
+    j2.setIndexOfBodies(firstBlock.getCompIndex(), secondBlock.getCompIndex());
     world.addJoint(j2);
+
+    OurJoint j3 = OurJoint();
+    j3.setRightBodyStatic();
+    j3.setIndexOfBodies(secondBlock.getCompIndex(), rightBase.getCompIndex());
+    world.addJoint(j3);
 
     Car car = Car();
     car.setUpCar();
@@ -40,11 +43,9 @@ int main(int argc, char const *argv[])
     world.initializeWorld();
     world.setSimParams();
 
-    world.update();
 
+    world.clearWorld();
 
-    world.destroyB2Bodies();
-
-    cout<<"End of program\n";
+    std::cout<<"End of program\n";
     return 0;
 }
