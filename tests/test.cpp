@@ -104,9 +104,12 @@ TEST_CASE("dynamic positions")
     world.addJoint(j1);
 
     OurJoint j2 = OurJoint();
-    j2.setRightBodyStatic();
-    j2.setIndexOfBodies(secondBlock.getCompIndex(), secondBlock.getCompIndex());
+    j2.setIndexOfBodies(firstBlock.getCompIndex(), secondBlock.getCompIndex());
     world.addJoint(j2);
+
+    OurJoint j3 = OurJoint();
+    j3.setRightBodyStatic();
+    j3.setIndexOfBodies(secondBlock.getCompIndex(), rightBase.getCompIndex());
 
     Car car = Car();
     car.setUpCar();
