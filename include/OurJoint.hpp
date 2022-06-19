@@ -13,6 +13,7 @@ private:
    int indexOfBodyA, indexOfBodyB;
    bool isLeftBStatic=false, isRightBStatic=false;
    b2DistanceJoint* distanceJoint;
+   float maxForce; //=??? to be found out
 
 
 public:
@@ -53,6 +54,8 @@ public:
 
     bool isLeftBodyStatic();
     bool isRightBodyStatic();
+
+    float getActingForce();
 
 
 };
