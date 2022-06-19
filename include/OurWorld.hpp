@@ -23,7 +23,7 @@ private:
     vector<OurComponent *> components;
     vector<StaticComponent *> staticComponents;
     vector<OurJoint *> joints;
-    Car *car;
+    Car *car = nullptr;
     b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
     unsigned numberOfComponents = 0, numberOfJoints = 0;
     float timeStep;
@@ -46,6 +46,8 @@ private:
      *
      */
     void assignFixtures();
+
+    void initializeCar();
 
 public:
     /**
