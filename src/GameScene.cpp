@@ -9,7 +9,7 @@ namespace most
 
 	void GameScene::loadLevel(const std::string& filename)
 	{
-		throw std::exception("Not implemented");
+		//throw std::exception("Not implemented");
 	}
 
 	void GameScene::draw(sf::RenderTarget& rt, sf::RenderStates states) const
