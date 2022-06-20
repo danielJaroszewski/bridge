@@ -1,6 +1,7 @@
 #pragma once
 
 #include "box2d/box2d.h"
+#include "Constants.hpp"
 
 /**
  * @brief Object moving on the bridge. Two wheels and some simple chassis. 
@@ -21,21 +22,20 @@ class Car
     b2WheelJointDef wheel1JointDef;
     b2WheelJointDef wheel2JointDef;
 
-    const float initialHeight = 10.0f;
-
     void createChassisFixtureDef();
-    void setWheelRadius(float radius=0.4f);
+    void setWheelRadius(float radius=CAR_WHEEL_RADIUS);
     void createChassisBodyDef(); 
     void createWheel1BodyDef();
     void createWheel2BodyDef();
     void createWheelFixtureDef();
-
-    public:
     b2Body* chassisBody;
     b2Body* wheel1Body;
     b2Body* wheel2Body;
     b2WheelJoint* wheel1Joint;
     b2WheelJoint* wheel2Joint;
+
+    public:
+    friend class OurWorld;
 
     void setUpCar(); //to be called
     void createJointDef(); //after creating all bodies

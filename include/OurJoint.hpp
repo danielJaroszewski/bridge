@@ -12,10 +12,12 @@ private:
    b2DistanceJointDef distJointDef; 
    int indexOfBodyA, indexOfBodyB;
    bool isLeftBStatic=false, isRightBStatic=false;
+   b2DistanceJoint* distanceJoint;
+   float maxForce; //=??? to be found out
 
 
 public:
-    b2DistanceJoint* distanceJoint;
+    friend class OurWorld;
     const b2DistanceJointDef* getDistJointDef();
     int getBodyAIndex();
     int getBodyBIndex();
@@ -52,6 +54,8 @@ public:
 
     bool isLeftBodyStatic();
     bool isRightBodyStatic();
+
+    float getActingForce();
 
 
 };

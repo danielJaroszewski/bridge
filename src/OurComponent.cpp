@@ -7,8 +7,9 @@ OurComponent::OurComponent(float xCoordinate_, float yCoordinate_, float width_,
 void OurComponent::createBodyDefinition()
 {
     bodyDef.type = b2_dynamicBody;
+    bodyDef.linearDamping = 0.0f;
+    bodyDef.angularDamping = 0.1f;
     bodyDef.position.Set(this->xCoordinate, this->yCoordinate);
-    // ...
 }
 
 void OurComponent::createBodyFixtureDefinition()
@@ -16,7 +17,9 @@ void OurComponent::createBodyFixtureDefinition()
     dynamicBox.SetAsBox((this->width)/2,(this->height)/2);
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = this->density;
-    fixtureDef.friction =0.3f;
+    fixtureDef.friction =0.9f;
+    fixtureDef.filter.categoryBits = DYNAMIC_COMP_CATEGORY;
+    fixtureDef.filter.maskBits = DYNAMIC_COMP_MASK;
 }
 
 void OurComponent::setUpComponent()
@@ -72,4 +75,14 @@ b2Vec2 OurComponent::getRightAnchorPoint()
     b2Vec2 rAnchor = b2Vec2(this->xCoordinate+(this->width-0.5f), this->yCoordinate);
     b2Vec2 gloabalRightAnchor = this->dynBody->GetWorldPoint(rAnchor);
     return gloabalRightAnchor;
+}
+
+void OurComponent::setCompIndex(int ind)
+{
+    compIndex = ind;
+}
+
+int OurComponent::getCompIndex()
+{
+    return compIndex;
 }

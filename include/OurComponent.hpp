@@ -1,5 +1,6 @@
 #pragma once
 #include "box2d/box2d.h"
+#include "Constants.hpp"
 
 /**
  * @brief Wrapper class for box2d bodies.
@@ -18,10 +19,13 @@ private:
     b2PolygonShape dynamicBox;
     void createBodyDefinition();
     void createBodyFixtureDefinition();
-
-public:
+    int compIndex;
     b2Body* dynBody;
 
+
+public:
+   
+    friend class OurWorld;
     /**
      * @brief Construct a new Our Component object
      * 
@@ -50,4 +54,6 @@ public:
     float getAngle();
     b2Vec2 getLeftAnchorPoint();
     b2Vec2 getRightAnchorPoint();
+    void setCompIndex(int ind);
+    int getCompIndex();
 };
