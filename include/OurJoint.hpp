@@ -38,7 +38,7 @@ public:
      * @param freq_ Oscillation frequency.
      * @param dampingRatio_ Damping ratio. Values starting from 0 can be assigned, with values above 1 being critical damping with no oscillation.
      */
-    void setLinearStiffness(float freq_, float dampingRatio_);//must be called after initializeDefinition
+    void setLinearStiffness(float freq_=4.0f, float dampingRatio_=0.5f);//must be called after initializeDefinition
 
 
     void setLeftBodyStatic();
