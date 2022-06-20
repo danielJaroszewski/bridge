@@ -71,8 +71,6 @@ TEST_CASE("static bodies")
         world.update();
     }
 
-    world.clearWorld();
-
     REQUIRE(isLBConsistent == true);
     REQUIRE(isRBConsistent == true);
 
@@ -136,6 +134,5 @@ TEST_CASE("dynamic positions")
         world.update();
     }
 
-    world.clearWorld();
 
 }

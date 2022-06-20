@@ -4,7 +4,7 @@
 
 OurWorld::~OurWorld()
 {
-    destroyB2Bodies();
+    clearWorld();
 }
 
 void OurWorld::addComponent(OurComponent& component_)
