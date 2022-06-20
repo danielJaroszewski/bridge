@@ -54,8 +54,17 @@ public:
      * @brief b2World field - that's what we are wrapping up. Made it public to easily access all
      * properties of it.
      */
-    b2World world = b2World(gravity);
+    b2World world =b2World(gravity);
+public:
+    OurWorld() = default;
 
+    OurWorld(const OurWorld&) = delete;
+    OurWorld(OurWorld&&) noexcept = delete;
+
+    OurWorld& operator=(const OurWorld&) = delete;
+    OurWorld& operator=(OurWorld&&) noexcept = delete;
+
+    ~OurWorld();
     /**
      * @brief Adds dynamic component created earlier. Passing by reference.
      *

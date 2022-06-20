@@ -1,26 +1,30 @@
 #include "include/OurWorld.hpp"
-#include <iostream>
-
+#include "include/Graphics/GraphicsWorld.hpp"
+#include "include/GUI/GUIWorld.hpp"
+#include "include/GameScene.hpp"
+#include "include/Graphics/BeamVisuals.hpp"
 
 int main(int argc, char const *argv[])
 {
-    OurWorld world = OurWorld();
+    OurWorld world;
 
-    StaticComponent leftBase = StaticComponent(0.0f,0.0f);
-    leftBase.setUpStaticComponent();
-    world.addStaticComponent(leftBase);
+    most::GraphicsWorld graphics;
+    auto& guiWorld = graphics.addDrawable(std::make_unique<most::GUI::World>());
 
-    StaticComponent rightBase = StaticComponent(10.0f, 0.0f);
-    rightBase.setUpStaticComponent();
-    world.addStaticComponent(rightBase);
+    bool shouldRun = true;
+    graphics.addEventCallback([&shouldRun](const sf::Event& e)
+    {
+        if (e.type == sf::Event::Closed)
+        {
+            shouldRun = false;
+        }
+    });
 
-    OurComponent firstBlock = OurComponent(2.5f,0.0f,4.9f, 0.5f, 1.0f);
-    firstBlock.setUpComponent();
-    world.addComponent(firstBlock);
-
-    OurComponent secondBlock = OurComponent(7.5f, 0.0f, 4.9f, 0.5f, 1.0f);
-    secondBlock.setUpComponent();
-    world.addComponent(secondBlock);
+    OurComponent leftBase = OurComponent(1.0f, 1.0f, 50.0f, 10.0f, 50.0f);
+    leftBase.createBodyDefinition();
+    leftBase.createBodyFixtureDefinition();
+    world.addComponent(leftBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBase));
 
     OurJoint j1 = OurJoint();
     j1.setLeftBodyStatic();
@@ -40,12 +44,35 @@ int main(int argc, char const *argv[])
     car.setUpCar();
     world.addCar(car);
 
+    OurJoint joint1 = OurJoint();
+    joint1.setIndexOfBodies(0,1);
+    world.addJoint(joint1);
     world.initializeWorld();
     world.setSimParams();
+#ifdef GRA
+    auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
+    auto level = std::make_unique<most::Level>();
 
 
-    world.clearWorld();
+    gameScene.setLevel(std::move(level));
+#endif
 
-    std::cout<<"End of program\n";
+    long long accumulatedTime = 0;
+    constexpr long long fixedUpdateTime = 16666;
+    // Main loop.
+    while (shouldRun)
+    {
+        graphics.processEvents();
+        graphics.update();
+        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
+        while (accumulatedTime >= fixedUpdateTime)
+        {
+            accumulatedTime -= fixedUpdateTime;
+            world.update();
+            graphics.physicsUpdate();
+        }
+        graphics.present();
+    }
+
     return 0;
 }

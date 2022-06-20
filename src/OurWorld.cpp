@@ -1,7 +1,13 @@
 #include "../include/OurWorld.hpp"
+
 #include <iostream>
 
-void OurWorld::addComponent(OurComponent &component_)
+OurWorld::~OurWorld()
+{
+    destroyB2Bodies();
+}
+
+void OurWorld::addComponent(OurComponent& component_)
 {
     component_.setCompIndex(currDynamicCompIndex);
     components.push_back(&component_);
