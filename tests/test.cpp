@@ -75,6 +75,7 @@ TEST_CASE("static bodies")
 
 TEST_CASE("dynamic positions")
 {
+    
     OurWorld world = OurWorld();
 
     StaticComponent leftBase = StaticComponent(0.0f,0.0f);
@@ -127,6 +128,7 @@ TEST_CASE("dynamic positions")
         
         std::cout<<"First block x: "<<FEx<<"    First block y: "<<FEy<<std::endl;
         std::cout<<"Second block x: "<<SEx<<"    Second block y: "<<SEy<<std::endl;
+        std::cout<<std::endl;
 
         world.update();
     }
