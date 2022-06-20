@@ -29,12 +29,9 @@ TEST_CASE("static bodies")
 
     OurJoint j2 = OurJoint();
     j2.setRightBodyStatic();
-    j2.setIndexOfBodies(secondBlock.getCompIndex(), secondBlock.getCompIndex());
+    j2.setIndexOfBodies(secondBlock.getCompIndex(), rightBase.getCompIndex());
     world.addJoint(j2);
 
-    Car car = Car();
-    car.setUpCar();
-    world.addCar(car);
 
     world.initializeWorld();
     world.setSimParams();
@@ -70,8 +67,6 @@ TEST_CASE("static bodies")
 
         world.update();
     }
-
-    world.clearWorld();
 
     REQUIRE(isLBConsistent == true);
     REQUIRE(isRBConsistent == true);
@@ -135,7 +130,4 @@ TEST_CASE("dynamic positions")
 
         world.update();
     }
-
-    world.clearWorld();
-
 }
