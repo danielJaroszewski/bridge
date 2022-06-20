@@ -4,7 +4,7 @@
 
 OurWorld::~OurWorld()
 {
-    destroyB2Bodies();
+    clearWorld();
 }
 
 void OurWorld::addComponent(OurComponent& component_)
@@ -135,6 +135,7 @@ void OurWorld::clearWorld()
     {
         world.DestroyBody(a->staticBody);
     }
+    staticComponents.clear();
     if(car != nullptr)
     {
         world.DestroyBody(car->chassisBody);
