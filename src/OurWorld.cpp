@@ -91,6 +91,7 @@ void OurWorld::initializeJoints()
 
         a->setLinearStiffness(0.0f, 1.0f);
         a->distanceJoint = (b2DistanceJoint *)world.CreateJoint(a->getDistJointDef());
+        a->setLinearStiffness();
     } 
 }
 

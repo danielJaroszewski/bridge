@@ -14,6 +14,7 @@ private:
    bool isLeftBStatic=false, isRightBStatic=false;
    b2DistanceJoint* distanceJoint;
    float maxForce; //=??? to be found out
+   void setLinearStiffness(float freq_=4.0f, float dampingRatio_=0.5f);
 
 
 public:
@@ -38,8 +39,6 @@ public:
      * @param freq_ Oscillation frequency.
      * @param dampingRatio_ Damping ratio. Values starting from 0 can be assigned, with values above 1 being critical damping with no oscillation.
      */
-    void setLinearStiffness(float freq_=4.0f, float dampingRatio_=0.5f);//must be called after initializeDefinition
-
 
     void setLeftBodyStatic();
     void setRightBodyStatic();

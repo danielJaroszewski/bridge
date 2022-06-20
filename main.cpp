@@ -36,7 +36,6 @@ int main(int argc, char const *argv[])
 
 
     world.initializeWorld();
-    j1.setLinearStiffness();
     world.setSimParams();
 
 #ifdef GRA
