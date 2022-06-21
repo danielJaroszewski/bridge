@@ -82,7 +82,6 @@ public:
     void addCar(Car &car_);
 
     OurComponent getComponent(int index);
-    void setSimParams(float timeStep_ = (1.0f / 60.0f), int32 velocityIterations_ = 8, int32 positionIterations_ = 3);
     void update();
 
     /**
