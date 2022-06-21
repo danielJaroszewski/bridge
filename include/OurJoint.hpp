@@ -1,6 +1,6 @@
 #pragma once
 #include "box2d/box2d.h"
-#include <memory>
+#include "Constants.hpp"
 
 /**
  * @brief Wrapper class for box2d's distanceJoint.
@@ -54,7 +54,7 @@ public:
     bool isLeftBodyStatic();
     bool isRightBodyStatic();
 
-    float getActingForce();
+    float getAbsActingForce();
 
 
 };
