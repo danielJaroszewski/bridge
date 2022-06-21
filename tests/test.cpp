@@ -119,6 +119,7 @@ TEST_CASE("dynamic positions")
     float SEy = 0.0;
     for (int i=0; i<100; i++)
     {
+        world.update();
         FEx = firstBlock.getXCoordinate();
         FEy = firstBlock.getYCoordinate();
         SEx = secondBlock.getXCoordinate();
@@ -126,8 +127,9 @@ TEST_CASE("dynamic positions")
         
         std::cout<<"First block x: "<<FEx<<"    First block y: "<<FEy<<std::endl;
         std::cout<<"Second block x: "<<SEx<<"    Second block y: "<<SEy<<std::endl;
+        std::cout<<"J1 force "<< j1.getAbsActingForce()<<std::endl;
         std::cout<<std::endl;
 
-        world.update();
+        
     }
 }
