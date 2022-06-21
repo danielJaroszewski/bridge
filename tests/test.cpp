@@ -34,7 +34,6 @@ TEST_CASE("static bodies")
 
 
     world.initializeWorld();
-    world.setSimParams();
     
 
     bool isRBConsistent = true;
@@ -113,7 +112,6 @@ TEST_CASE("dynamic positions")
     world.addCar(car);
 
     world.initializeWorld();
-    world.setSimParams();
 
     float FEx = 0.0;
     float FEy = 0.0;

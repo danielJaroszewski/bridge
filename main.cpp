@@ -36,7 +36,6 @@ int main(int argc, char const *argv[])
 
 
     world.initializeWorld();
-    world.setSimParams();
 
 #ifdef GRA
     auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
