@@ -21,6 +21,7 @@ private:
     void createBodyFixtureDefinition();
     int compIndex;
     b2Body* dynBody;
+    void setCompIndex(int ind);
 
 
 public:
@@ -54,6 +55,5 @@ public:
     float getAngle();
     b2Vec2 getLeftAnchorPoint();
     b2Vec2 getRightAnchorPoint();
-    void setCompIndex(int ind);
     int getCompIndex();
 };

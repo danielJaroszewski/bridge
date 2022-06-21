@@ -21,6 +21,7 @@ private:
     void createBodyFixtureDefinition();
     int compIndex;
     b2Body *staticBody;
+    void setIndex(int ind);
 
 public:
     friend class OurWorld;
@@ -40,6 +41,5 @@ public:
 
     b2Vec2 getAnchorPoint(); // only one anchor point
     bool isStatic();
-    void setIndex(int ind);
     int getCompIndex();
 };
