@@ -86,67 +86,82 @@ void Car::createJointDef()
 
 }
 
-const b2FixtureDef *Car::getChassisFixtureDef()
+const b2FixtureDef *Car::getChassisFixtureDef() const
 {
     return &chassisFixtureDef;
 }
 
-const b2FixtureDef *Car::getWheelFixtureDef()
+const b2FixtureDef *Car::getWheelFixtureDef() const
 {
     return &wheelFixtureDef;
 }
 
-const b2BodyDef *Car::getChassisBodyDef()
+const b2BodyDef *Car::getChassisBodyDef() const
 {
     return &chassisBodyDef;
 }
 
-const b2BodyDef *Car::getWheel1BodyDef()
+const b2BodyDef *Car::getWheel1BodyDef() const
 {
     return &wheel1BodyDef;
 }
 
-const b2BodyDef *Car::getWheel2BodyDef()
+const b2BodyDef *Car::getWheel2BodyDef() const
 {
     return &wheel2BodyDef;
 }
 
-const b2WheelJointDef* Car::getWheel1JointDef()
+const b2WheelJointDef* Car::getWheel1JointDef() const
 {
     return &wheel1JointDef;
 }
 
-const b2WheelJointDef* Car::getWheel2JointDef()
+const b2WheelJointDef* Car::getWheel2JointDef() const
 {
     return &wheel2JointDef;
 }
 
-float Car::getChassisXCoordinate()
+float Car::getChassisXCoordinate() const
 {
     return chassisBody->GetPosition().x;
 }
 
-float Car::getChassisYCoordinate()
+float Car::getChassisYCoordinate() const
 {
     return chassisBody->GetPosition().y;
 }
 
-float Car::getLeftWheelXCoordinate()
+float Car::getLeftWheelXCoordinate() const
 {
     return wheel1Body->GetPosition().x;
 }
 
-float Car::getLeftWheelYCoordinate()
+float Car::getLeftWheelYCoordinate() const
 {
     return wheel1Body->GetPosition().y;
 }
 
-float Car::getRightWheelXCoordinate()
+float Car::getRightWheelXCoordinate() const
 {
     return wheel2Body->GetPosition().x;
 }
 
-float Car::getRightWheelYCoordinate()
+float Car::getRightWheelYCoordinate() const
 {
     return wheel2Body->GetPosition().y;
+}
+
+float Car::getChassisAngle() const
+{
+    return chassisBody->GetAngle();
+}
+
+float Car::getLeftWheelAngle() const
+{
+    return wheel1Body->GetAngle();
+}
+
+float Car::getRightWheelAngle() const
+{
+    return wheel2Body->GetAngle();
 }

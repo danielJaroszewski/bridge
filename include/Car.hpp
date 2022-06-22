@@ -10,7 +10,7 @@
  */
 class Car
 {
-    private:
+private:
     b2PolygonShape chassisPolygon;
     //b2Vec2 vertices[8];
     b2CircleShape wheel;
@@ -33,26 +33,30 @@ class Car
     b2Body* wheel2Body;
     b2WheelJoint* wheel1Joint;
     b2WheelJoint* wheel2Joint;
-
-    public:
+public:
     friend class OurWorld;
 
     void setUpCar(); //to be called
     void createJointDef(); //after creating all bodies
 
-    const b2FixtureDef* getChassisFixtureDef();
-    const b2FixtureDef* getWheelFixtureDef();
-    const b2BodyDef* getChassisBodyDef();
-    const b2BodyDef* getWheel1BodyDef();
-    const b2BodyDef* getWheel2BodyDef();
-    const b2WheelJointDef* getWheel1JointDef();
-    const b2WheelJointDef* getWheel2JointDef();
+    const b2FixtureDef* getChassisFixtureDef() const;
+    const b2FixtureDef* getWheelFixtureDef() const;
+    const b2BodyDef* getChassisBodyDef() const;
+    const b2BodyDef* getWheel1BodyDef() const;
+    const b2BodyDef* getWheel2BodyDef() const;
+    const b2WheelJointDef* getWheel1JointDef() const;
+    const b2WheelJointDef* getWheel2JointDef() const;
 
-    float getChassisXCoordinate();
-    float getChassisYCoordinate();
-    float getLeftWheelXCoordinate();
-    float getLeftWheelYCoordinate();
-    float getRightWheelXCoordinate();
-    float getRightWheelYCoordinate();
-    
+    float getChassisXCoordinate() const;
+    float getChassisYCoordinate() const;
+
+    float getLeftWheelXCoordinate() const;
+    float getLeftWheelYCoordinate() const;
+
+    float getRightWheelXCoordinate() const;
+    float getRightWheelYCoordinate() const;
+
+    float getChassisAngle() const;
+    float getLeftWheelAngle() const;
+    float getRightWheelAngle() const;
 };
