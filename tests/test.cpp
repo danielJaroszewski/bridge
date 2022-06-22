@@ -4,38 +4,36 @@
 
 TEST_CASE("static bodies")
 {
-    OurWorld world = OurWorld();
+    OurWorld world;
 
-    StaticComponent leftBase = StaticComponent(0.0f,0.0f);
+    StaticComponent leftBase(0.0f,0.0f);
     leftBase.setUpStaticComponent();
     world.addStaticComponent(leftBase);
 
-    StaticComponent rightBase = StaticComponent(10.0f, 0.0f);
+    StaticComponent rightBase(10.0f, 0.0f);
     rightBase.setUpStaticComponent();
     world.addStaticComponent(rightBase);
 
-    OurComponent firstBlock = OurComponent(2.5f,0.0f,4.9f, 0.5f, 1.0f);
+    OurComponent firstBlock(2.5f,0.0f,4.9f, 0.5f, 1.0f);
     firstBlock.setUpComponent();
     world.addComponent(firstBlock);
 
-    OurComponent secondBlock = OurComponent(7.5f, 0.0f, 4.9f, 0.5f, 1.0f);
+    OurComponent secondBlock(7.5f, 0.0f, 4.9f, 0.5f, 1.0f);
     secondBlock.setUpComponent();
     world.addComponent(secondBlock);
 
-    OurJoint j1 = OurJoint();
+    OurJoint j1;
     j1.setLeftBodyStatic();
     j1.setIndexOfBodies(leftBase.getCompIndex(), firstBlock.getCompIndex());
     world.addJoint(j1);
 
-    OurJoint j2 = OurJoint();
+    OurJoint j2;
     j2.setRightBodyStatic();
     j2.setIndexOfBodies(secondBlock.getCompIndex(), rightBase.getCompIndex());
     world.addJoint(j2);
 
-
     world.initializeWorld();
     
-
     bool isRBConsistent = true;
     bool isLBConsistent = true;
 
@@ -75,39 +73,39 @@ TEST_CASE("static bodies")
 TEST_CASE("dynamic positions")
 {
     
-    OurWorld world = OurWorld();
+    OurWorld world;
 
-    StaticComponent leftBase = StaticComponent(0.0f,0.0f);
+    StaticComponent leftBase(0.0f,0.0f);
     leftBase.setUpStaticComponent();
     world.addStaticComponent(leftBase);
 
-    StaticComponent rightBase = StaticComponent(10.0f, 0.0f);
+    StaticComponent rightBase(10.0f, 0.0f);
     rightBase.setUpStaticComponent();
     world.addStaticComponent(rightBase);
 
-    OurComponent firstBlock = OurComponent(2.5f,0.0f,4.9f, 0.5f, 10.0f);
+    OurComponent firstBlock(2.5f,0.0f,4.9f, 0.5f, 10.0f);
     firstBlock.setUpComponent();
     world.addComponent(firstBlock);
 
-    OurComponent secondBlock = OurComponent(7.5f, 0.0f, 4.9f, 0.5f, 10.0f);
+    OurComponent secondBlock(7.5f, 0.0f, 4.9f, 0.5f, 10.0f);
     secondBlock.setUpComponent();
     world.addComponent(secondBlock);
 
-    OurJoint j1 = OurJoint();
+    OurJoint j1;
     j1.setLeftBodyStatic();
     j1.setIndexOfBodies(leftBase.getCompIndex(), firstBlock.getCompIndex());
     world.addJoint(j1);
 
-    OurJoint j2 = OurJoint();
+    OurJoint j2;
     j2.setIndexOfBodies(firstBlock.getCompIndex(), secondBlock.getCompIndex());
     world.addJoint(j2);
 
-    OurJoint j3 = OurJoint();
+    OurJoint j3;
     j3.setRightBodyStatic();
     j3.setIndexOfBodies(secondBlock.getCompIndex(), rightBase.getCompIndex());
     world.addJoint(j3);
 
-    Car car = Car();
+    Car car;
     car.setUpCar();
     world.addCar(car);
 
@@ -129,7 +127,5 @@ TEST_CASE("dynamic positions")
         std::cout<<"Second block x: "<<SEx<<"    Second block y: "<<SEy<<std::endl;
         std::cout<<"J1 force "<< j1.getAbsActingForce()<<std::endl;
         std::cout<<std::endl;
-
-        
     }
 }
