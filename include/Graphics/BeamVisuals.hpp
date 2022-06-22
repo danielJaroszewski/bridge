@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Drawable.hpp"
-#include "../OurComponent.hpp"
+#include "../RectPhysicsComponent.hpp"
 
 namespace most
 {
@@ -10,9 +10,9 @@ namespace most
 	{
 	private:
 		sf::RectangleShape visuals;
-		OurComponent& physicalComponent;
+		RectPhysicsComponent& physicalComponent;
 	public:
-		BeamVisuals(OurComponent& comp);
+		BeamVisuals(RectPhysicsComponent& comp);
 
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 		virtual inline void update() override {};

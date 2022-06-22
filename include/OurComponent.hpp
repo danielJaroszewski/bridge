@@ -1,12 +1,14 @@
 #pragma once
 #include "box2d/box2d.h"
 #include "Constants.hpp"
+#include "RectPhysicsComponent.hpp"
 
 /**
  * @brief Wrapper class for box2d bodies.
  * 
  */
 class OurComponent
+    : public most::RectPhysicsComponent
 {
 private:
     float xCoordinate;  
@@ -46,14 +48,14 @@ public:
     void setUpComponent();
 
 
-    const b2BodyDef* getBodyDef();
-    const b2FixtureDef* getFixtureDefinition();
-    float getXCoordinate();
-    float getYCoordinate();
-    float getWidth();
-    float getHeight();
-    float getAngle();
-    b2Vec2 getLeftAnchorPoint();
-    b2Vec2 getRightAnchorPoint();
-    int getCompIndex();
+    const b2BodyDef* getBodyDef() const;
+    const b2FixtureDef* getFixtureDefinition() const;
+    float getXCoordinate() const override;
+    float getYCoordinate() const override;
+    float getWidth() const override;
+    float getHeight() const override;
+    float getAngle() const override;
+    b2Vec2 getLeftAnchorPoint() const;
+    b2Vec2 getRightAnchorPoint() const;
+    int getCompIndex() const;
 };

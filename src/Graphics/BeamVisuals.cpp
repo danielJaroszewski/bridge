@@ -1,6 +1,6 @@
 #include "../../include/Graphics/BeamVisuals.hpp"
 
-most::BeamVisuals::BeamVisuals(OurComponent& comp)
+most::BeamVisuals::BeamVisuals(RectPhysicsComponent& comp)
 	: visuals(), physicalComponent(comp)
 {
 	visuals.setFillColor(sf::Color::White);

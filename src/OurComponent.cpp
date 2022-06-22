@@ -9,14 +9,14 @@ void OurComponent::createBodyDefinition()
     bodyDef.type = b2_dynamicBody;
     bodyDef.linearDamping = 0.0f;
     bodyDef.angularDamping = 0.1f;
-    bodyDef.position.Set(this->xCoordinate, this->yCoordinate);
+    bodyDef.position.Set(xCoordinate, yCoordinate);
 }
 
 void OurComponent::createBodyFixtureDefinition()
 {
-    dynamicBox.SetAsBox((this->width)/2,(this->height)/2);
+    dynamicBox.SetAsBox((width) / 2, (height) / 2);
     fixtureDef.shape = &dynamicBox;
-    fixtureDef.density = this->density;
+    fixtureDef.density = density;
     fixtureDef.friction =0.9f;
     fixtureDef.filter.categoryBits = DYNAMIC_COMP_CATEGORY;
     fixtureDef.filter.maskBits = DYNAMIC_COMP_MASK;
@@ -28,53 +28,51 @@ void OurComponent::setUpComponent()
     createBodyFixtureDefinition();
 }
 
-const b2BodyDef* OurComponent::getBodyDef()
+const b2BodyDef* OurComponent::getBodyDef() const
 {
     return &bodyDef;
 }
 
-const b2FixtureDef* OurComponent::getFixtureDefinition()
+const b2FixtureDef* OurComponent::getFixtureDefinition() const
 {
     return &fixtureDef;
 }
 
-float OurComponent::getXCoordinate()
+float OurComponent::getXCoordinate() const
 {
-    return this->dynBody->GetPosition().x;
+    return dynBody->GetPosition().x;
 }
 
-float OurComponent::getYCoordinate()
+float OurComponent::getYCoordinate() const
 {
-    return this->dynBody->GetPosition().y;
+    return dynBody->GetPosition().y;
 }
 
-float OurComponent::getWidth()
+float OurComponent::getWidth() const
 {
-    return this->width;
+    return width;
 }
 
-float OurComponent::getHeight()
+float OurComponent::getHeight() const
 {
-    return this->height;
+    return height;
 }
 
-float OurComponent::getAngle()
+float OurComponent::getAngle() const
 {
-    return this->dynBody->GetAngle();
+    return dynBody->GetAngle();
 }
 
-b2Vec2 OurComponent::getLeftAnchorPoint()
+b2Vec2 OurComponent::getLeftAnchorPoint() const
 {
-    b2Vec2 lAnchor = b2Vec2((this->xCoordinate-(this->width-0.5f)), this->yCoordinate);
-    b2Vec2 globalLeftAnchor = this->dynBody->GetWorldPoint(lAnchor);
-    return globalLeftAnchor;
+    const b2Vec2 lAnchor((xCoordinate - (width - 0.5f)), yCoordinate);
+    return dynBody->GetWorldPoint(lAnchor);
 }
 
-b2Vec2 OurComponent::getRightAnchorPoint()
+b2Vec2 OurComponent::getRightAnchorPoint() const
 {
-    b2Vec2 rAnchor = b2Vec2(this->xCoordinate+(this->width-0.5f), this->yCoordinate);
-    b2Vec2 gloabalRightAnchor = this->dynBody->GetWorldPoint(rAnchor);
-    return gloabalRightAnchor;
+    const b2Vec2 rAnchor(xCoordinate + (width - 0.5f), yCoordinate);
+    return dynBody->GetWorldPoint(rAnchor);
 }
 
 void OurComponent::setCompIndex(int ind)
@@ -82,7 +80,7 @@ void OurComponent::setCompIndex(int ind)
     compIndex = ind;
 }
 
-int OurComponent::getCompIndex()
+int OurComponent::getCompIndex() const
 {
     return compIndex;
 }
