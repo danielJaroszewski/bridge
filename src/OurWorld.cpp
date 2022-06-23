@@ -71,8 +71,8 @@ void OurWorld::initializeJoints()
         {
             a->initializeDefinition(components[indexA]->dynBody,
                                     components[indexB]->dynBody,
-                                    components[indexA]->getRightAnchorPoint(),
-                                    components[indexB]->getLeftAnchorPoint());
+                                    components[indexA]->getCentralAnchorPoint(),
+                                    components[indexB]->getCentralAnchorPoint());
         }
         else if (a->isLeftBodyStatic() && !a->isRightBodyStatic())
         {

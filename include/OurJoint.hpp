@@ -44,7 +44,7 @@ public:
     void setRightBodyStatic();
 
     /**
-     * @brief Sets the indices of bodies, to which the joint is attached.
+     * @brief Sets the indices of bodies to which the joint is attached.
      * 
      * @param bodyAIndex 
      * @param bodyBIndex 

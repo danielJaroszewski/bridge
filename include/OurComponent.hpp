@@ -57,5 +57,6 @@ public:
     float getAngle() const override;
     b2Vec2 getLeftAnchorPoint() const;
     b2Vec2 getRightAnchorPoint() const;
+    b2Vec2 getCentralAnchorPoint() const;
     int getCompIndex() const;
 };
