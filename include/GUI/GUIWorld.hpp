@@ -11,13 +11,15 @@ namespace most
 			: public Drawable
 		{
 		private:
-			// TODO: Replace with proper Scene (a class that allows to add and remove drawables).
+			static World* instance;
 			mutable std::unique_ptr<sf::Drawable> currentScene, newScene; // Mutable because of draw's constness.
 		protected:
 			virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 			virtual void update() override {};
 			virtual void physicsUpdate() override {};
 		public:
+			World();
+
 			/// @brief Returns the current scene.
 			/// @return Current scene
 			sf::Drawable* getScene();
@@ -27,6 +29,8 @@ namespace most
 			/// @brief Sets the scene. If a scene is already present, the scene will be changed on the next draw call, otherwise immediately. This allows the scene to be changed from within the current scene.
 			/// @param scene Scene to set
 			void setScene(std::unique_ptr<sf::Drawable>&& scene);
+
+			static World* getInstance();
 		};
 	}
 }

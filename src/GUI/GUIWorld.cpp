@@ -1,38 +1,54 @@
 #include "../../include/GUI/GUIWorld.hpp"
 
-#include <imgui-SFML.h>
-
-void most::GUI::World::draw(sf::RenderTarget& target, sf::RenderStates states) const
+namespace most
 {
-	if (newScene)
+	namespace GUI
 	{
-		currentScene = std::move(newScene);
-	}
-	if (currentScene)
-	{
-		target.draw(*currentScene, states);
-	}
-}
+		World* World::instance = nullptr;
 
-sf::Drawable* most::GUI::World::getScene()
-{
-	return currentScene.get();
-}
+		World::World()
+		{
+			instance = this;
+		}
 
-const sf::Drawable* most::GUI::World::getScene() const
-{
-	return currentScene.get();
-}
+		void World::draw(sf::RenderTarget& target, sf::RenderStates states) const
+		{
+			if (newScene)
+			{
+				currentScene = std::move(newScene);
+			}
+			if (currentScene)
+			{
+				target.draw(*currentScene, states);
+			}
+		}
 
-void most::GUI::World::setScene(std::unique_ptr<sf::Drawable>&& scene)
-{
-	// I don't swap the scene immediiately in case the current scene wants to change the scene.
-	if (currentScene)
-	{
-		newScene = std::move(scene);
-	}
-	else
-	{
-		currentScene = std::move(scene);
+		sf::Drawable* World::getScene()
+		{
+			return currentScene.get();
+		}
+
+		const sf::Drawable* World::getScene() const
+		{
+			return currentScene.get();
+		}
+
+		void World::setScene(std::unique_ptr<sf::Drawable>&& scene)
+		{
+			// I don't swap the scene immediately in case the current scene wants to change the scene.
+			if (currentScene)
+			{
+				newScene = std::move(scene);
+			}
+			else
+			{
+				currentScene = std::move(scene);
+			}
+		}
+
+		World* World::getInstance()
+		{
+			return instance;
+		}
 	}
 }

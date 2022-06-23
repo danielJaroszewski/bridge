@@ -51,13 +51,6 @@ TEST_CASE("single dynamic component")
     world.addJoint(j2);
 
     world.initializeWorld();
-    #ifdef GRA
-        auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
-        auto level = std::make_unique<most::Level>();
-
-
-        gameScene.setLevel(std::move(level));
-    #endif
 
     long long accumulatedTime = 0;
     constexpr long long fixedUpdateTime = 16666;
@@ -127,13 +120,6 @@ TEST_CASE("Complex test with 2+ components")
 
 
     world.initializeWorld();
-    #ifdef GRA
-        auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
-        auto level = std::make_unique<most::Level>();
-
-
-        gameScene.setLevel(std::move(level));
-    #endif
 
     long long accumulatedTime = 0;
     constexpr long long fixedUpdateTime = 16666;
@@ -178,13 +164,6 @@ TEST_CASE("Car test")
     graphics.addDrawable(std::make_unique<most::CarVisuals>(car));
 
     world.initializeWorld();
-    #ifdef GRA
-        auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
-        auto level = std::make_unique<most::Level>();
-
-
-        gameScene.setLevel(std::move(level));
-    #endif
 
     long long accumulatedTime = 0;
     constexpr long long fixedUpdateTime = 16666;
