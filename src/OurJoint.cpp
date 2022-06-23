@@ -52,3 +52,10 @@ bool OurJoint::isRightBodyStatic()
 {
     return isRightBStatic;
 }
+
+float OurJoint::getAbsActingForce()
+{
+    b2Vec2 force = distanceJoint->GetReactionForce(1/TIME_STEP);
+    float modulus = sqrt(pow(force.x, 2) + pow(force.y, 2));
+    return modulus;
+}

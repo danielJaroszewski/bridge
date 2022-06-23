@@ -18,3 +18,6 @@ target_link_libraries(most PRIVATE most-core)
 
 add_executable(tester ./tests/test.cpp)
 target_link_libraries(tester PRIVATE most-core Catch2::Catch2WithMain)
+
+add_executable(graphicTest ./tests/graphicTests.cpp)
+target_link_libraries(graphicTest PRIVATE most-core Catch2::Catch2WithMain)

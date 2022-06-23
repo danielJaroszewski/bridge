@@ -91,6 +91,7 @@ void OurWorld::initializeJoints()
 
         a->setLinearStiffness(0.0f, 1.0f);
         a->distanceJoint = (b2DistanceJoint *)world.CreateJoint(a->getDistJointDef());
+        a->setLinearStiffness();
     } 
 }
 
@@ -135,6 +136,7 @@ void OurWorld::clearWorld()
     {
         world.DestroyBody(a->staticBody);
     }
+    staticComponents.clear();
     if(car != nullptr)
     {
         world.DestroyBody(car->chassisBody);
@@ -149,14 +151,7 @@ OurComponent OurWorld::getComponent(int index)
     return *components[index];
 }
 
-void OurWorld::setSimParams(float timeStep_, int32 velocityIterations_, int32 positionIterations_)
-{
-    this->timeStep = timeStep_;
-    this->velocityIterations = velocityIterations_;
-    this->positionIterations = positionIterations_;
-}
-
 void OurWorld::update()
 {
-    world.Step(timeStep, velocityIterations, positionIterations);
+    world.Step(TIME_STEP, VELOCITY_ITERATIONS, POSITION_ITERATIONS);
 }

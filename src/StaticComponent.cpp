@@ -1,7 +1,7 @@
 #include "../include/StaticComponent.hpp"
 
 StaticComponent::StaticComponent(float xCoordinate_, float yCoordninate_)
-: xCoordinate(xCoordinate_), yCoordinate(yCoordninate_)
+: xCoordinate(xCoordinate_), yCoordinate(yCoordninate_), width(0.5f), height(0.5f)
 {
 }
 
@@ -13,7 +13,7 @@ void StaticComponent::createBodyDefinition()
 
 void StaticComponent::createBodyFixtureDefinition()
 {
-    staticBox.SetAsBox(0.25f, 0.25f); // constant and the same size
+    staticBox.SetAsBox(width / 2.0f, height / 2.0f); // constant and the same size
     fixtureDef.shape = &staticBox;
     fixtureDef.filter.categoryBits = STATIC_COMP_CATEGORY;
     fixtureDef.filter.maskBits = STATIC_COMP_MASK;
@@ -35,14 +35,29 @@ const b2FixtureDef* StaticComponent::getFixtureDefinition()
     return &fixtureDef;
 }
 
-float StaticComponent::getXCoordinate()
+float StaticComponent::getXCoordinate() const
 {
     return staticBody->GetPosition().x;
 }
 
-float StaticComponent::getYCoordinate()
+float StaticComponent::getYCoordinate() const
 {
     return staticBody->GetPosition().y;
+}
+
+float StaticComponent::getWidth() const
+{
+    return width;
+}
+
+float StaticComponent::getHeight() const
+{
+    return height;
+}
+
+float StaticComponent::getAngle() const
+{
+    return staticBody->GetAngle();
 }
 
 b2Vec2 StaticComponent::getAnchorPoint()
