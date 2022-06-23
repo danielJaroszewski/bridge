@@ -19,6 +19,7 @@ namespace most
 			virtual void physicsUpdate() override {};
 		public:
 			World();
+			~World();
 
 			/// @brief Returns the current scene.
 			/// @return Current scene

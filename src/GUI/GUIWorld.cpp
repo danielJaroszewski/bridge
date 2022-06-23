@@ -11,6 +11,15 @@ namespace most
 			instance = this;
 		}
 
+		World::~World()
+		{
+			// In case some fucked up.
+			if (instance == this)
+			{
+				instance = nullptr;
+			}
+		}
+
 		void World::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
 			if (newScene)

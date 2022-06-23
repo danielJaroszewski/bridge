@@ -14,19 +14,27 @@ namespace most
 	{
 	private:
 		constexpr static const char* windowTitle = "pwjc-most";
+
+		static GraphicsWorld* instance;
+
 		sf::RenderWindow wnd;
 		sf::Clock deltaClock;
 		sf::View view;
 		sf::Vector2f lastMousePos;
 		bool viewMoving;
+		sf::Texture woodTexture, roadTexture;
 
 		std::map<Drawable*, std::unique_ptr<Drawable>> allDrawables;
 		std::list<std::function<void(const sf::Event&)>> eventCallbacks;
 
 		using EventCallback = decltype(eventCallbacks)::value_type;
 		using EventCallbackHandle = decltype(eventCallbacks)::const_iterator;
+	private:
+		void loadTextures(const std::string& pathToResources);
 	public:
-		GraphicsWorld();
+		/// @brief Creates a new graphics world and loads the default resources.
+		/// @param pathToResources Prefix added to all of resource paths. Must be empty or end with "/"
+		GraphicsWorld(const std::string& pathToResources = "");
 		GraphicsWorld(const GraphicsWorld&) = delete;
 		GraphicsWorld(GraphicsWorld&&) noexcept = delete;
 		~GraphicsWorld();
@@ -72,5 +80,10 @@ namespace most
 		void update();
 		/// @brief Called by main to update elements after physics world update (if there was one).
 		void physicsUpdate();
+
+		const sf::Texture& getWoodTexture() const;
+		const sf::Texture& getRoadTexture() const;
+
+		static GraphicsWorld* getInstance();
 	};
 }
