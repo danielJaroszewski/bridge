@@ -74,7 +74,7 @@ TEST_CASE("single dynamic component")
     }
 }
 
-TEST_CASE("Complex test with 2 components")
+TEST_CASE("Complex test with 2+ components")
 {
     OurWorld world;
 
@@ -96,22 +96,22 @@ TEST_CASE("Complex test with 2 components")
     world.addStaticComponent(leftBase);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBase));
 
-    StaticComponent rightBase = StaticComponent(50.0f, 0.0f);
+    StaticComponent rightBase = StaticComponent(10.0f, 0.0f);
     rightBase.setUpStaticComponent();
     world.addStaticComponent(rightBase);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBase));
 
-    OurComponent floor = OurComponent(0.0f, -10.0f, 20.0f, 1.0f, 10.0f);
+    OurComponent floor = OurComponent(0.0f, -10.0f, 10.0f, 1.0f, 10.0f);
     floor.setUpComponent();
     world.addComponent(floor);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(floor));
 
-    OurComponent comp1 = OurComponent(20.0f, 0.0f, 3.0f, 0.5f, 10.0f);
+    OurComponent comp1 = OurComponent(1.0f, 0.0f, 3.5f, 0.5f, 10.0f);
     comp1.setUpComponent();
     world.addComponent(comp1);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp1));
 
-    OurComponent comp2 = OurComponent(35.0f, 0.0f, 3.0f, 0.5f, 10.0f);
+    OurComponent comp2 = OurComponent(5.5f, 0.0f, 3.5f, 0.5f, 10.0f);
     comp2.setUpComponent();
     world.addComponent(comp2);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp2));
