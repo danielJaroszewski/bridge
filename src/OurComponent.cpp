@@ -7,8 +7,8 @@ OurComponent::OurComponent(float xCoordinate_, float yCoordinate_, float width_,
 void OurComponent::createBodyDefinition()
 {
     bodyDef.type = b2_dynamicBody;
-    bodyDef.linearDamping = 0.0f;
-    bodyDef.angularDamping = 0.1f;
+    bodyDef.linearDamping = COMPONENT_LINEAR_DAMPING;
+    bodyDef.angularDamping = COMPONENT_ANGULAR_DAMPING;
     bodyDef.position.Set(xCoordinate, yCoordinate);
 }
 
@@ -17,15 +17,15 @@ void OurComponent::createBodyFixtureDefinition()
     dynamicBox.SetAsBox((width) / 2, (height) / 2);
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = density;
-    fixtureDef.friction =0.9f;
-    //fixtureDef.filter.categoryBits = DYNAMIC_COMP_CATEGORY;
-    //fixtureDef.filter.maskBits = DYNAMIC_COMP_MASK;
+    fixtureDef.friction =1.0f;
+    fixtureDef.filter.categoryBits = DYNAMIC_COMP_CATEGORY;
+    fixtureDef.filter.maskBits = DYNAMIC_COMP_MASK;
 }
 
 void OurComponent::setUpComponent()
 {
-    createBodyDefinition();
     createBodyFixtureDefinition();
+    createBodyDefinition();
 }
 
 const b2BodyDef* OurComponent::getBodyDef() const
@@ -65,13 +65,13 @@ float OurComponent::getAngle() const
 
 b2Vec2 OurComponent::getLeftAnchorPoint() const
 {
-    const b2Vec2 lAnchor((xCoordinate - (width - 0.5f)), yCoordinate);
+    const b2Vec2 lAnchor(getXCoordinate() - (width-0.1f), yCoordinate);
     return dynBody->GetWorldPoint(lAnchor);
 }
 
 b2Vec2 OurComponent::getRightAnchorPoint() const
 {
-    const b2Vec2 rAnchor(xCoordinate + (width - 0.5f), yCoordinate);
+    const b2Vec2 rAnchor(getXCoordinate() + (width-0.1f), yCoordinate);
     return dynBody->GetWorldPoint(rAnchor);
 }
 

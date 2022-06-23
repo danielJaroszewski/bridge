@@ -12,9 +12,10 @@ private:
    b2DistanceJointDef distJointDef; 
    int indexOfBodyA, indexOfBodyB;
    bool isLeftBStatic=false, isRightBStatic=false;
+
    b2DistanceJoint* distanceJoint;
+
    float maxForce; //=??? to be found out
-   void setLinearStiffness(float freq_=4.0f, float dampingRatio_=0.5f);
 
 
 public:
@@ -33,12 +34,6 @@ public:
      */
     void initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 aBodyAnchor_, b2Vec2 bBodyAnchor_); //called from world
 
-    /**
-     * @brief Sets the stiffnes of a joint.
-     * 
-     * @param freq_ Oscillation frequency.
-     * @param dampingRatio_ Damping ratio. Values starting from 0 can be assigned, with values above 1 being critical damping with no oscillation.
-     */
 
     void setLeftBodyStatic();
     void setRightBodyStatic();

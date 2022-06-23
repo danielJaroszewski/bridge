@@ -131,3 +131,22 @@ TEST_CASE("dynamic positions")
 
 
 }
+
+TEST_CASE("Coordinates")
+{
+
+    OurWorld world;
+    OurComponent comp1 = OurComponent(0.0f, 0.0f, 5.0f, 1.0f, 10.0f);
+    comp1.setUpComponent();
+    world.addComponent(comp1);
+
+    OurComponent comp2 = OurComponent(10.0f, 0.0f, 5.0f, 1.0f, 10.0f);
+    comp2.setUpComponent();
+    world.addComponent(comp2);
+
+    world.initializeWorld();
+
+    std::cout<<"C1 anchor left: "<<comp1.getLeftAnchorPoint().x<<"  "<<comp1.getLeftAnchorPoint().y<<"\n";
+    std::cout<<"C1 anchor right: "<<comp1.getRightAnchorPoint().x<<"  "<<comp1.getRightAnchorPoint().y<<"\n";
+
+}

@@ -67,31 +67,28 @@ void OurWorld::initializeJoints()
         indexB = a->getBodyBIndex();
 
         // ale to jest gowno w tym momencie, trzeba poprawic
-        if (!a->isLeftBodyStatic() && !a->isRightBodyStatic())
+        if (!a->isLeftBodyStatic() && !a->isRightBodyStatic()) //both dynamic
         {
             a->initializeDefinition(components[indexA]->dynBody,
                                     components[indexB]->dynBody,
-                                    components[indexA]->getCentralAnchorPoint(),
-                                    components[indexB]->getCentralAnchorPoint());
+                                    components[indexA]->getRightAnchorPoint(),
+                                    components[indexB]->getLeftAnchorPoint());
         }
         else if (a->isLeftBodyStatic() && !a->isRightBodyStatic())
         {
             a->initializeDefinition(staticComponents[indexA]->staticBody,
                                     components[indexB]->dynBody,
                                     staticComponents[indexA]->getAnchorPoint(),
-                                    components[indexB]->getCentralAnchorPoint());
+                                    components[indexB]->getLeftAnchorPoint());
         }
         else
         {
             a->initializeDefinition(components[indexA]->dynBody,
                                     staticComponents[indexB]->staticBody,
-                                    components[indexA]->getCentralAnchorPoint(),
+                                    components[indexA]->getRightAnchorPoint(),
                                     staticComponents[indexB]->getAnchorPoint());
         }
-
-        a->setLinearStiffness(0.0f, 1.0f);
         a->distanceJoint = (b2DistanceJoint *)world.CreateJoint(a->getDistJointDef());
-        a->setLinearStiffness();
     } 
 }
 
@@ -117,7 +114,7 @@ void OurWorld::initializeWorld()
 {
     gravity = b2Vec2(0.0f, gravityFactor);
     world.SetGravity(gravity);
-
+    
     initializeComponents();
     assignFixtures();
     initializeJoints();
