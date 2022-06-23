@@ -5,6 +5,7 @@ build/
 .vscode/
 .vscode/tasks.json
 ipch/
+cmakecommand.txt
 # Windows shiet
 .vs/
 out/
