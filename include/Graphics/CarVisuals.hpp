@@ -11,11 +11,11 @@ namespace most
 		: public Drawable
 	{
 	private:
-		Car& car;
+		const Car& car;
 		sf::RectangleShape rect;
 		sf::CircleShape leftWheel, rightWheel;
 	public:
-		CarVisuals(Car&);
+		CarVisuals(const Car&);
 
 		virtual inline void update() override {};
 		virtual void physicsUpdate() override;

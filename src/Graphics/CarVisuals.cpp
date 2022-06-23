@@ -4,7 +4,7 @@
 
 namespace most
 {
-	CarVisuals::CarVisuals(Car& in)
+	CarVisuals::CarVisuals(const Car& in)
 		: car(in)
 	{
 		rect.setFillColor(sf::Color::Green);
