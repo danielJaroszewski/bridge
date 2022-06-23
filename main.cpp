@@ -5,7 +5,10 @@
 #include "include/Graphics/BeamVisuals.hpp"
 #include "include/GUI/EditorWorld.hpp"
 
+#include <iostream>
+
 int main(int argc, char const *argv[])
+try
 {
     OurWorld world;
 
@@ -51,4 +54,14 @@ int main(int argc, char const *argv[])
     }
 
     return 0;
+}
+catch (const std::exception& e)
+{
+    std::cerr << "Application error: " << e.what() << std::endl;
+    return 1;
+}
+catch (...)
+{
+    std::cerr << "Application error: UNKNOWN" << std::endl;
+    return 1;
 }

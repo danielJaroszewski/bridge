@@ -19,7 +19,7 @@ namespace most
 				Road,
 
 				ElemsCount
-			} currentElement;
+			} mutable currentElement = CurrentElement::None;
 			static const std::array<float, ((unsigned int)CurrentElement::ElemsCount) - 1> maxDistances;
 		public:
 			virtual void draw(sf::RenderTarget& rt, sf::RenderStates states) const override;
