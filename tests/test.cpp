@@ -148,5 +148,6 @@ TEST_CASE("Coordinates")
 
     std::cout<<"C1 anchor left: "<<comp1.getLeftAnchorPoint().x<<"  "<<comp1.getLeftAnchorPoint().y<<"\n";
     std::cout<<"C1 anchor right: "<<comp1.getRightAnchorPoint().x<<"  "<<comp1.getRightAnchorPoint().y<<"\n";
+    std::cout<<"C1 anchor central: "<<comp1.getCentralAnchorPoint().x<<"  "<<comp1.getCentralAnchorPoint().y<<"\n";
 
 }
