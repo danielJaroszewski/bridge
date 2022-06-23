@@ -77,7 +77,7 @@ b2Vec2 OurComponent::getRightAnchorPoint() const
 
 b2Vec2 OurComponent::getCentralAnchorPoint() const
 {
-    const b2Vec2 cAnchor(xCoordinate + (width/2), yCoordinate + (height/2));
+    const b2Vec2 cAnchor(xCoordinate, yCoordinate);
     return dynBody->GetWorldPoint(cAnchor);
 }
 
