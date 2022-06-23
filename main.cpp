@@ -20,25 +20,7 @@ int main(int argc, char const *argv[])
         }
     });
 
-<<<<<<< HEAD
    
-=======
-    OurComponent leftBlock = OurComponent(0.0f, 0.0f, 4.9f, 0.5f, 10.0f);
-    leftBlock.setUpComponent();
-    world.addComponent(leftBlock);
-    graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBlock));
-
-    OurComponent rightBlock = OurComponent(10.0f, 0.0f, 4.9f, 0.5f, 10.0f);
-    rightBlock.setUpComponent();
-    world.addComponent(rightBlock);
-    graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBlock));
-
-    OurJoint j1 = OurJoint();
-    j1.setIndexOfBodies(leftBlock.getCompIndex(), rightBlock.getCompIndex());
-    world.addJoint(j1);
-
-
->>>>>>> 899480900e7f6d72b9d5a9cf1ab6fc2f2e5b0878
     world.initializeWorld();
 
 #ifdef GRA

@@ -72,3 +72,9 @@ TEST_CASE("single dynamic component")
         graphics.present();
     }
 }
+
+TEST_CASE("Complex test ")
+{
+    
+
+}

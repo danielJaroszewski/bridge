@@ -128,9 +128,6 @@ TEST_CASE("dynamic positions")
         std::cout<<"J1 force "<< j1.getAbsActingForce()<<std::endl;
         std::cout<<std::endl;
     }
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 899480900e7f6d72b9d5a9cf1ab6fc2f2e5b0878
 }
