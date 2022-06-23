@@ -4,7 +4,7 @@
 void OurJoint::initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 aBodyAnchor_, b2Vec2 bBodyAnchor_)
 {
     distJointDef.Initialize(bodyA_, bodyB_, aBodyAnchor_, bBodyAnchor_);
-    distJointDef.collideConnected = true;
+    distJointDef.collideConnected = false;
 }
 
 void OurJoint::setIndexOfBodies(int bodyAIndex, int bodyBIndex)
