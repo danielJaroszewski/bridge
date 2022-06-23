@@ -146,7 +146,7 @@ void OurWorld::clearWorld()
 }
     
 
-OurComponent OurWorld::getComponent(int index)
+OurComponent& OurWorld::getComponent(int index) const
 {
     return *components[index];
 }

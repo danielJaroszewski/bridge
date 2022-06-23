@@ -18,9 +18,9 @@ namespace most
 
 	void CarVisuals::physicsUpdate()
 	{
-		leftWheel.setPosition(car.getLeftWheelXCoordinate(), car.getLeftWheelYCoordinate());
-		rightWheel.setPosition(car.getRightWheelXCoordinate(), car.getRightWheelYCoordinate());
-		rect.setPosition(car.getChassisXCoordinate(), car.getChassisYCoordinate());
+		leftWheel.setPosition(car.getLeftWheelXCoordinate(), -car.getLeftWheelYCoordinate());
+		rightWheel.setPosition(car.getRightWheelXCoordinate(), -car.getRightWheelYCoordinate());
+		rect.setPosition(car.getChassisXCoordinate(), -car.getChassisYCoordinate());
 		rect.setRotation(car.getChassisAngle());
 	}
 

@@ -25,12 +25,12 @@ void StaticComponent::setUpStaticComponent()
     createBodyFixtureDefinition();
 }
 
-const b2BodyDef* StaticComponent::getBodyDef()
+const b2BodyDef* StaticComponent::getBodyDef() const
 {
     return &bodyDef;
 }
 
-const b2FixtureDef* StaticComponent::getFixtureDefinition()
+const b2FixtureDef* StaticComponent::getFixtureDefinition() const
 {
     return &fixtureDef;
 }
@@ -60,12 +60,12 @@ float StaticComponent::getAngle() const
     return staticBody->GetAngle();
 }
 
-b2Vec2 StaticComponent::getAnchorPoint()
+b2Vec2 StaticComponent::getAnchorPoint() const
 {
     return staticBody->GetWorldCenter();
 }
 
-bool StaticComponent::isStatic()
+bool StaticComponent::isStatic() const
 {
     return true;
 }
@@ -75,7 +75,7 @@ void StaticComponent::setIndex(int ind)
     compIndex = ind;
 }
 
-int StaticComponent::getCompIndex()
+int StaticComponent::getCompIndex() const
 {
     return compIndex;
 }

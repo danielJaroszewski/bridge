@@ -21,19 +21,18 @@ private:
     b2BodyDef bodyDef;
     b2FixtureDef fixtureDef;
     b2PolygonShape staticBox;
-    void createBodyDefinition();
-    void createBodyFixtureDefinition();
+    
     int compIndex;
     b2Body *staticBody;
+
     void setIndex(int ind);
-
+    void createBodyDefinition();
+    void createBodyFixtureDefinition();
 public:
-    friend class OurWorld;
-
     StaticComponent(float xCoordinate_, float yCoordinate_);
 
-    const b2BodyDef *getBodyDef();
-    const b2FixtureDef *getFixtureDefinition();
+    const b2BodyDef *getBodyDef() const;
+    const b2FixtureDef *getFixtureDefinition() const;
     float getXCoordinate() const override;
     float getYCoordinate() const override;
     float getWidth() const override;
@@ -46,7 +45,9 @@ public:
      */
     void setUpStaticComponent();
 
-    b2Vec2 getAnchorPoint(); // only one anchor point
-    bool isStatic();
-    int getCompIndex();
+    b2Vec2 getAnchorPoint() const; // only one anchor point
+    bool isStatic() const;
+    int getCompIndex() const;
+
+    friend class OurWorld;
 };
