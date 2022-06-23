@@ -1,0 +1,11 @@
+# General shiet
+doc/
+# Linux shiet
+build/
+.vscode/
+.vscode/tasks.json
+ipch/
+# Windows shiet
+.vs/
+out/
+CMakeSettings.json
