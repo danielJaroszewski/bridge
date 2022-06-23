@@ -90,7 +90,7 @@ TEST_CASE("Complex test with 2+ components")
         }
     });
 
-    
+
     StaticComponent leftBase = StaticComponent(0.0f, 0.0f);
     leftBase.setUpStaticComponent();
     world.addStaticComponent(leftBase);
@@ -116,6 +116,7 @@ TEST_CASE("Complex test with 2+ components")
     world.addComponent(comp2);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp2));
 
+
     OurJoint j1;
     j1.setLeftBodyStatic();
     j1.setIndexOfBodies(leftBase.getCompIndex(), comp1.getCompIndex());
@@ -139,6 +140,7 @@ TEST_CASE("Complex test with 2+ components")
     floorJointRight.setRightBodyStatic();
     floorJointRight.setIndexOfBodies(floor.getCompIndex(), rightBase.getCompIndex());
     world.addJoint(floorJointRight);
+    
 
     world.initializeWorld();
     #ifdef GRA

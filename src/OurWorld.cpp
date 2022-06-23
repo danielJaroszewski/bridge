@@ -36,6 +36,7 @@ void OurWorld::initializeComponents()
     for (auto i : components)
     {
         i->dynBody = world.CreateBody(i->getBodyDef());
+        i->dynBody->CreateFixture(i->getFixtureDefinition());
     }
 
     for (auto i : staticComponents)
