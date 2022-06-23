@@ -27,12 +27,15 @@ TEST_CASE("single dynamic component")
     StaticComponent leftBase = StaticComponent(0.0f, 0.0f);
     leftBase.setUpStaticComponent();
     world.addStaticComponent(leftBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBase));
 
     StaticComponent rightBase = StaticComponent(10.0f, 0.0f);
     rightBase.setUpStaticComponent();
     world.addStaticComponent(rightBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBase));
 
-    OurComponent comp1 = OurComponent(5.0f, 0.0f, 9.5f, 0.5f, 10.0f);
+
+    OurComponent comp1 = OurComponent(2.0f, 0.0f, 8.0f, 0.5f, 10.0f);
     comp1.setUpComponent();
     world.addComponent(comp1);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp1));
@@ -96,51 +99,32 @@ TEST_CASE("Complex test with 2+ components")
     world.addStaticComponent(leftBase);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBase));
 
-    StaticComponent rightBase = StaticComponent(10.0f, 0.0f);
+    StaticComponent rightBase = StaticComponent(5.0f, 0.0f);
     rightBase.setUpStaticComponent();
     world.addStaticComponent(rightBase);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBase));
 
-    OurComponent floor = OurComponent(0.0f, -10.0f, 10.0f, 1.0f, 10.0f);
-    floor.setUpComponent();
-    world.addComponent(floor);
-    graphics.addDrawable(std::make_unique<most::BeamVisuals>(floor));
 
-    OurComponent comp1 = OurComponent(1.0f, 0.0f, 3.5f, 0.5f, 10.0f);
+    OurComponent comp1 = OurComponent(-4.0f, 1.0f, 3.0f, 0.5f, 10.0f);
     comp1.setUpComponent();
     world.addComponent(comp1);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp1));
 
-    OurComponent comp2 = OurComponent(5.5f, 0.0f, 3.5f, 0.5f, 10.0f);
+    OurComponent comp2 = OurComponent(9.0f, 1.0f, 3.0f, 0.5f, 10.0f);
     comp2.setUpComponent();
     world.addComponent(comp2);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp2));
 
-
     OurJoint j1;
     j1.setLeftBodyStatic();
-    j1.setIndexOfBodies(leftBase.getCompIndex(), comp1.getCompIndex());
+    j1.setIndexOfBodies(rightBase.getCompIndex(), comp2.getCompIndex());
     world.addJoint(j1);
-
-    OurJoint j2;
-    j2.setIndexOfBodies(comp1.getCompIndex(), comp2.getCompIndex());
-    world.addJoint(j2);
 
     OurJoint j3;
     j3.setRightBodyStatic();
-    j3.setIndexOfBodies(comp2.getCompIndex(), rightBase.getCompIndex());
+    j3.setIndexOfBodies(comp1.getCompIndex(), leftBase.getCompIndex());
     world.addJoint(j3);
 
-    OurJoint floorJointLeft;
-    floorJointLeft.setLeftBodyStatic();
-    floorJointLeft.setIndexOfBodies(leftBase.getCompIndex(), floor.getCompIndex());
-    world.addJoint(floorJointLeft);
-
-    OurJoint floorJointRight;
-    floorJointRight.setRightBodyStatic();
-    floorJointRight.setIndexOfBodies(floor.getCompIndex(), rightBase.getCompIndex());
-    world.addJoint(floorJointRight);
-    
 
     world.initializeWorld();
     #ifdef GRA

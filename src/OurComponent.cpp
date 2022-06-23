@@ -18,8 +18,8 @@ void OurComponent::createBodyFixtureDefinition()
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = density;
     fixtureDef.friction =0.9f;
-    fixtureDef.filter.categoryBits = DYNAMIC_COMP_CATEGORY;
-    fixtureDef.filter.maskBits = DYNAMIC_COMP_MASK;
+    //fixtureDef.filter.categoryBits = DYNAMIC_COMP_CATEGORY;
+    //fixtureDef.filter.maskBits = DYNAMIC_COMP_MASK;
 }
 
 void OurComponent::setUpComponent()

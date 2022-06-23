@@ -36,7 +36,6 @@ void OurWorld::initializeComponents()
     for (auto i : components)
     {
         i->dynBody = world.CreateBody(i->getBodyDef());
-        i->dynBody->CreateFixture(i->getFixtureDefinition());
     }
 
     for (auto i : staticComponents)
@@ -80,13 +79,13 @@ void OurWorld::initializeJoints()
             a->initializeDefinition(staticComponents[indexA]->staticBody,
                                     components[indexB]->dynBody,
                                     staticComponents[indexA]->getAnchorPoint(),
-                                    components[indexB]->getLeftAnchorPoint());
+                                    components[indexB]->getCentralAnchorPoint());
         }
         else
         {
             a->initializeDefinition(components[indexA]->dynBody,
                                     staticComponents[indexB]->staticBody,
-                                    components[indexA]->getRightAnchorPoint(),
+                                    components[indexA]->getCentralAnchorPoint(),
                                     staticComponents[indexB]->getAnchorPoint());
         }
 
