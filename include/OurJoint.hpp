@@ -11,8 +11,7 @@ class OurJoint
 private:
     b2RevoluteJointDef revJointDef;
     int indexOfBodyA, indexOfBodyB;
-    bool isMarginalLeft = false, isMarginalRight = false;
-    bool isBeamOnTheRight, isBeamOnTheLeft;
+    bool isBodyAJoiningPoint = false, isBodyBJoiningPoint = false;
 
     b2RevoluteJoint *revoluteJoint;
 
@@ -23,6 +22,7 @@ public:
     const b2RevoluteJointDef *getReVJointDef();
     int getBodyAIndex();
     int getBodyBIndex();
+    
 
     /**
      * @brief Initializes the joint definition.
@@ -41,6 +41,9 @@ public:
      * @param bodyBIndex
      */
     void setIndexOfBodies(int bodyAIndex, int bodyBIndex);
+
+    void setABodyJoiningPoint();
+    void setBBodyJoiningPoint();
 
     float getAbsActingForce();
 };

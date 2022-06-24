@@ -26,6 +26,9 @@ private:
     int compIndex;
     b2Body* dynBody;
     void setCompIndex(int ind);
+    b2Vec2 getLeftAnchorPoint(); 
+    b2Vec2 getRightAnchorPoint();
+    bool returnLeftAnchor = false, returnRightAnchor = false;
 
 
 public:
@@ -57,9 +60,9 @@ public:
     float getWidth() const override;
     float getHeight() const override;
     float getAngle() const override;
-    b2Vec2 getLeftAnchorPoint() const;
-    b2Vec2 getRightAnchorPoint() const;
-    b2Vec2 getCentralAnchorPoint() const;
+    b2Vec2 getAnchorPoint() override;
     int getCompIndex() const;
     b2Body* getB2Body() override;
+    void setReturningLeftAnchor();
+    void setReturningRightAnchor();
 };

@@ -15,12 +15,13 @@ void StaticComponent::createBodyFixtureDefinition()
 {
     staticBox.SetAsBox(STATIC_COMP_SIZE/2, STATIC_COMP_SIZE/2); // constant and the same size
     fixtureDef.shape = &staticBox;
+    fixtureDef.density = 1.0f;
     fixtureDef.filter.categoryBits = STATIC_COMP_CATEGORY;
     fixtureDef.filter.maskBits = STATIC_COMP_MASK;
 }
 
 void StaticComponent::setUpStaticComponent()
-{
+{  
     createBodyDefinition();
     createBodyFixtureDefinition();
 }
@@ -60,11 +61,6 @@ float StaticComponent::getAngle() const
     return staticBody->GetAngle();
 }
 
-b2Vec2 StaticComponent::getAnchorPoint() const
-{
-    return staticBody->GetWorldCenter();
-}
-
 bool StaticComponent::isStatic() const
 {
     return true;
@@ -83,4 +79,9 @@ int StaticComponent::getCompIndex() const
 b2Body* StaticComponent::getB2Body()
 {
     return staticBody;
+}
+
+b2Vec2 StaticComponent::getAnchorPoint()
+{
+    return staticBody->GetWorldCenter();
 }

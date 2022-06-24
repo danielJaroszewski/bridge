@@ -45,11 +45,11 @@ public:
      */
     void setUpStaticComponent();
 
-    b2Vec2 getAnchorPoint() const; // only one anchor point
     bool isStatic() const;
     int getCompIndex() const;
 
     b2Body* getB2Body() override;
+    b2Vec2 getAnchorPoint() override;
 
     friend class OurWorld;
 };

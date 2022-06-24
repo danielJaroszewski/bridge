@@ -87,6 +87,20 @@ void OurWorld::initializeJoints()
         indexA = a->getBodyAIndex();
         indexB = a->getBodyBIndex();
 
+        if(a->isBodyAJoiningPoint)
+        {
+            a->initializeDefinition(bodyOwners[indexA]->getB2Body(), 
+                                    bodyOwners[indexB]->getB2Body(),
+                                    bodyOwners[indexA]->getAnchorPoint());
+        }
+        else if(a->isBodyBJoiningPoint)
+        {
+            a->initializeDefinition(bodyOwners[indexA]->getB2Body(), 
+                                    bodyOwners[indexB]->getB2Body(),
+                                    bodyOwners[indexB]->getAnchorPoint());
+        }
+        a->revoluteJoint = (b2RevoluteJoint*)world.CreateJoint(a->getReVJointDef());
+
     } 
 }
 

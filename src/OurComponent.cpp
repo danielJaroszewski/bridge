@@ -14,7 +14,7 @@ void OurComponent::createBodyDefinition()
 
 void OurComponent::createBodyFixtureDefinition()
 {
-    dynamicBox.SetAsBox((width) / 2, (height) / 2);
+    dynamicBox.SetAsBox(width/2, height/2);
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = density;
     fixtureDef.friction =1.0f;
@@ -24,8 +24,8 @@ void OurComponent::createBodyFixtureDefinition()
 
 void OurComponent::setUpComponent()
 {
-    createBodyFixtureDefinition();
     createBodyDefinition();
+    createBodyFixtureDefinition();
 }
 
 const b2BodyDef* OurComponent::getBodyDef() const
@@ -63,22 +63,37 @@ float OurComponent::getAngle() const
     return dynBody->GetAngle();
 }
 
-b2Vec2 OurComponent::getLeftAnchorPoint() const
+b2Vec2 OurComponent::getLeftAnchorPoint() 
 {
     const b2Vec2 lAnchor(getXCoordinate() - (width/2 - 0.1f), yCoordinate);
     return dynBody->GetWorldPoint(lAnchor);
 }
 
-b2Vec2 OurComponent::getRightAnchorPoint() const
+b2Vec2 OurComponent::getRightAnchorPoint()
 {
     const b2Vec2 rAnchor(getXCoordinate() + (width/2 - 0.1f), yCoordinate);
     return dynBody->GetWorldPoint(rAnchor);
 }
 
-b2Vec2 OurComponent::getCentralAnchorPoint() const
+void OurComponent::setReturningLeftAnchor()
 {
-    const b2Vec2 cAnchor(xCoordinate, yCoordinate);
-    return dynBody->GetWorldPoint(cAnchor);
+    returnLeftAnchor = true; 
+    returnRightAnchor = false;
+}
+
+void OurComponent::setReturningRightAnchor()
+{
+    returnRightAnchor = true;
+    returnLeftAnchor = false;
+}
+
+b2Vec2 OurComponent::getAnchorPoint()
+{
+    if(returnLeftAnchor)
+    {
+        return getLeftAnchorPoint();
+    }
+    else return getRightAnchorPoint();
 }
 
 void OurComponent::setCompIndex(int ind)
