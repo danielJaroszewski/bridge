@@ -1,8 +1,9 @@
 #pragma once
 #include "box2d/box2d.h"
 #include "Constants.hpp"
+#include "Ib2BodyOwner.hpp"
 
-class JoiningPoint
+class JoiningPoint : public Ib2BodyOwner
 {
 private:
     b2CircleShape shape;
@@ -10,9 +11,12 @@ private:
     b2FixtureDef fixtureDef;
     b2Body* body;
     float x, y;
+    int index;
     
     void createFixtureDefinition();
     void createBodyDefinition();
+    const b2BodyDef* getBodyDef();
+    const b2FixtureDef* getFixtureDef();
 
 public:
     JoiningPoint(float x_, float y_);
@@ -21,6 +25,11 @@ public:
     float getXCoordinate();
     float getYCoordinate();
     float getRadius();
+    void setIndex(int index_);
+    int getIndex();
 
+    b2Body* getB2Body() override;
+
+    friend class OurWorld;
 
 };
