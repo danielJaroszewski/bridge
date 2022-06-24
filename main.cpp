@@ -3,7 +3,6 @@
 #include "include/GUI/GUIWorld.hpp"
 #include "include/GameScene.hpp"
 #include "include/Graphics/BeamVisuals.hpp"
-#include <unistd.h>
 
 int main(int argc, char const *argv[])
 {
@@ -39,7 +38,7 @@ int main(int argc, char const *argv[])
     jp2.setUpJoiningPoint();
     world.addJoiningPoint(jp2);
 
-    OurComponent comp1 = OurComponent(0.0f,0.0f, 5.0f, 0.5f, 10.0f);
+    OurComponent comp1 = OurComponent(0.0f, 0.0f, 5.0f, 0.5f, 10.0f); //it turns out, that coodrinates are left top corner, not center
     comp1.setUpComponent();
     comp1.setReturningLeftAnchor();
     world.addComponent(comp1);
@@ -78,7 +77,6 @@ int main(int argc, char const *argv[])
 
     gameScene.setLevel(std::move(level));
 #endif
-    int counter = 0;
     long long accumulatedTime = 0;
     constexpr long long fixedUpdateTime = 16666;
     // Main loop.
@@ -94,7 +92,7 @@ int main(int argc, char const *argv[])
             graphics.physicsUpdate();
         }
         graphics.present();
-        counter++;
+       
     }
 
     return 0;
