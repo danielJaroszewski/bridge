@@ -2,13 +2,15 @@
 #include "box2d/box2d.h"
 #include "Constants.hpp"
 #include "RectPhysicsComponent.hpp"
+#include "Ib2BodyOwner.hpp"
 
 /**
  * @brief Wrapper class for box2d bodies.
  * 
  */
 class OurComponent
-    : public most::RectPhysicsComponent
+    : public most::RectPhysicsComponent,
+      public Ib2BodyOwner
 {
 private:
     float xCoordinate;  
@@ -59,4 +61,5 @@ public:
     b2Vec2 getRightAnchorPoint() const;
     b2Vec2 getCentralAnchorPoint() const;
     int getCompIndex() const;
+    b2Body* getB2Body() override;
 };

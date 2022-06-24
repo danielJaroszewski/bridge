@@ -65,13 +65,13 @@ float OurComponent::getAngle() const
 
 b2Vec2 OurComponent::getLeftAnchorPoint() const
 {
-    const b2Vec2 lAnchor(getXCoordinate() - (width-0.1f), yCoordinate);
+    const b2Vec2 lAnchor(getXCoordinate() - (width/2 - 0.1f), yCoordinate);
     return dynBody->GetWorldPoint(lAnchor);
 }
 
 b2Vec2 OurComponent::getRightAnchorPoint() const
 {
-    const b2Vec2 rAnchor(getXCoordinate() + (width-0.1f), yCoordinate);
+    const b2Vec2 rAnchor(getXCoordinate() + (width/2 - 0.1f), yCoordinate);
     return dynBody->GetWorldPoint(rAnchor);
 }
 
@@ -89,4 +89,9 @@ void OurComponent::setCompIndex(int ind)
 int OurComponent::getCompIndex() const
 {
     return compIndex;
+}
+
+b2Body* OurComponent::getB2Body()
+{
+    return dynBody;
 }
