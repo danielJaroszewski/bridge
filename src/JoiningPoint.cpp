@@ -64,3 +64,8 @@ int JoiningPoint::getIndex()
 {
     return index;
 }
+
+b2Vec2 JoiningPoint::getAnchorPoint()
+{
+    return body->GetWorldCenter();
+}
