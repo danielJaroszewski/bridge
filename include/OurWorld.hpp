@@ -47,21 +47,27 @@ private:
      */
     void assignFixtures();
 
+    /**
+     * @brief Initializes car defnitions, fixtures and parameters.
+     * 
+     */
     void initializeCar();
+
 public:
     /**
      * @brief b2World field - that's what we are wrapping up. Made it public to easily access all
      * properties of it.
      */
     b2World world = b2World(gravity);
+
 public:
     OurWorld() = default;
 
-    OurWorld(const OurWorld&) = delete;
-    OurWorld(OurWorld&&) noexcept = delete;
+    OurWorld(const OurWorld &) = delete;
+    OurWorld(OurWorld &&) noexcept = delete;
 
-    OurWorld& operator=(const OurWorld&) = delete;
-    OurWorld& operator=(OurWorld&&) noexcept = delete;
+    OurWorld &operator=(const OurWorld &) = delete;
+    OurWorld &operator=(OurWorld &&) noexcept = delete;
 
     ~OurWorld();
     /**
@@ -72,20 +78,37 @@ public:
     void addComponent(OurComponent &component_);
 
     /**
-     * @brief
+     * @brief Adds static component created earlier. Passing by reference.
      *
-     * @param staticComponent_
+     * @param staticComponent_ Reference to object staticComponent
      */
     void addStaticComponent(StaticComponent &staticComponent_);
+
+      /**
+     * @brief Adds joint created earlier. Passing by reference.
+     *
+     * @param staticComponent_ Reference to object OurJoint
+     */
     void addJoint(OurJoint &joint_);
+
+      /**
+     * @brief Adds car created earlier. Passing by reference.
+     *
+     * @param staticComponent_ Reference to object Car
+     */
     void addCar(Car &car_);
 
-    OurComponent& getComponent(int index) const;
+    OurComponent &getComponent(int index) const;
+
+
+    /**
+     * @brief Updates world simulation by one step.
+     * 
+     */
     void update();
 
     /**
-     * @brief Wrapper function to easily initalize all the components, fixtures and joints. Also defines two edges of the map
-     * at xy coordinates of (1,1) and (150,1). Each of them is 20 units wide and 50 units long.
+     * @brief Wrapper function to easily initalize all the components, fixtures and joints. 
      *
      */
     void initializeWorld();
