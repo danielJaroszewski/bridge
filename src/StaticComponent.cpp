@@ -1,7 +1,7 @@
 #include "../include/StaticComponent.hpp"
 
 StaticComponent::StaticComponent(float xCoordinate_, float yCoordninate_)
-: xCoordinate(xCoordinate_), yCoordinate(yCoordninate_), width(0.5f), height(0.5f)
+: xCoordinate(xCoordinate_), yCoordinate(yCoordninate_)
 {
 }
 
@@ -13,7 +13,7 @@ void StaticComponent::createBodyDefinition()
 
 void StaticComponent::createBodyFixtureDefinition()
 {
-    staticBox.SetAsBox(width / 2.0f, height / 2.0f); // constant and the same size
+    staticBox.SetAsBox(STATIC_COMP_SIZE/2, STATIC_COMP_SIZE/2); // constant and the same size
     fixtureDef.shape = &staticBox;
     fixtureDef.filter.categoryBits = STATIC_COMP_CATEGORY;
     fixtureDef.filter.maskBits = STATIC_COMP_MASK;
@@ -47,12 +47,12 @@ float StaticComponent::getYCoordinate() const
 
 float StaticComponent::getWidth() const
 {
-    return width;
+    return STATIC_COMP_SIZE;
 }
 
 float StaticComponent::getHeight() const
 {
-    return height;
+    return STATIC_COMP_SIZE;
 }
 
 float StaticComponent::getAngle() const
@@ -78,4 +78,9 @@ void StaticComponent::setIndex(int ind)
 int StaticComponent::getCompIndex() const
 {
     return compIndex;
+}
+
+b2Body* StaticComponent::getB2Body()
+{
+    return staticBody;
 }
