@@ -18,6 +18,7 @@ private:
     const b2BodyDef* getBodyDef();
     const b2FixtureDef* getFixtureDef();
     b2Body* getB2Body() override;
+    void setIndex(int index_);
 
 public:
     JoiningPoint(float x_, float y_);
@@ -26,10 +27,9 @@ public:
     float getXCoordinate();
     float getYCoordinate();
     float getRadius();
-    void setIndex(int index_);
+    
     int getIndex();
     b2Vec2 getAnchorPoint() override;
-   
 
     friend class OurWorld;
 
