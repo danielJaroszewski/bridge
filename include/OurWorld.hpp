@@ -1,12 +1,13 @@
 #pragma once
 
-#include "./OurComponent.hpp"
-#include "./OurJoint.hpp"
-#include "./StaticComponent.hpp"
+#include "OurComponent.hpp"
+#include "OurJoint.hpp"
+#include "StaticComponent.hpp"
 #include "box2d/box2d.h"
 #include <vector>
-#include "../include/Car.hpp"
-#include "../include/Ledge.hpp"
+#include "Car.hpp"
+#include "Ledge.hpp"
+#include "JoiningPoint.hpp"
 
 using std::vector;
 
