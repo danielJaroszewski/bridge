@@ -7,12 +7,14 @@ const short STATIC_COMP_CATEGORY = 0x0002;
 const short CAR_CHASSIS_CATEGORY = 0x0004;
 const short CAR_WHEELS_CATEGORY = 0x0008;
 const short LEDGE_CATEGORY = 0x0010;
+const short JOINING_POINT_CATEGORY = 0x0020;
 
 const short DYNAMIC_COMP_MASK = CAR_WHEELS_CATEGORY; //collide only with car wheels
 const short STATIC_COMP_MASK = 0x0000; //doesn't collide with anything
 const short CAR_CHASSIS_MASK = DYNAMIC_COMP_CATEGORY;
 const short CAR_WHEELS_MASK = DYNAMIC_COMP_CATEGORY | LEDGE_CATEGORY;
 const short LEDGE_MASK = CAR_WHEELS_CATEGORY;
+const short JOINING_POINT_MASK = 0x0000;
 
 const float TIME_STEP = 1.0f/60.0f;
 const int32 VELOCITY_ITERATIONS = 8;
@@ -34,4 +36,6 @@ const float LEDGE_HALF_WIDTH = 20.0F;
 const float LEDGE_HALF_HEIGHT = 10.0F;
 
 
-const float JOINING_POINT_RADIUS = 0.2F;
+const float JOINING_POINT_RADIUS = 0.1F;
+
+const float STATIC_COMP_SIZE = 0.2F;
