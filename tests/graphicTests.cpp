@@ -151,7 +151,7 @@ TEST_CASE("Complex test with 2+ components")
         }
         graphics.present();
     }
-    
+
 
 }
 
@@ -204,7 +204,6 @@ TEST_CASE("Car test")
     }
 
 }
-*/
 
 TEST_CASE("bridge test")
 {
@@ -264,6 +263,106 @@ TEST_CASE("bridge test")
 
         gameScene.setLevel(std::move(level));
     #endif
+
+    long long accumulatedTime = 0;
+    constexpr long long fixedUpdateTime = 16666;
+    // Main loop.
+    while (shouldRun)
+    {
+        graphics.processEvents();
+        graphics.update();
+        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
+        while (accumulatedTime >= fixedUpdateTime)
+        {
+            accumulatedTime -= fixedUpdateTime;
+            world.update();
+            graphics.physicsUpdate();
+        }
+        graphics.present();
+    }
+}
+*/
+
+TEST_CASE("Bridge test full")
+{
+    OurWorld world;
+    most::GraphicsWorld graphics;
+
+    auto &guiWorld = graphics.addDrawable(std::make_unique<most::GUI::World>());
+    bool shouldRun = true;
+    graphics.addEventCallback([&shouldRun](const sf::Event &e)
+                              {
+        if (e.type == sf::Event::Closed)
+        {
+            shouldRun = false;
+        } });
+
+    StaticComponent leftBase(0.0f, 0.0f);
+    leftBase.setUpStaticComponent();
+    world.addStaticComponent(leftBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBase));
+
+    StaticComponent rightBase(15.0f, 0.0f);
+    rightBase.setUpStaticComponent();
+    world.addStaticComponent(rightBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBase));
+
+    StaticComponent middleBase(6.5f, 5.0f);
+    middleBase.setUpStaticComponent();
+    world.addStaticComponent(middleBase);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(middleBase));
+
+    OurComponent firstBlock(1.0f, 0.0f, 3.0f, 0.5f, 10.0f);
+    firstBlock.setUpComponent();
+    world.addComponent(firstBlock);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(firstBlock));
+
+    OurComponent secondBlock(5.0f, 0.0f, 3.0f, 0.5f, 10.0f);
+    secondBlock.setUpComponent();
+    world.addComponent(secondBlock);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(secondBlock));
+
+    OurComponent thirdBlock(9.0f, 0.0f, 3.0f, 0.5f, 10.0f);
+    thirdBlock.setUpComponent();
+    world.addComponent(thirdBlock);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(thirdBlock));
+
+    OurJoint j1;
+    j1.setLeftBodyStatic();
+    j1.setIndexOfBodies(leftBase.getCompIndex(), firstBlock.getCompIndex());
+    world.addJoint(j1);
+
+    OurJoint j2;
+    j2.setIndexOfBodies(firstBlock.getCompIndex(), secondBlock.getCompIndex());
+    world.addJoint(j2);
+
+    OurJoint j3;
+    j3.setIndexOfBodies(secondBlock.getCompIndex(), thirdBlock.getCompIndex());
+    world.addJoint(j3);
+
+    OurJoint j4;
+    j4.setRightBodyStatic();
+    j4.setIndexOfBodies(thirdBlock.getCompIndex(), rightBase.getCompIndex());
+    world.addJoint(j4);
+
+    OurJoint j5;
+    j5.setRightBodyStatic();
+    j5.setIndexOfBodies(firstBlock.getCompIndex(), middleBase.getCompIndex());
+    world.addJoint(j5);
+
+    OurJoint j6;
+    j6.setLeftBodyStatic();
+    j6.setIndexOfBodies(middleBase.getCompIndex(), thirdBlock.getCompIndex());
+    world.addJoint(j6);
+
+    world.initializeWorld();
+
+#ifdef GRA
+    auto &gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
+    auto level = std::make_unique<most::Level>();
+
+    gameScene.setLevel(std::move(level));
+#endif
 
     long long accumulatedTime = 0;
     constexpr long long fixedUpdateTime = 16666;
