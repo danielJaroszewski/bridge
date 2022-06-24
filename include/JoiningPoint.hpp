@@ -1,0 +1,8 @@
+
+class JoiningPoint
+{
+private:
+   
+public:
+
+};
