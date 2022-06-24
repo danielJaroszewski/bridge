@@ -6,7 +6,7 @@ void OurJoint::initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 anch
     revJointDef.bodyA = bodyA_;
     revJointDef.bodyB  = bodyB_;
     revJointDef.Initialize(bodyA_, bodyB_, anchorPoint);
-    revJointDef.collideConnected = true;
+    revJointDef.collideConnected = false;
 
 }
 
