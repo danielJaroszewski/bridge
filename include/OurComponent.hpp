@@ -17,7 +17,7 @@ private:
     float yCoordinate;
     float width;
     float height;
-    float density;
+    float angle;
     b2BodyDef bodyDef;
     b2FixtureDef fixtureDef;
     b2PolygonShape dynamicBox;
@@ -41,9 +41,9 @@ public:
      * @param yCoordinate_ y coordinate of center of component
      * @param width_ full width of component
      * @param height_ full height of component
-     * @param density_ density of component
+     * @param angle angle
      */
-    OurComponent(float xCoordinate_, float yCoordinate_, float width_, float height_, float density_);
+    OurComponent(float xCoordinate_, float yCoordinate_, float width_, float height_, float angle);
 
     
 

@@ -1,7 +1,7 @@
 #include "../include/OurComponent.hpp"
 
-OurComponent::OurComponent(float xCoordinate_, float yCoordinate_, float width_, float height_, float density_)
-:xCoordinate(xCoordinate_), yCoordinate(yCoordinate_), width(width_), height(height_), density(density_)
+OurComponent::OurComponent(float xCoordinate_, float yCoordinate_, float width_, float height_, float angle_)
+:xCoordinate(xCoordinate_), yCoordinate(yCoordinate_), width(width_), height(height_), angle(angle_)
 {}
 
 void OurComponent::createBodyDefinition()
@@ -14,9 +14,10 @@ void OurComponent::createBodyDefinition()
 
 void OurComponent::createBodyFixtureDefinition()
 {
-    dynamicBox.SetAsBox(width/2, height/2);
+    b2Vec2 center = b2Vec2(xCoordinate, yCoordinate);
+    dynamicBox.SetAsBox(width/2, height/2, center, 0.0f);
     fixtureDef.shape = &dynamicBox;
-    fixtureDef.density = density;
+    fixtureDef.density = COMPONENT_DENSITY;
     fixtureDef.friction =1.0f;
     fixtureDef.filter.categoryBits = DYNAMIC_COMP_CATEGORY;
     fixtureDef.filter.maskBits = DYNAMIC_COMP_MASK;

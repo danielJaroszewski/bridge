@@ -20,8 +20,8 @@ const float TIME_STEP = 1.0f/90.0f;
 const int32 VELOCITY_ITERATIONS = 20;
 const int32 POSITION_ITERATIONS = 20;
 
-
-const float COMPONENT_LINEAR_DAMPING = 0.1F;
+const float COMPONENT_DENSITY = 1.0F;
+const float COMPONENT_LINEAR_DAMPING = 0.0F;
 const float COMPONENT_ANGULAR_DAMPING = 0.05F;
 
 const float CAR_INITIAL_HEIGHT = 10.0F;
