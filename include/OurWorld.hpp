@@ -1,12 +1,14 @@
 #pragma once
 
-#include "./OurComponent.hpp"
-#include "./OurJoint.hpp"
-#include "./StaticComponent.hpp"
+#include "OurComponent.hpp"
+#include "OurJoint.hpp"
+#include "StaticComponent.hpp"
 #include "box2d/box2d.h"
 #include <vector>
-#include "../include/Car.hpp"
-#include "../include/Ledge.hpp"
+#include "Car.hpp"
+#include "Ledge.hpp"
+#include "JoiningPoint.hpp"
+#include "Ib2BodyOwner.hpp"
 
 using std::vector;
 
@@ -23,12 +25,15 @@ private:
     vector<OurComponent *> components;
     vector<StaticComponent *> staticComponents;
     vector<OurJoint *> joints;
+    vector<JoiningPoint*> joiningPoints;
     Car *car = nullptr;
+    vector<Ib2BodyOwner*> bodyOwners;
+
     b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
     unsigned numberOfComponents = 0, numberOfJoints = 0;
     float timeStep;
     int32 velocityIterations, positionIterations;
-    int currDynamicCompIndex = 0, currStaticCompIndex = 0;
+    int currentCompIndex = 0;
 
     /**
      * @brief Initializes components from the components vector.
@@ -79,6 +84,7 @@ public:
     void addStaticComponent(StaticComponent &staticComponent_);
     void addJoint(OurJoint &joint_);
     void addCar(Car &car_);
+    void addJoiningPoint(JoiningPoint& jPoint_);
 
     OurComponent& getComponent(int index) const;
     void update();

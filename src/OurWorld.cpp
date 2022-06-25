@@ -9,16 +9,27 @@ OurWorld::~OurWorld()
 
 void OurWorld::addComponent(OurComponent& component_)
 {
-    component_.setCompIndex(currDynamicCompIndex);
+    component_.setCompIndex(currentCompIndex);
     components.push_back(&component_);
-    currDynamicCompIndex++;
+    currentCompIndex++;
+    bodyOwners.push_back(&component_);
 }
+    
 
 void OurWorld::addStaticComponent(StaticComponent &staticComponent_)
 {
-    staticComponent_.setIndex(currStaticCompIndex);
+    staticComponent_.setIndex(currentCompIndex);
     staticComponents.push_back(&staticComponent_);
-    currStaticCompIndex++;
+    currentCompIndex++;
+    bodyOwners.push_back(&staticComponent_);
+}
+
+void OurWorld::addJoiningPoint(JoiningPoint& jPoint)
+{
+    jPoint.setIndex(currentCompIndex);
+    joiningPoints.push_back(&jPoint);
+    bodyOwners.push_back(&jPoint);
+    currentCompIndex++;
 }
 
 void OurWorld::addJoint(OurJoint &joint_)
@@ -42,6 +53,11 @@ void OurWorld::initializeComponents()
     {
         i->staticBody = world.CreateBody(i->getBodyDef());
     }
+
+    for(auto i : joiningPoints)
+    {
+        i->body = world.CreateBody(i->getBodyDef());
+    }
 }
 
 void OurWorld::assignFixtures()
@@ -56,6 +72,11 @@ void OurWorld::assignFixtures()
         i->staticBody->CreateFixture(i->getFixtureDefinition());
     }
 
+    for(auto i : joiningPoints)
+    {
+        i->body->CreateFixture(i->getFixtureDef());
+    }
+
 }      
 
 void OurWorld::initializeJoints()
@@ -66,29 +87,20 @@ void OurWorld::initializeJoints()
         indexA = a->getBodyAIndex();
         indexB = a->getBodyBIndex();
 
-        // ale to jest gowno w tym momencie, trzeba poprawic
-        if (!a->isLeftBodyStatic() && !a->isRightBodyStatic()) //both dynamic
+        if(a->isBodyAJoiningPoint)
         {
-            a->initializeDefinition(components[indexA]->dynBody,
-                                    components[indexB]->dynBody,
-                                    components[indexA]->getRightAnchorPoint(),
-                                    components[indexB]->getLeftAnchorPoint());
+            a->initializeDefinition(bodyOwners[indexA]->getB2Body(), 
+                                    bodyOwners[indexB]->getB2Body(),
+                                    bodyOwners[indexA]->getAnchorPoint());
         }
-        else if (a->isLeftBodyStatic() && !a->isRightBodyStatic())
+        else if(a->isBodyBJoiningPoint)
         {
-            a->initializeDefinition(staticComponents[indexA]->staticBody,
-                                    components[indexB]->dynBody,
-                                    staticComponents[indexA]->getAnchorPoint(),
-                                    components[indexB]->getLeftAnchorPoint());
+            a->initializeDefinition(bodyOwners[indexA]->getB2Body(), 
+                                    bodyOwners[indexB]->getB2Body(),
+                                    bodyOwners[indexB]->getAnchorPoint());
         }
-        else if(!a->isLeftBodyStatic() && a->isRightBodyStatic())
-        {
-            a->initializeDefinition(components[indexA]->dynBody,
-                                    staticComponents[indexB]->staticBody,
-                                    components[indexA]->getRightAnchorPoint(),
-                                    staticComponents[indexB]->getAnchorPoint());
-        }
-        a->distanceJoint = (b2DistanceJoint *)world.CreateJoint(a->getDistJointDef());
+        a->revoluteJoint = (b2RevoluteJoint*)world.CreateJoint(a->getReVJointDef());
+
     } 
 }
 

@@ -4,52 +4,46 @@
 
 /**
  * @brief Wrapper class for box2d's distanceJoint.
- * 
+ *
  */
-class OurJoint 
+class OurJoint
 {
 private:
-   b2DistanceJointDef distJointDef; 
-   int indexOfBodyA, indexOfBodyB;
-   bool isLeftBStatic=false, isRightBStatic=false;
+    b2RevoluteJointDef revJointDef;
+    int indexOfBodyA, indexOfBodyB;
+    bool isBodyAJoiningPoint = false, isBodyBJoiningPoint = false;
 
-   b2DistanceJoint* distanceJoint;
+    b2RevoluteJoint *revoluteJoint;
 
-   float maxForce; //=??? to be found out
-
+    float maxForce; //=??? to be found out
 
 public:
     friend class OurWorld;
-    const b2DistanceJointDef* getDistJointDef();
+    const b2RevoluteJointDef *getReVJointDef();
     int getBodyAIndex();
     int getBodyBIndex();
+    
 
     /**
      * @brief Initializes the joint definition.
-     * 
+     *
      * @param bodyA_ First body the joint is attached to.
      * @param bodyB_ Second body the joint is attached to.
      * @param aBodyAnchor_ Coordinates within the first body to which the joint is attached to.
      * @param bBodyAnchor_ Coordinates within the second body to which the joint is attached to.
      */
-    void initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 aBodyAnchor_, b2Vec2 bBodyAnchor_); //called from world
-
-
-    void setLeftBodyStatic();
-    void setRightBodyStatic();
+    void initializeDefinition(b2Body *bodyA_, b2Body *bodyB_, b2Vec2 anchorPoint); // called from world
 
     /**
      * @brief Sets the indices of bodies to which the joint is attached.
-     * 
-     * @param bodyAIndex 
-     * @param bodyBIndex 
+     *
+     * @param bodyAIndex
+     * @param bodyBIndex
      */
     void setIndexOfBodies(int bodyAIndex, int bodyBIndex);
 
-    bool isLeftBodyStatic();
-    bool isRightBodyStatic();
+    void setABodyJoiningPoint();
+    void setBBodyJoiningPoint();
 
     float getAbsActingForce();
-
-
 };

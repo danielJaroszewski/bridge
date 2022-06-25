@@ -2,20 +2,22 @@
 #include "box2d/box2d.h"
 #include "Constants.hpp"
 #include "RectPhysicsComponent.hpp"
+#include "Ib2BodyOwner.hpp"
 
 /**
  * @brief Wrapper class for box2d bodies.
  * 
  */
 class OurComponent
-    : public most::RectPhysicsComponent
+    : public most::RectPhysicsComponent,
+      public Ib2BodyOwner
 {
 private:
     float xCoordinate;  
     float yCoordinate;
     float width;
     float height;
-    float density;
+    float angle;
     b2BodyDef bodyDef;
     b2FixtureDef fixtureDef;
     b2PolygonShape dynamicBox;
@@ -24,6 +26,9 @@ private:
     int compIndex;
     b2Body* dynBody;
     void setCompIndex(int ind);
+    b2Vec2 getLeftAnchorPoint(); 
+    b2Vec2 getRightAnchorPoint();
+    bool returnLeftAnchor = false, returnRightAnchor = false;
 
 
 public:
@@ -36,9 +41,9 @@ public:
      * @param yCoordinate_ y coordinate of center of component
      * @param width_ full width of component
      * @param height_ full height of component
-     * @param density_ density of component
+     * @param angle angle
      */
-    OurComponent(float xCoordinate_, float yCoordinate_, float width_, float height_, float density_);
+    OurComponent(float xCoordinate_, float yCoordinate_, float width_, float height_, float angle);
 
     
 
@@ -55,8 +60,9 @@ public:
     float getWidth() const override;
     float getHeight() const override;
     float getAngle() const override;
-    b2Vec2 getLeftAnchorPoint() const;
-    b2Vec2 getRightAnchorPoint() const;
-    b2Vec2 getCentralAnchorPoint() const;
+    b2Vec2 getAnchorPoint() override;
     int getCompIndex() const;
+    b2Body* getB2Body() override;
+    void setReturningLeftAnchor();
+    void setReturningRightAnchor();
 };

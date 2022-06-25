@@ -3,21 +3,21 @@
 #include "box2d/box2d.h"
 #include "Constants.hpp"
 #include "RectPhysicsComponent.hpp"
+#include "Ib2BodyOwner.hpp"
 
 /**
  * @brief Class representing object that is supposed not to move under simulation.
  * Two static bodies on the far sides of the world are anchors to which the bridge is connected. Size is constant and the same .
  * Joints are supposed to be connected to center of the static body. It is not going to be big.
- * Size is constant - 0.25 x 0.25x
+ * Size is constant
  */
 class StaticComponent
-    : public most::RectPhysicsComponent
+    : public most::RectPhysicsComponent,
+      public Ib2BodyOwner
 {
 private:
     float xCoordinate;
     float yCoordinate;
-    float width;
-    float height;
     b2BodyDef bodyDef;
     b2FixtureDef fixtureDef;
     b2PolygonShape staticBox;
@@ -45,9 +45,11 @@ public:
      */
     void setUpStaticComponent();
 
-    b2Vec2 getAnchorPoint() const; // only one anchor point
     bool isStatic() const;
     int getCompIndex() const;
+
+    b2Body* getB2Body() override;
+    b2Vec2 getAnchorPoint() override;
 
     friend class OurWorld;
 };
