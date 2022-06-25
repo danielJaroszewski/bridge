@@ -4,6 +4,7 @@
 #include "../include/GameScene.hpp"
 #include "../include/Graphics/BeamVisuals.hpp"
 #include "catch2/catch_test_macros.hpp"
+#include <iostream>
 
 
 TEST_CASE("3 element bridge")
@@ -32,22 +33,22 @@ TEST_CASE("3 element bridge")
     world.addStaticComponent(rightBase);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBase));
 
-    OurComponent comp1 = OurComponent(0.0f, 0.0f, 3.4f, 0.5f, 0.0f);
+    OurComponent comp1 = OurComponent(1.65f, 0.25f, 3.4f, 0.5f, 0.0f);
     comp1.setUpComponent();
     world.addComponent(comp1);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp1));
 
-    OurComponent comp2 = OurComponent(3.3f, 0.0f, 3.4f, 0.5f, 0.0f);
+    OurComponent comp2 = OurComponent(5.0f, 0.25f, 3.4f, 0.5f, 0.0f);
     comp2.setUpComponent();
     world.addComponent(comp2);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp2));
 
-    OurComponent comp3 = OurComponent(6.6f, 0.0f, 3.4f, 0.5f, 0.0f);
+    OurComponent comp3 = OurComponent(8.3f, 0.25f, 3.4f, 0.5f, 0.0f);
     comp3.setUpComponent();
     world.addComponent(comp3);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp3));
 
-    OurComponent comp4 = OurComponent(3.0f, 3.0f, 2.0f, 1.0f, 0.0f);
+    OurComponent comp4 = OurComponent(3.0f, 3.0f, 2.0f, 1.0f, 90.0f);
     comp4.setUpComponent();
     world.addComponent(comp4);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp4));
@@ -109,6 +110,7 @@ TEST_CASE("3 element bridge")
 
 
     world.initializeWorld();
+    std::cout<<"Position: "<<comp1.getXCoordinate()<<"  "<<comp1.getYCoordinate()<<"\n";
 
     #ifdef GRA
         auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
@@ -135,5 +137,58 @@ TEST_CASE("3 element bridge")
        
     }
 
+
+}
+
+TEST_CASE("angles")
+{
+    OurWorld world;
+    most::GraphicsWorld graphics;
+    auto& guiWorld = graphics.addDrawable(std::make_unique<most::GUI::World>());
+
+    bool shouldRun = true;
+    graphics.addEventCallback([&shouldRun](const sf::Event& e)
+    {
+        if (e.type == sf::Event::Closed)
+        {
+            shouldRun = false;
+        }
+    });
+
+    OurComponent comp1 = OurComponent(0.0f, 0.0f, 2.5f, 0.5f, 45);
+    comp1.setUpComponent();
+    world.addComponent(comp1);
+    graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp1));
+    world.initializeWorld();
+    b2Vec2 leftAnchor = comp1.getLeftAnchorPoint();
+    b2Vec2 rightAnchor = comp1.getRightAnchorPoint();
+
+    std::cout<<"Left anchor point x: "<<leftAnchor.x<<"   y: "<<leftAnchor.y<<"\n";
+    std::cout<<"Right anchor point x: "<<rightAnchor.x<<"   y: "<<rightAnchor.y<<"\n";
+    std::cout<<"Position: "<<comp1.getXCoordinate()<<"  "<<comp1.getYCoordinate()<<"\n";
+    #ifdef GRA
+        auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
+        auto level = std::make_unique<most::Level>();
+
+
+        gameScene.setLevel(std::move(level));
+    #endif
+    long long accumulatedTime = 0;
+    constexpr long long fixedUpdateTime = 16666;
+    // Main loop.
+    while (shouldRun)
+    {
+        graphics.processEvents();
+        graphics.update();
+        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
+        while (accumulatedTime >= fixedUpdateTime)
+        {
+            accumulatedTime -= fixedUpdateTime;
+            world.update();
+            graphics.physicsUpdate();
+        }
+        graphics.present();
+       
+    }
 
 }
