@@ -32,17 +32,17 @@ TEST_CASE("3 element bridge")
     world.addStaticComponent(rightBase);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(rightBase));
 
-    OurComponent comp1 = OurComponent(0.1f, 0.0f, 3.2f, 0.5f, 10.0f);
+    OurComponent comp1 = OurComponent(0.0f, 0.0f, 3.4f, 0.5f, 1.0f);
     comp1.setUpComponent();
     world.addComponent(comp1);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp1));
 
-    OurComponent comp2 = OurComponent(3.4f, 0.0f, 3.2f, 0.5f, 10.0f);
+    OurComponent comp2 = OurComponent(3.3f, 0.0f, 3.4f, 0.5f, 1.0f);
     comp2.setUpComponent();
     world.addComponent(comp2);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp2));
 
-    OurComponent comp3 = OurComponent(6.6f, 0.0f, 3.2f, 0.5f, 10.0f);
+    OurComponent comp3 = OurComponent(6.6f, 0.0f, 3.4f, 0.5f, 1.0f);
     comp3.setUpComponent();
     world.addComponent(comp3);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp3));

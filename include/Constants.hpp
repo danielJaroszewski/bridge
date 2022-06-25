@@ -17,11 +17,11 @@ const short LEDGE_MASK = CAR_WHEELS_CATEGORY;
 const short JOINING_POINT_MASK = 0x0000;
 
 const float TIME_STEP = 1.0f/60.0f;
-const int32 VELOCITY_ITERATIONS = 8;
-const int32 POSITION_ITERATIONS = 3;
+const int32 VELOCITY_ITERATIONS = 12;
+const int32 POSITION_ITERATIONS = 12;
 
 
-const float COMPONENT_LINEAR_DAMPING = 0.05F;
+const float COMPONENT_LINEAR_DAMPING = 0.1F;
 const float COMPONENT_ANGULAR_DAMPING = 0.05F;
 
 const float CAR_INITIAL_HEIGHT = 10.0F;
@@ -36,6 +36,8 @@ const float LEDGE_HALF_WIDTH = 20.0F;
 const float LEDGE_HALF_HEIGHT = 10.0F;
 
 
-const float JOINING_POINT_RADIUS = 0.1F;
+const float JOINING_POINT_RADIUS = 0.2F;
+const float JOINING_POINT_DENSITY = 10.0F;
 
 const float STATIC_COMP_SIZE = 0.2F;
+const float STATIC_COMP_DENSITY = 10.0F;

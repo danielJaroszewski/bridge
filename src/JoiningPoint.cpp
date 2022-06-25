@@ -8,7 +8,7 @@ void JoiningPoint::createFixtureDefinition()
 {
     shape.m_radius = JOINING_POINT_RADIUS;
     fixtureDef.shape = &shape;
-    fixtureDef.density = 1.0f;
+    fixtureDef.density = JOINING_POINT_DENSITY;
     fixtureDef.filter.categoryBits = JOINING_POINT_CATEGORY;
     fixtureDef.filter.maskBits = JOINING_POINT_MASK;
 }
