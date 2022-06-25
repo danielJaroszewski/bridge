@@ -22,7 +22,7 @@ TEST_CASE("3 element bridge")
         }
     });
 
-    StaticComponent leftBase  = StaticComponent(0.0f, 0.0f);
+    StaticComponent leftBase  = StaticComponent(-0.2f, 0.0f);
     leftBase.setUpStaticComponent();
     world.addStaticComponent(leftBase);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(leftBase));

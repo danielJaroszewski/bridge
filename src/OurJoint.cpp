@@ -3,10 +3,11 @@
 
 void OurJoint::initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 anchorPoint)
 {
-    revJointDef.bodyA = bodyA_;
-    revJointDef.bodyB  = bodyB_;
     revJointDef.Initialize(bodyA_, bodyB_, anchorPoint);
-    revJointDef.collideConnected = false;
+    revJointDef.collideConnected=false;
+    // revJointDef.lowerAngle = -0.1f*b2_pi;
+    // revJointDef.upperAngle = 0.1f * b2_pi;
+    // revJointDef.enableLimit = true;
 
 }
 
