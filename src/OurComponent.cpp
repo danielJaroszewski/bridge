@@ -10,12 +10,12 @@ void OurComponent::createBodyDefinition()
     bodyDef.linearDamping = COMPONENT_LINEAR_DAMPING;
     bodyDef.angularDamping = COMPONENT_ANGULAR_DAMPING;
     bodyDef.position.Set(xCoordinate, yCoordinate);
+    bodyDef.angle = angle;
 }
 
 void OurComponent::createBodyFixtureDefinition()
 {
-    b2Vec2 center = b2Vec2(xCoordinate, yCoordinate);
-    dynamicBox.SetAsBox(width/2, height/2, center, 0.0f);
+    dynamicBox.SetAsBox(width/2, height/2);
     fixtureDef.shape = &dynamicBox;
     fixtureDef.density = COMPONENT_DENSITY;
     fixtureDef.friction =1.0f;
