@@ -21,7 +21,11 @@ namespace most
 				ElemsCount
 			} mutable currentElement = CurrentElement::None;
 			static const std::array<float, ((unsigned int)CurrentElement::ElemsCount) - 1> maxDistances;
+
+			sf::Sprite woodSprite, roadSprite;
 		public:
+			EditorWorld();
+
 			virtual void draw(sf::RenderTarget& rt, sf::RenderStates states) const override;
 		};
 	}

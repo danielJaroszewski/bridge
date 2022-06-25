@@ -13,6 +13,8 @@ namespace most
 #define ASSERT_LOAD(x) if (!((x##Texture).loadFromFile(pathToResources + (#x ".png")))) throw std::runtime_error("Chlopaki nie przeniesliscie " #x ".png do folderu z plikiem wykonywalnym");
 		ASSERT_LOAD(wood);
 		ASSERT_LOAD(road);
+		ASSERT_LOAD(woodLowRes);
+		ASSERT_LOAD(roadLowRes);
 #undef ASSERT_LOAD
 	}
 
@@ -148,6 +150,16 @@ namespace most
 	const sf::Texture& GraphicsWorld::getRoadTexture() const
 	{
 		return roadTexture;
+	}
+
+	const sf::Texture& GraphicsWorld::getWoodLowResTexture() const
+	{
+		return woodLowResTexture;
+	}
+
+	const sf::Texture& GraphicsWorld::getRoadLowResTexture() const
+	{
+		return roadLowResTexture;
 	}
 
 	GraphicsWorld* GraphicsWorld::getInstance()

@@ -13,22 +13,23 @@ namespace most
 	{
 		decltype(EditorWorld::maxDistances) EditorWorld::maxDistances = {10.0f, 10.0f};
 
+		EditorWorld::EditorWorld()
+			: woodSprite(GraphicsWorld::getInstance()->getWoodLowResTexture()), roadSprite(GraphicsWorld::getInstance()->getRoadLowResTexture())
+		{
+		}
+
 		void EditorWorld::draw(sf::RenderTarget& rt, sf::RenderStates states) const
 		{
 			if (ImGui::Begin("Toolbox"))
 			{
-				if (ImGui::ImageButton(GraphicsWorld::getInstance()->getWoodTexture()))
+				if (ImGui::ImageButton(woodSprite))
 				{
 					currentElement = CurrentElement::Beam;
 				}
-				if (ImGui::ImageButton(GraphicsWorld::getInstance()->getRoadTexture()))
+				if (ImGui::ImageButton(roadSprite))
 				{
 					currentElement = CurrentElement::Road;
 				}
-			}
-			ImGui::End();
-			if (ImGui::Begin("Play!"))
-			{
 				if (ImGui::Button("Play!"))
 				{
 					// TODO: Change scene, create physics objects, begin simulation.

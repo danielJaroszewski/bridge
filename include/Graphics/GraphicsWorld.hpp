@@ -22,7 +22,7 @@ namespace most
 		sf::View view;
 		sf::Vector2f lastMousePos;
 		bool viewMoving;
-		sf::Texture woodTexture, roadTexture;
+		sf::Texture woodTexture, roadTexture, woodLowResTexture, roadLowResTexture;
 
 		std::map<Drawable*, std::unique_ptr<Drawable>> allDrawables;
 		std::list<std::function<void(const sf::Event&)>> eventCallbacks;
@@ -83,6 +83,8 @@ namespace most
 
 		const sf::Texture& getWoodTexture() const;
 		const sf::Texture& getRoadTexture() const;
+		const sf::Texture& getWoodLowResTexture() const;
+		const sf::Texture& getRoadLowResTexture() const;
 
 		static GraphicsWorld* getInstance();
 	};
