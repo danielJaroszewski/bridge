@@ -25,19 +25,24 @@ void JoiningPoint::setUpJoiningPoint()
     createFixtureDefinition();
 }
 
-float JoiningPoint::getXCoordinate()
+float JoiningPoint::getXCoordinate() const
 {
     return body->GetPosition().x;
 }
 
-float JoiningPoint::getYCoordinate()
+float JoiningPoint::getYCoordinate() const
 {
     return body->GetPosition().y;
 }
 
-float JoiningPoint::getRadius()
+float JoiningPoint::getRadius() const
 {
     return JOINING_POINT_RADIUS;
+}
+
+float JoiningPoint::getAngle() const
+{
+    return body->GetAngle();
 }
 
 b2Body* JoiningPoint::getB2Body()

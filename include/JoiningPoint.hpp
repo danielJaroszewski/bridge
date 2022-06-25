@@ -24,9 +24,11 @@ public:
     JoiningPoint(float x_, float y_);
 
     void setUpJoiningPoint();
-    float getXCoordinate();
-    float getYCoordinate();
-    float getRadius();
+
+    float getXCoordinate() const;
+    float getYCoordinate() const;
+    float getRadius() const;
+    float getAngle() const;
     
     int getIndex();
     b2Vec2 getAnchorPoint() override;
