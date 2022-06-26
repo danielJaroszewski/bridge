@@ -32,8 +32,8 @@ const float CAR_CHASSIS_HALF_HEIGHT = 0.75F;
 const float CAR_WHEEL_FRICTION = 0.9F;
 const float CAR_WHEEL_DENSITY = 1.0F;
 
-const float LEDGE_HALF_WIDTH = 20.0F;
-const float LEDGE_HALF_HEIGHT = 10.0F;
+const float LEDGE_FULL_WIDTH = 20.0F;
+const float LEDGE_FULL_HEIGHT = 1.0F;
 
 
 const float JOINING_POINT_RADIUS = 0.2F;

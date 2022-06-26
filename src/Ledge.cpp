@@ -7,13 +7,20 @@ Ledge::Ledge(float x, float y)
 
 void Ledge::createBodyDef()
 {
-    ledgeBodyDef.type = b2_staticBody;
-    ledgeBodyDef.position.Set(xCoordinate, yCoordinate);
+    for(int i=0; i<4; i++)
+    {
+        ledgeBodyDef[i].type = b2_staticBody;
+    }
+    ledgeBodyDef[0].position.Set(xCoordinate-1.5*singleBodyWidth, yCoordinate);
+    ledgeBodyDef[1].position.Set(xCoordinate-0.5*singleBodyWidth, yCoordinate);
+    ledgeBodyDef[2].position.Set(xCoordinate+0.5*singleBodyWidth, yCoordinate);
+    ledgeBodyDef[3].position.Set(xCoordinate+1.5*singleBodyWidth, yCoordinate);
 }
 
 void Ledge::createFixtureDef()
 {
-    ledgeBox.SetAsBox(LEDGE_HALF_WIDTH, LEDGE_HALF_HEIGHT);
+    
+    ledgeBox.SetAsBox(singleBodyWidth, LEDGE_FULL_HEIGHT);
     ledgeFixtureDef.shape = &ledgeBox;
     ledgeFixtureDef.filter.categoryBits = LEDGE_CATEGORY;
     ledgeFixtureDef.filter.maskBits = LEDGE_MASK;
@@ -25,9 +32,9 @@ void Ledge::setUpLedge()
     createFixtureDef();
 }
 
-const b2BodyDef* Ledge::getBodyDef()
+const b2BodyDef* Ledge::getBodyDef(int index)
 {
-    return &ledgeBodyDef;
+   return &ledgeBodyDef[index];
 }
 
 const b2FixtureDef* Ledge::getFixtureDef()
@@ -35,34 +42,27 @@ const b2FixtureDef* Ledge::getFixtureDef()
     return &ledgeFixtureDef;
 }
 
-
-float Ledge::getCenterX()
+float Ledge::getXCoordinate() const
 {
-    return b2Ledge->GetPosition().x;
+    return xCoordinate;
 }
 
-float Ledge::getCenterY()
+float Ledge::getYCoordinate() const
 {
-    return b2Ledge->GetPosition().y;
+    return yCoordinate;
 }
 
-float Ledge::getLeftEdgeXCoordinate()
+float Ledge::getWidth() const
 {
-    return xCoordinate - LEDGE_HALF_WIDTH;
+    return LEDGE_FULL_WIDTH;
 }
 
-float Ledge::getLeftEdgeYCoordinate()
+float Ledge::getHeight() const
 {
-    return yCoordinate + LEDGE_HALF_HEIGHT;
+    return LEDGE_FULL_HEIGHT;
 }
 
-float Ledge::getRightEdgeXCoordinate()
+float Ledge::getAngle() const
 {
-     return xCoordinate + LEDGE_HALF_WIDTH;
-}
-
-
-float Ledge::getRightEdgeYCoordinate()
-{
-    return yCoordinate + LEDGE_HALF_HEIGHT;
+    return 0.0f; // can be done, because it is static body
 }
