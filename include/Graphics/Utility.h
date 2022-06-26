@@ -58,4 +58,10 @@ namespace most
 	{
 		return deg / 180.0f * Pi;
 	}
+
+	class Rectangle
+	{
+	private:
+
+	};
 }
