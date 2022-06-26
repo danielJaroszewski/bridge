@@ -87,9 +87,9 @@ try
     // Main loop.
     while (shouldRun)
     {
+        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         graphics.processEvents();
         graphics.update();
-        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         while (accumulatedTime >= fixedUpdateTime)
         {
             accumulatedTime -= fixedUpdateTime;

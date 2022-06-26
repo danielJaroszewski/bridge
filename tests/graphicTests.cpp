@@ -124,9 +124,9 @@ TEST_CASE("3 element bridge")
     // Main loop.
     while (shouldRun)
     {
+        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         graphics.processEvents();
         graphics.update();
-        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         while (accumulatedTime >= fixedUpdateTime)
         {
             accumulatedTime -= fixedUpdateTime;
@@ -136,8 +136,6 @@ TEST_CASE("3 element bridge")
         graphics.present();
        
     }
-
-
 }
 
 TEST_CASE("angles")
@@ -178,9 +176,9 @@ TEST_CASE("angles")
     // Main loop.
     while (shouldRun)
     {
+        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         graphics.processEvents();
         graphics.update();
-        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         while (accumulatedTime >= fixedUpdateTime)
         {
             accumulatedTime -= fixedUpdateTime;
@@ -188,9 +186,7 @@ TEST_CASE("angles")
             graphics.physicsUpdate();
         }
         graphics.present();
-       
     }
-
 }
 
 
@@ -304,9 +300,9 @@ TEST_CASE("with ledges")
     // Main loop.
     while (shouldRun)
     {
+        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         graphics.processEvents();
         graphics.update();
-        accumulatedTime += graphics.getDeltaTime().asMicroseconds();
         while (accumulatedTime >= fixedUpdateTime)
         {
             accumulatedTime -= fixedUpdateTime;
@@ -314,8 +310,5 @@ TEST_CASE("with ledges")
             graphics.physicsUpdate();
         }
         graphics.present();
-       
     }
-    
-
 }
