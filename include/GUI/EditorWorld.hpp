@@ -22,18 +22,18 @@ namespace most
 
 				ElemsCount
 			};
-		private:
-			static constexpr float GridSeparation = 40.0f;
-			static constexpr float BeamWidth = 15.0f;
-
-			ElementType currentElement = ElementType::None;
-			static const std::array<float, ((unsigned int)ElementType::ElemsCount) - 1> maxDistances;
 
 			struct Beam
 			{
 				sf::RectangleShape visuals;
 				ElementType type;
 			};
+		private:
+			static constexpr float GridSeparation = 40.0f;
+			static constexpr float BeamWidth = 15.0f;
+
+			ElementType currentElement = ElementType::None;
+			static const std::array<float, ((unsigned int)ElementType::ElemsCount) - 1> maxDistances;
 
 			bool buildInProgress;
 			sf::CircleShape gridGizmo;
