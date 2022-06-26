@@ -21,12 +21,12 @@ namespace most
 
 			ledgeLeft.setSize(sf::Vector2f(1000, 200));
 			ledgeLeft.setOrigin(sf::Vector2f(1000, 100));
-			ledgeLeft.setPosition(sf::Vector2f(-250, 200));
+			ledgeLeft.setPosition(sf::Vector2f(-225, 200));
 			ledgeLeft.setFillColor(sf::Color(94, 235, 52));
 			
 			ledgeRight.setSize(sf::Vector2f(1000, 200));
 			ledgeRight.setOrigin(sf::Vector2f(0, 100));
-			ledgeRight.setPosition(sf::Vector2f(250, 200));
+			ledgeRight.setPosition(sf::Vector2f(225, 200));
 			ledgeRight.setFillColor(sf::Color(94, 235, 52));
 		}
 
