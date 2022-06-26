@@ -35,7 +35,7 @@ namespace most
 
 			bool buildInProgress;
 			sf::CircleShape gridGizmo;
-			sf::RectangleShape buildGizmo;
+			sf::RectangleShape buildGizmo, ledgeLeft, ledgeRight;
 			sf::Sprite woodSprite, roadSprite;
 			sf::Vector2f beginBuildPos;
 			GraphicsWorld::EventCallbackHandle userInteractions;

@@ -18,6 +18,16 @@ namespace most
 			gridGizmo.setRadius(10);
 			gridGizmo.setFillColor(sf::Color::Red);
 			gridGizmo.setOrigin(10, 10);
+
+			ledgeLeft.setSize(sf::Vector2f(1000, 200));
+			ledgeLeft.setOrigin(sf::Vector2f(1000, 100));
+			ledgeLeft.setPosition(sf::Vector2f(-250, 200));
+			ledgeLeft.setFillColor(sf::Color(94, 235, 52));
+			
+			ledgeRight.setSize(sf::Vector2f(1000, 200));
+			ledgeRight.setOrigin(sf::Vector2f(0, 100));
+			ledgeRight.setPosition(sf::Vector2f(250, 200));
+			ledgeRight.setFillColor(sf::Color(94, 235, 52));
 		}
 
 		EditorWorld::~EditorWorld()
@@ -179,6 +189,9 @@ namespace most
 
 		void EditorWorld::draw(sf::RenderTarget& rt, sf::RenderStates states) const
 		{
+			rt.draw(ledgeLeft, states);
+			rt.draw(ledgeRight, states);
+
 			for (const auto& x : placedBeams)
 			{
 				rt.draw(x.visuals, states);
