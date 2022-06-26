@@ -27,6 +27,11 @@ private:
     b2Body* dynBody;
     void setCompIndex(int ind);
     bool returnLeftAnchor = false, returnRightAnchor = false;
+    const b2BodyDef* getBodyDef() const;
+    const b2FixtureDef* getFixtureDefinition() const;
+    b2Body* getB2Body() override;
+    b2Vec2 getLeftAnchorPoint(); 
+    b2Vec2 getRightAnchorPoint();
 
 
 public:
@@ -51,18 +56,62 @@ public:
     void setUpComponent();
 
 
-    const b2BodyDef* getBodyDef() const;
-    const b2FixtureDef* getFixtureDefinition() const;
+    /**
+     * @brief get x coordinate of center
+     * 
+     * @return float x of center
+     */
     float getXCoordinate() const override;
+
+    /**
+     * @brief get y coordinate of center
+     * 
+     * @return float y of center
+     */
     float getYCoordinate() const override;
+
+    /**
+     * @brief Get the full width
+     * 
+     * @return float full width
+     */
     float getWidth() const override;
+
+    /**
+     * @brief Get the full height
+     * 
+     * @return float full height
+     */
     float getHeight() const override;
+
+    /**
+     * @brief Get the angle in degreed
+     * 
+     * @return float angle in degrees
+     */
     float getAngle() const override;
+
+    /**
+     * @brief Get the vector(x,y) of anchoring point - left or right side
+     * 
+     * @return b2Vec2 global vector(x,y) of where is anchoring point
+     */
     b2Vec2 getAnchorPoint() override;
-    b2Vec2 getLeftAnchorPoint(); 
-    b2Vec2 getRightAnchorPoint();
+    
+    /**
+     * @brief get index of component in world class
+     * 
+     * @return int index of component stored in world class
+     */
     int getCompIndex() const;
-    b2Body* getB2Body() override;
+
+    /**
+     * @brief call to set the returning anchor point to be the one one the left side of component(in local coordinates system)
+     */
     void setReturningLeftAnchor();
+
+    /**
+     * @brief call to set the returning anchor point to be the one one the right side of component(in local coordinates system_
+     */
     void setReturningRightAnchor();
 };

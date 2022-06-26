@@ -3,6 +3,10 @@
 #include "Constants.hpp"
 #include "Ib2BodyOwner.hpp"
 
+/**
+ * @brief Small round dynamic body to which joint should be connected
+ * 
+ */
 class JoiningPoint : public Ib2BodyOwner
 {
 private:
@@ -21,8 +25,17 @@ private:
     void setIndex(int index_);
 
 public:
+    /**
+     * @brief Construct a new Joining Point object
+     * 
+     * @param x_ x coordinate
+     * @param y_ y coordinate
+     */
     JoiningPoint(float x_, float y_);
-
+    /**
+     * @brief Set the Up Joining Point object. Call after creating.
+     * 
+     */
     void setUpJoiningPoint();
 
     float getXCoordinate() const;

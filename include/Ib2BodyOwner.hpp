@@ -1,7 +1,10 @@
 #pragma once
 #include "box2d/box2d.h"
 
-
+/**
+ * @brief Interface implemented by dynamic and static components. Created mainly for generalizing joints creation
+ * 
+ */
 class Ib2BodyOwner
 {
 public:

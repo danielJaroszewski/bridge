@@ -165,9 +165,6 @@ void OurWorld::initializeCar()
 
 void OurWorld::initializeWorld()
 {
-    gravity = b2Vec2(0.0f, gravityFactor);
-    world.SetGravity(gravity);
-    
     initializeComponents();
     assignFixtures();
     initializeJoints();

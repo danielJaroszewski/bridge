@@ -61,11 +61,6 @@ float StaticComponent::getAngle() const
     return staticBody->GetAngle();
 }
 
-bool StaticComponent::isStatic() const
-{
-    return true;
-}
-
 void StaticComponent::setIndex(int ind)
 {
     compIndex = ind;

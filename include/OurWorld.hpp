@@ -13,15 +13,12 @@
 using std::vector;
 
 /**
- * @brief Wrapper class for box2d's world. Initializes and places components inside a b2World object, simulating
- * gravity and other forces.
- *
+ * @brief Wrapper class for box2d's world. Initializes and places components inside a b2World object, simulating gravity and other forces.
  */
 
 class OurWorld
 {
 private:
-    float gravityFactor = -10.0f; // to initialize gravity in box2d, default value
     vector<OurComponent *> components;
     vector<StaticComponent *> staticComponents;
     vector<OurJoint *> joints;
@@ -31,10 +28,8 @@ private:
     Ledge* ledge1=nullptr;
     Ledge* ledge2 = nullptr;
 
-    b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
+    b2Vec2 gravity = b2Vec2(0.0f, GRAVITY);
     unsigned numberOfComponents = 0, numberOfJoints = 0;
-    float timeStep;
-    int32 velocityIterations, positionIterations;
     int currentCompIndex = 0;
 
     /**
@@ -77,55 +72,70 @@ public:
     OurWorld &operator=(OurWorld &&) noexcept = delete;
 
     ~OurWorld();
+
     /**
      * @brief Adds dynamic component created earlier. Passing by reference.
      *
-     * @param component_ Reference to object OurComponent
+     * @param component_ object OurComponent
      */
     void addComponent(OurComponent &component_);
 
     /**
      * @brief Adds static component created earlier. Passing by reference.
      *
-     * @param staticComponent_ Reference to object staticComponent
+     * @param staticComponent_ object staticComponent
      */
     void addStaticComponent(StaticComponent &staticComponent_);
 
       /**
      * @brief Adds joint created earlier. Passing by reference.
      *
-     * @param staticComponent_ Reference to object OurJoint
+     * @param staticComponent_ object OurJoint
      */
     void addJoint(OurJoint &joint_);
 
       /**
      * @brief Adds car created earlier. Passing by reference.
      *
-     * @param staticComponent_ Reference to object Car
+     * @param staticComponent_  object Car
      */
     void addCar(Car &car_);
+
+    /**
+     * @brief adds joining point
+     * 
+     * @param jPoint_ joining point object
+     */
     void addJoiningPoint(JoiningPoint& jPoint_);
 
+    /**
+     * @brief adds ledge object
+     * 
+     * @param ledge_ ledge object
+     */
     void addLedge(Ledge& ledge_);
 
+    /**
+     * @brief Get the Component object
+     * 
+     * @param index index of object
+     * @return OurComponent& OurComponent object
+     */
     OurComponent &getComponent(int index) const;
 
 
     /**
-     * @brief Updates world simulation by one step.
-     * 
+     * @brief Updates world simulation by one step. Step parameters specifed in the constans file
      */
     void update();
 
     /**
-     * @brief Wrapper function to easily initalize all the components, fixtures and joints. 
-     *
+     * @brief Wrapper function to easily initalize all the components, fixtures and joints.
      */
     void initializeWorld();
 
     /**
      * @brief Clears the world from created joints and bodies.
-     *
      */
     void clearWorld();
 };

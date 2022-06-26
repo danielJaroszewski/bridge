@@ -1,6 +1,9 @@
 #pragma once
 
-//move here all paramters not set by constructors or methods directly
+
+/**
+ * @brief Set of all needed constants for simulation
+ */
 
 const short DYNAMIC_COMP_CATEGORY = 0x0001;
 const short STATIC_COMP_CATEGORY = 0x0002;
@@ -19,6 +22,7 @@ const short JOINING_POINT_MASK = 0x0000;
 const float TIME_STEP = 1.0f/90.0f;
 const int32 VELOCITY_ITERATIONS = 20;
 const int32 POSITION_ITERATIONS = 20;
+const float GRAVITY = -10.0F;
 
 const float COMPONENT_DENSITY = 1.0F;
 const float COMPONENT_LINEAR_DAMPING = 0.0F;

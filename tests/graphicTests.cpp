@@ -160,12 +160,12 @@ TEST_CASE("angles")
     world.addComponent(comp1);
     graphics.addDrawable(std::make_unique<most::BeamVisuals>(comp1));
     world.initializeWorld();
-    b2Vec2 leftAnchor = comp1.getLeftAnchorPoint();
-    b2Vec2 rightAnchor = comp1.getRightAnchorPoint();
+    // b2Vec2 leftAnchor = comp1.getLeftAnchorPoint();
+    // b2Vec2 rightAnchor = comp1.getRightAnchorPoint();
 
-    std::cout<<"Left anchor point x: "<<leftAnchor.x<<"   y: "<<leftAnchor.y<<"\n";
-    std::cout<<"Right anchor point x: "<<rightAnchor.x<<"   y: "<<rightAnchor.y<<"\n";
-    std::cout<<"Position: "<<comp1.getXCoordinate()<<"  "<<comp1.getYCoordinate()<<"\n";
+    // std::cout<<"Left anchor point x: "<<leftAnchor.x<<"   y: "<<leftAnchor.y<<"\n";
+    // std::cout<<"Right anchor point x: "<<rightAnchor.x<<"   y: "<<rightAnchor.y<<"\n";
+    // std::cout<<"Position: "<<comp1.getXCoordinate()<<"  "<<comp1.getYCoordinate()<<"\n";
     #ifdef GRA
         auto& gameScene = graphics.addDrawable(std::make_unique<most::GameScene>());
         auto level = std::make_unique<most::Level>();
@@ -190,5 +190,25 @@ TEST_CASE("angles")
         graphics.present();
        
     }
+
+}
+
+
+TEST_CASE("with ledges")
+{
+    OurWorld world;
+    most::GraphicsWorld graphics;
+    auto& guiWorld = graphics.addDrawable(std::make_unique<most::GUI::World>());
+
+    bool shouldRun = true;
+    graphics.addEventCallback([&shouldRun](const sf::Event& e)
+    {
+        if (e.type == sf::Event::Closed)
+        {
+            shouldRun = false;
+        }
+    });
+
+    
 
 }
