@@ -33,6 +33,15 @@ namespace most
 			switch (e.type)
 			{
 			case sf::Event::MouseButtonReleased:
+				if (e.mouseButton.button != sf::Mouse::Button::Left)
+				{
+					if (e.mouseButton.button == sf::Mouse::Button::Right)
+					{
+						buildInProgress = false;
+						currentElement = ElementType::None;
+					}
+					return;
+				}
 				mousePos.x = e.mouseButton.x;
 				mousePos.y = e.mouseButton.y;
 				posOnGrid = globalPosToGlobalGridPos(GraphicsWorld::getInstance()->mousePositionToWorld(mousePos));
@@ -47,7 +56,7 @@ namespace most
 						// Place the beam.
 						if (distance(posOnGrid, beginBuildPos) <= maxDistances[((std::underlying_type_t<ElementType>)currentElement) - 1])
 						{
-							placedBeams.emplace_front(Beam{ buildGizmo, currentElement });
+							placedBeams.emplace_back(Beam{ buildGizmo, currentElement });
 							buildInProgress = false;
 						}
 					}
@@ -59,7 +68,18 @@ namespace most
 					}
 					break;
 				case ElementType::Remove:
-					// TODO
+				{
+					const auto globalMousePos = GraphicsWorld::getInstance()->mousePositionToWorld(mousePos);
+					const auto end = placedBeams.rend();
+					for (auto it = placedBeams.rbegin(); it != end; ++it)
+					{
+						if (it->visuals.getGlobalBounds().contains(globalMousePos))
+						{
+							placedBeams.erase(std::next(it).base());
+							break;
+						}
+					}
+				}
 					break;
 				}
 				break;
@@ -93,7 +113,8 @@ namespace most
 				return;
 			}
 			const auto normVec = normalize(vec, length);
-			const auto angle = rad2deg(std::acos(clamp(dot(normVec, sf::Vector2f(1, 0)), 0.0f, 1.0f)));
+			const auto cosAngle = clamp(dot(normVec, sf::Vector2f(1, 0)), -1.0f, 1.0f);
+			const auto angle = std::copysign(rad2deg(std::acos(cosAngle)), vec.y < 0 ? -1.0f : 1.0f);
 			buildGizmo.setRotation(angle);
 			buildGizmo.setSize(sf::Vector2f(length, BeamWidth));
 			const sf::Vector2f orig(length / 2.0f, BeamWidth / 2.0f);
@@ -130,23 +151,30 @@ namespace most
 
 		void EditorWorld::update()
 		{
-			if (ImGui::Begin("Toolbox"))
+			if (currentElement == ElementType::None)
 			{
-				if (ImGui::ImageButton(woodSprite))
+				if (ImGui::Begin("Toolbox", nullptr, ImGuiWindowFlags_AlwaysAutoResize))
 				{
-					setCurrentElement(ElementType::Beam);
+					if (ImGui::ImageButton(woodSprite))
+					{
+						setCurrentElement(ElementType::Beam);
+					}
+					if (ImGui::ImageButton(roadSprite))
+					{
+						setCurrentElement(ElementType::Road);
+					}
+					if (ImGui::Button("Remove tool"))
+					{
+						setCurrentElement(ElementType::Remove);
+					}
+					if (ImGui::Button("Play!"))
+					{
+						// TODO: Change scene, create physics objects, begin simulation.
+						GUI::World::getInstance()->setScene(std::make_unique<GUI::GameWorld>());
+					}
 				}
-				if (ImGui::ImageButton(roadSprite))
-				{
-					setCurrentElement(ElementType::Road);
-				}
-				if (ImGui::Button("Play!"))
-				{
-					// TODO: Change scene, create physics objects, begin simulation.
-					GUI::World::getInstance()->setScene(std::make_unique<GUI::GameWorld>());
-				}
+				ImGui::End();
 			}
-			ImGui::End();
 		}
 
 		void EditorWorld::draw(sf::RenderTarget& rt, sf::RenderStates states) const
@@ -155,7 +183,13 @@ namespace most
 			{
 				rt.draw(buildGizmo, states);
 			}
-			rt.draw(gridGizmo, states);
+			switch (currentElement)
+			{
+			case ElementType::Beam:
+			case ElementType::Road:
+				rt.draw(gridGizmo, states);
+				break;
+			}
 
 			for (const auto& x : placedBeams)
 			{
