@@ -12,8 +12,11 @@ namespace most
 		rightWheel.setFillColor(sf::Color::Red);
 
 		rect.setSize(sf::Vector2f(CAR_CHASSIS_HALF_WIDTH * 2.0f, CAR_CHASSIS_HALF_HEIGHT * 2.0f));
+		rect.setOrigin(sf::Vector2f(CAR_CHASSIS_HALF_WIDTH, CAR_CHASSIS_HALF_HEIGHT));
 		leftWheel.setRadius(CAR_WHEEL_RADIUS);
+		leftWheel.setOrigin(sf::Vector2f(CAR_WHEEL_RADIUS, CAR_WHEEL_RADIUS));
 		rightWheel.setRadius(CAR_WHEEL_RADIUS);
+		rightWheel.setOrigin(sf::Vector2f(CAR_WHEEL_RADIUS, CAR_WHEEL_RADIUS));
 	}
 
 	void CarVisuals::physicsUpdate()
