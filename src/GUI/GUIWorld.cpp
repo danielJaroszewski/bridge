@@ -22,27 +22,47 @@ namespace most
 
 		void World::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		{
-			if (newScene)
-			{
-				currentScene = std::move(newScene);
-			}
 			if (currentScene)
 			{
 				target.draw(*currentScene, states);
 			}
 		}
 
-		sf::Drawable* World::getScene()
+		void World::update()
+		{
+			if (newScene)
+			{
+				currentScene = std::move(newScene);
+			}
+			if (currentScene)
+			{
+				currentScene->update();
+			}
+		}
+
+		void World::physicsUpdate()
+		{
+			if (newScene)
+			{
+				currentScene = std::move(newScene);
+			}
+			if (currentScene)
+			{
+				currentScene->physicsUpdate();
+			}
+		}
+
+		Drawable* World::getScene()
 		{
 			return currentScene.get();
 		}
 
-		const sf::Drawable* World::getScene() const
+		const Drawable* World::getScene() const
 		{
 			return currentScene.get();
 		}
 
-		void World::setScene(std::unique_ptr<sf::Drawable>&& scene)
+		void World::setScene(std::unique_ptr<Drawable>&& scene)
 		{
 			// I don't swap the scene immediately in case the current scene wants to change the scene.
 			if (currentScene)

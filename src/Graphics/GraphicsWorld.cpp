@@ -89,7 +89,6 @@ namespace most
 
 	void GraphicsWorld::present()
 	{
-		ImGui::SFML::Update(wnd, deltaClock.restart());
 		wnd.clear(sf::Color(66, 135, 245));
 		for (const auto& x : allDrawables)
 		{
@@ -128,6 +127,7 @@ namespace most
 
 	void GraphicsWorld::update()
 	{
+		ImGui::SFML::Update(wnd, deltaClock.restart());
 		for (auto& x : allDrawables)
 		{
 			x.first->update();
@@ -140,6 +140,11 @@ namespace most
 		{
 			x.first->physicsUpdate();
 		}
+	}
+
+	sf::Vector2f most::GraphicsWorld::mousePositionToWorld(const sf::Vector2i& vec) const
+	{
+		return wnd.mapPixelToCoords(vec);
 	}
 
 	const sf::Texture& GraphicsWorld::getWoodTexture() const

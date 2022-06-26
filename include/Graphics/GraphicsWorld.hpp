@@ -26,7 +26,7 @@ namespace most
 
 		std::map<Drawable*, std::unique_ptr<Drawable>> allDrawables;
 		std::list<std::function<void(const sf::Event&)>> eventCallbacks;
-
+	public:
 		using EventCallback = decltype(eventCallbacks)::value_type;
 		using EventCallbackHandle = decltype(eventCallbacks)::const_iterator;
 	private:
@@ -80,6 +80,8 @@ namespace most
 		void update();
 		/// @brief Called by main to update elements after physics world update (if there was one).
 		void physicsUpdate();
+
+		sf::Vector2f mousePositionToWorld(const sf::Vector2i& vec) const;
 
 		const sf::Texture& getWoodTexture() const;
 		const sf::Texture& getRoadTexture() const;
