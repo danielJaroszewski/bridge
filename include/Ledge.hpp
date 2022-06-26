@@ -34,10 +34,8 @@ public:
 	const b2BodyDef* getBodyDef(int index);
 	const b2FixtureDef* getFixtureDef();
 
-	float getRightEdgeXCoordinate();
-	float getRightEdgeYCoordinate();
-	float getLeftEdgeXCoordinate();
-	float getLeftEdgeYCoordinate();
+	b2Vec2 getLeftEdgeCoordiantes(); //should put right base in that place
+	b2Vec2 getRightEdgeCoordinates(); //should put left base in that place
 
 	float getXCoordinate() const override;
 	float getYCoordinate() const override;

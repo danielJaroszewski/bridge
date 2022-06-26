@@ -66,3 +66,15 @@ float Ledge::getAngle() const
 {
     return 0.0f; // can be done, because it is static body
 }
+
+b2Vec2 Ledge::getLeftEdgeCoordiantes()
+{
+    b2Vec2 coordinates = b2Vec2(xCoordinate - LEDGE_FULL_WIDTH/2, yCoordinate+LEDGE_FULL_HEIGHT/2);
+    return coordinates;
+}
+
+b2Vec2 Ledge::getRightEdgeCoordinates()
+{
+    b2Vec2 coordinates = b2Vec2(xCoordinate + LEDGE_FULL_WIDTH/2, yCoordinate + LEDGE_FULL_HEIGHT/2);
+    return coordinates;
+}
