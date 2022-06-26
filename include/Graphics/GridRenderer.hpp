@@ -8,10 +8,12 @@ namespace most
 		: public Drawable
 	{
 	private:
-		mutable sf::VertexArray vertexArray;
+		sf::VertexArray vertexArray;
 		float gridSeparation;
+		bool dirty;
+		sf::Vector2f viewport;
 	public:
-		GridRenderer();
+		GridRenderer(const float gridSep);
 
 		void setGridSeparation(const float newSep);
 

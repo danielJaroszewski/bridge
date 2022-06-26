@@ -19,6 +19,8 @@ using std::vector;
 class OurWorld
 {
 private:
+    static OurWorld* instance;
+private:
     vector<OurComponent *> components;
     vector<StaticComponent *> staticComponents;
     vector<OurJoint *> joints;
@@ -63,7 +65,7 @@ public:
     b2World world = b2World(gravity);
 
 public:
-    OurWorld() = default;
+    OurWorld();
 
     OurWorld(const OurWorld &) = delete;
     OurWorld(OurWorld &&) noexcept = delete;
@@ -138,4 +140,6 @@ public:
      * @brief Clears the world from created joints and bodies.
      */
     void clearWorld();
+
+    static OurWorld* getInstance();
 };

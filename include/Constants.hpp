@@ -19,7 +19,7 @@ const short CAR_WHEELS_MASK = DYNAMIC_COMP_CATEGORY | LEDGE_CATEGORY;
 const short LEDGE_MASK = CAR_WHEELS_CATEGORY;
 const short JOINING_POINT_MASK = 0x0000;
 
-const float TIME_STEP = 1.0f/90.0f;
+const float TIME_STEP = 1.0f/60.0f;
 const int32 VELOCITY_ITERATIONS = 20;
 const int32 POSITION_ITERATIONS = 20;
 const float GRAVITY = -10.0F;

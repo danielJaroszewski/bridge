@@ -179,6 +179,11 @@ namespace most
 
 		void EditorWorld::draw(sf::RenderTarget& rt, sf::RenderStates states) const
 		{
+			for (const auto& x : placedBeams)
+			{
+				rt.draw(x.visuals, states);
+			}
+
 			if (buildInProgress)
 			{
 				rt.draw(buildGizmo, states);
@@ -189,11 +194,6 @@ namespace most
 			case ElementType::Road:
 				rt.draw(gridGizmo, states);
 				break;
-			}
-
-			for (const auto& x : placedBeams)
-			{
-				rt.draw(x.visuals, states);
 			}
 		}
 	}

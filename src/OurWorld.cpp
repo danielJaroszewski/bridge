@@ -2,9 +2,20 @@
 
 #include <iostream>
 
+OurWorld* OurWorld::instance = nullptr;
+
+OurWorld::OurWorld()
+{
+    instance = this;
+}
+
 OurWorld::~OurWorld()
 {
     clearWorld();
+    if (instance == this)
+    {
+        instance = nullptr;
+    }
 }
 
 void OurWorld::addComponent(OurComponent& component_)
@@ -53,6 +64,11 @@ void OurWorld::addLedge(Ledge& ledge_)
         ledge2 = &ledge_;
 
     }
+}
+
+OurWorld* OurWorld::getInstance()
+{
+    return instance;
 }
 
 void OurWorld::initializeComponents()

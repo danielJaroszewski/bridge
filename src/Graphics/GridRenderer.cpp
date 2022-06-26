@@ -2,8 +2,8 @@
 
 namespace most
 {
-	GridRenderer::GridRenderer()
-		: vertexArray(sf::PrimitiveType::Lines)
+	GridRenderer::GridRenderer(const float gridSep)
+		: vertexArray(sf::PrimitiveType::Lines), gridSeparation(gridSep), dirty(true), viewport(800, 600)
 	{
 	}
 
@@ -14,11 +14,16 @@ namespace most
 
 	void GridRenderer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		// TODO
+		target.draw(vertexArray, states);
 	}
 
 	void GridRenderer::update()
 	{
+		if (dirty)
+		{
+			dirty = false;
+			// TODO
+		}
 	}
 
 	void GridRenderer::physicsUpdate()
