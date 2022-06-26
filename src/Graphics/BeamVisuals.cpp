@@ -5,6 +5,7 @@ most::BeamVisuals::BeamVisuals(RectPhysicsComponent& comp)
 {
 	visuals.setFillColor(sf::Color::White);
 	visuals.setSize(sf::Vector2f(comp.getWidth(), comp.getHeight()));
+	visuals.setOrigin(sf::Vector2f(comp.getWidth() / 2.0f, comp.getHeight() / 2.0f));;
 }
 
 void most::BeamVisuals::draw(sf::RenderTarget& target, sf::RenderStates states) const

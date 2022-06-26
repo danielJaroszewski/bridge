@@ -1,38 +1,83 @@
 #include "../../include/GUI/GUIWorld.hpp"
 
-#include <imgui-SFML.h>
-
-void most::GUI::World::draw(sf::RenderTarget& target, sf::RenderStates states) const
+namespace most
 {
-	if (newScene)
+	namespace GUI
 	{
-		currentScene = std::move(newScene);
-	}
-	if (currentScene)
-	{
-		target.draw(*currentScene, states);
-	}
-}
+		World* World::instance = nullptr;
 
-sf::Drawable* most::GUI::World::getScene()
-{
-	return currentScene.get();
-}
+		World::World()
+		{
+			instance = this;
+		}
 
-const sf::Drawable* most::GUI::World::getScene() const
-{
-	return currentScene.get();
-}
+		World::~World()
+		{
+			// In case some fucked up.
+			if (instance == this)
+			{
+				instance = nullptr;
+			}
+		}
 
-void most::GUI::World::setScene(std::unique_ptr<sf::Drawable>&& scene)
-{
-	// I don't swap the scene immediiately in case the current scene wants to change the scene.
-	if (currentScene)
-	{
-		newScene = std::move(scene);
-	}
-	else
-	{
-		currentScene = std::move(scene);
+		void World::draw(sf::RenderTarget& target, sf::RenderStates states) const
+		{
+			if (currentScene)
+			{
+				target.draw(*currentScene, states);
+			}
+		}
+
+		void World::update()
+		{
+			if (newScene)
+			{
+				currentScene = std::move(newScene);
+			}
+			if (currentScene)
+			{
+				currentScene->update();
+			}
+		}
+
+		void World::physicsUpdate()
+		{
+			if (newScene)
+			{
+				currentScene = std::move(newScene);
+			}
+			if (currentScene)
+			{
+				currentScene->physicsUpdate();
+			}
+		}
+
+		Drawable* World::getScene()
+		{
+			return currentScene.get();
+		}
+
+		const Drawable* World::getScene() const
+		{
+			return currentScene.get();
+		}
+
+		void World::setScene(std::unique_ptr<Drawable>&& scene)
+		{
+			// I don't swap the scene immediately in case the current scene wants to change the scene.
+			if (currentScene)
+			{
+				newScene = std::move(scene);
+			}
+			else
+			{
+				currentScene = std::move(scene);
+			}
+		}
+
+		World* World::getInstance()
+		{
+			return instance;
+		}
 	}
 }
