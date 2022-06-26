@@ -42,6 +42,19 @@ void OurWorld::addCar(Car &car_)
     car = &car_;
 }
 
+void OurWorld::addLedge(Ledge& ledge_)
+{
+    if(ledge1 == nullptr)
+    {
+        ledge1 = &ledge_;
+    }
+    else
+    {
+        ledge2 = &ledge_;
+
+    }
+}
+
 void OurWorld::initializeComponents()
 {
     for (auto i : components)
@@ -57,6 +70,20 @@ void OurWorld::initializeComponents()
     for(auto i : joiningPoints)
     {
         i->body = world.CreateBody(i->getBodyDef());
+    }
+    if(ledge1 != nullptr)
+    {
+        for(int i=0; i<4; i++)
+        {
+            ledge1->b2Ledge[i] = world.CreateBody(ledge1->getBodyDef(i));
+        }
+    }
+    if(ledge2 != nullptr)
+    {
+        for(int i=0; i<4; i++)
+        {
+            ledge2->b2Ledge[i] = world.CreateBody(ledge2->getBodyDef(i));
+        }
     }
 }
 
@@ -75,6 +102,20 @@ void OurWorld::assignFixtures()
     for(auto i : joiningPoints)
     {
         i->body->CreateFixture(i->getFixtureDef());
+    }
+    if(ledge1 != nullptr)
+    {
+        for(int i=0; i<4; i++)
+        {
+            ledge1->b2Ledge[i]->CreateFixture(ledge1->getFixtureDef());
+        }
+    }
+    if(ledge2 != nullptr)
+    {
+        for(int i=0; i<4; i++)
+        {
+            ledge2->b2Ledge[i]->CreateFixture(ledge2->getFixtureDef());
+        }
     }
 
 }      

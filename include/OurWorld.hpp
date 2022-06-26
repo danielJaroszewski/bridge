@@ -28,6 +28,8 @@ private:
     vector<JoiningPoint*> joiningPoints;
     Car *car = nullptr;
     vector<Ib2BodyOwner*> bodyOwners;
+    Ledge* ledge1=nullptr;
+    Ledge* ledge2 = nullptr;
 
     b2Vec2 gravity = b2Vec2(0.0f, gravityFactor);
     unsigned numberOfComponents = 0, numberOfJoints = 0;
@@ -103,6 +105,8 @@ public:
      */
     void addCar(Car &car_);
     void addJoiningPoint(JoiningPoint& jPoint_);
+
+    void addLedge(Ledge& ledge_);
 
     OurComponent &getComponent(int index) const;
 
