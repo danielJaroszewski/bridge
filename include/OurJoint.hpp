@@ -3,58 +3,58 @@
 #include "Constants.hpp"
 
 /**
- * @brief Wrapper class for box2d's distanceJoint.
- * 
+ * @brief Wrapper class for box2d's revolute joint
+ *
  */
-class OurJoint 
+class OurJoint
 {
 private:
-   b2DistanceJointDef distJointDef; 
-   int indexOfBodyA, indexOfBodyB;
-   bool isLeftBStatic=false, isRightBStatic=false;
-   b2DistanceJoint* distanceJoint;
-   float maxForce; //=??? to be found out
-   void setLinearStiffness(float freq_=4.0f, float dampingRatio_=0.5f);
+    b2RevoluteJointDef revJointDef;
+    int indexOfBodyA, indexOfBodyB;
+    bool isBodyAJoiningPoint = false, isBodyBJoiningPoint = false;
 
+    b2RevoluteJoint *revoluteJoint;
+
+    float maxForce;
 
 public:
     friend class OurWorld;
-    const b2DistanceJointDef* getDistJointDef();
+    const b2RevoluteJointDef *getReVJointDef();
     int getBodyAIndex();
     int getBodyBIndex();
-
+    
     /**
-     * @brief Initializes the joint definition.
+     * @brief initializes the definition of joint
      * 
-     * @param bodyA_ First body the joint is attached to.
-     * @param bodyB_ Second body the joint is attached to.
-     * @param aBodyAnchor_ Coordinates within the first body to which the joint is attached to.
-     * @param bBodyAnchor_ Coordinates within the second body to which the joint is attached to.
+     * @param bodyA_ first body to which joint is attached
+     * @param bodyB_ second body to which joint is attached
+     * @param anchorPoint anchor point of joint in global coordinates
      */
-    void initializeDefinition(b2Body* bodyA_, b2Body* bodyB_ , b2Vec2 aBodyAnchor_, b2Vec2 bBodyAnchor_); //called from world
-
-    /**
-     * @brief Sets the stiffnes of a joint.
-     * 
-     * @param freq_ Oscillation frequency.
-     * @param dampingRatio_ Damping ratio. Values starting from 0 can be assigned, with values above 1 being critical damping with no oscillation.
-     */
-
-    void setLeftBodyStatic();
-    void setRightBodyStatic();
+    void initializeDefinition(b2Body *bodyA_, b2Body *bodyB_, b2Vec2 anchorPoint); 
 
     /**
      * @brief Sets the indices of bodies to which the joint is attached.
-     * 
-     * @param bodyAIndex 
-     * @param bodyBIndex 
+     *
+     * @param bodyAIndex index of body A
+     * @param bodyBIndex index of body B
      */
     void setIndexOfBodies(int bodyAIndex, int bodyBIndex);
 
-    bool isLeftBodyStatic();
-    bool isRightBodyStatic();
+    /**
+     * @brief indicates that body A is JoiningPoint object. This method or setBBodyJoiningPoint needs to be called in order to determine the coordinates of anchor point which are got from JoiningPoint
+     */
+    void setABodyJoiningPoint();
 
+    /**
+     * @brief indicates that body B is JoiningPoint object. This method or setABodyJoiningPoint needs to be called in order to determine the coordinates of anchor point which are got from JoiningPoint
+     * 
+     */
+    void setBBodyJoiningPoint();
+
+    /**
+     * @brief Absolute force acting on joint
+     * 
+     * @return float absolute force acting on joint
+     */
     float getAbsActingForce();
-
-
 };

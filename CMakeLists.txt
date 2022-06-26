@@ -16,8 +16,5 @@ target_link_libraries(most-core PUBLIC box2d::box2d sfml-system sfml-network sfm
 add_executable(most main.cpp)
 target_link_libraries(most PRIVATE most-core)
 
-add_executable(tester ./tests/test.cpp)
-target_link_libraries(tester PRIVATE most-core Catch2::Catch2WithMain)
-
 add_executable(graphicTest ./tests/graphicTests.cpp)
 target_link_libraries(graphicTest PRIVATE most-core Catch2::Catch2WithMain)

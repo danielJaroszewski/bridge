@@ -2,12 +2,6 @@
 
 void Car::createChassisFixtureDef()
 {
-    // vertices[0].Set(-1.5f, -0.5f);
-    // vertices[1].Set(1.5f, -0.5f);
-    // vertices[2].Set(1.5f, 0.0f);
-    // vertices[3].Set(0.0f, 0.9f);
-    // vertices[4].Set(-1.15f, 0.9f);
-    // vertices[5].Set(-1.5f, 0.2f);
     chassisPolygon.SetAsBox(CAR_CHASSIS_HALF_WIDTH, CAR_CHASSIS_HALF_HEIGHT);
     chassisFixtureDef.shape = &chassisPolygon;
     chassisFixtureDef.density = CAR_CHASSIS_DENSITY;
