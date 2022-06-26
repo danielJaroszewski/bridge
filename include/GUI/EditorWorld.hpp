@@ -12,10 +12,7 @@ namespace most
 		class EditorWorld
 			: public Drawable
 		{
-		private:
-			static constexpr float GridSeparation = 40.0f;
-			static constexpr float BeamWidth = 15.0f;
-
+		public:
 			enum class ElementType
 			{
 				None,
@@ -24,7 +21,12 @@ namespace most
 				Remove,
 
 				ElemsCount
-			} mutable currentElement = ElementType::None;
+			};
+		private:
+			static constexpr float GridSeparation = 40.0f;
+			static constexpr float BeamWidth = 15.0f;
+
+			ElementType currentElement = ElementType::None;
 			static const std::array<float, ((unsigned int)ElementType::ElemsCount) - 1> maxDistances;
 
 			struct Beam
